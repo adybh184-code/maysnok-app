@@ -28,7 +28,7 @@ ARTISANS = [
 
 @app.get("/")
 def home():
-    return send_from_directory(app.static_folder, "index.html")
+   return send_from_directory(".", "index.html") 
 
 @app.get("/api/categories")
 def categories():
