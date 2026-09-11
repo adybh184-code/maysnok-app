@@ -85,7 +85,7 @@ def ai_match():
 def health():
     return jsonify({"status": "ok"})
 @app.get("/")
-def home():
+def  homepage ():
     return send_from_directory(".", "index.html")
 if __name__ == "__main__":
     
