@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>Maysnok - خدمات مهنية</title>
+  <style>
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Tahoma,Arial,sans-serif;background:#f5f7fb;color:#172033}
+    .app{max-width:760px;margin:auto;min-height:100vh;background:white}
+    header{position:sticky;top:0;background:#fff;border-bottom:1px solid #e8ebf1;padding:14px 16px;z-index:5;display:flex;align-items:center;justify-content:space-between}
+    .brand{font-size:22px;font-weight:800}
+    .brand span{color:#5b5cf0}
+    .avatar{width:38px;height:38px;border-radius:50%;background:#eef0ff;display:grid;place-items:center}
+    .hero{padding:24px 16px;background:linear-gradient(135deg,#5b5cf0,#7b5cff);color:white}
+    .hero h1{margin:0 0 8px;font-size:27px}
+    .hero p{margin:0 0 18px;opacity:.92;line-height:1.6}
+    .search{display:flex;gap:8px}
+    input,select,textarea{width:100%;border:1px solid #dfe3ec;border-radius:14px;padding:13px;font-size:16px;background:#fff}
+    .search input{border:none}
+    button{border:0;border-radius:14px;padding:12px 15px;font-size:15px;font-weight:700;cursor:pointer}
+    .primary{background:#171b2b;color:white}
+    .section{padding:20px 16px}
+    .section h2{font-size:20px;margin:0 0 14px}
+    .cats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    .cat{background:#f7f8fc;border:1px solid #eceef4;border-radius:16px;padding:14px 8px;text-align:center;min-height:104px}
+    .cat .icon{font-size:27px;margin-bottom:7px}
+    .cat .name{font-size:13px;line-height:1.4}
+    .ai{background:#111827;color:white;border-radius:22px;padding:18px}
+    .ai textarea{margin:10px 0;background:#fff;color:#111}
+    .ai .row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .ai button{background:#6d5dfc;color:white;width:100%;margin-top:9px}
+    .cards{display:grid;gap:10px}
+    .card{border:1px solid #e8ebf1;border-radius:18px;padding:14px;display:flex;gap:12px;align-items:center}
+    .pic{width:52px;height:52px;border-radius:15px;background:#eef0ff;display:grid;place-items:center;font-size:24px}
+    .meta{flex:1}
+    .name{font-weight:800}
+    .small{font-size:13px;color:#687087;margin-top:4px}
+    .badge{font-size:12px;padding:5px 8px;border-radius:999px;background:#e9fbef;color:#147a37}
+    .nav{position:sticky;bottom:0;background:white;border-top:1px solid #e8ebf1;display:grid;grid-template-columns:repeat(4,1fr);padding:8px 0}
+    .nav div{text-align:center;font-size:12px;color:#697085}
+    .nav b{display:block;font-size:20px;margin-bottom:3px}
+    .empty{color:#7a8194;text-align:center;padding:16px}
+    @media (max-width:520px){.cats{grid-template-columns:repeat(3,1fr)}.hero h1{font-size:24px}}
+  </style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <div class="brand"><span>May</span>snok</div>
+    <div class="avatar">👤</div>
+  </header>
+
+  <section class="hero">
+    <h1>لقا المهني المناسب بسهولة</h1>
+    <p>خدمات قريبة منك، تقييمات واضحة، واتصال مباشر.</p>
+    <div class="search">
+      <input id="citySearch" placeholder="اكتب المدينة: كلميم أو تزنيت">
+      <button class="primary" onclick="loadArtisans()">بحث</button>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>الخدمات</h2>
+    <div class="cats" id="categories"></div>
+  </section>
+
+  <section class="section">
+    <div class="ai">
+      <h2 style="margin:0">🤖 المساعد الذكي</h2>
+      <p style="opacity:.85">قول شنو المشكل ديالك، وهو يقترح عليك نوع المهني.</p>
+      <textarea id="problem" rows="3" placeholder="مثال: عندي تسرب الماء فالحمام"></textarea>
+      <div class="row">
+        <input id="aiCity" placeholder="المدينة">
+        <button onclick="aiMatch()">اقترح لي مهني</button>
+      </div>
+      <div id="aiResult" style="margin-top:12px"></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>مهنيون مقترحون</h2>
+    <div class="cards" id="artisans"></div>
+  </section>
+
+  <div class="nav">
+    <div><b>🏠</b>الرئيسية</div>
+    <div><b>🔎</b>بحث</div>
+    <div><b>💬</b>الرسائل</div>
+    <div><b>👤</b>حسابي</div>
+  </div>
+</div>
+
+<script>
+const catsEl = document.getElementById('categories');
+const artsEl = document.getElementById('artisans');
+
+async function loadCategories(){
+  const r = await fetch('/api/categories');
+  const data = await r.json();
+  catsEl.innerHTML = data.map(c => `
+    <div class="cat" onclick="filterJob('${c.name}')">
+      <div class="icon">${c.icon}</div>
+      <div class="name">${c.name}</div>
+    </div>`).join('');
+}
+
+function artisanCard(a){
+  return `<div class="card">
+    <div class="pic">🧰</div>
+    <div class="meta">
+      <div class="name">${a.name} — ${a.job}</div>
+      <div class="small">📍 ${a.city} · ⭐ ${a.rating}</div>
+    </div>
+    <span class="badge">${a.available ? 'متاح الآن' : 'غير متاح'}</span>
+  </div>`;
+}
+
+async function loadArtisans(){
+  const city = document.getElementById('citySearch').value.trim();
+  const r = await fetch('/api/artisans?city=' + encodeURIComponent(city));
+  const data = await r.json();
+  artsEl.innerHTML = data.length ? data.map(artisanCard).join('') : '<div class="empty">ما لقيناش مهنيين بهاد البحث حالياً.</div>';
+}
+
+async function filterJob(job){
+  const r = await fetch('/api/artisans?job=' + encodeURIComponent(job));
+  const data = await r.json();
+  artsEl.innerHTML = data.length ? data.map(artisanCard).join('') : '<div class="empty">غادي نضيفو مهنيين أكثر فهاد الخدمة.</div>';
+  artsEl.scrollIntoView({behavior:'smooth'});
+}
+
+async function aiMatch(){
+  const text = document.getElementById('problem').value.trim();
+  const city = document.getElementById('aiCity').value.trim();
+  const out = document.getElementById('aiResult');
+  if(!text){ out.innerHTML = 'كتب المشكل ديالك أولاً.'; return; }
+  out.innerHTML = 'جاري البحث...';
+  const r = await fetch('/api/ai-match', {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({text, city})
+  });
+  const data = await r.json();
+  out.innerHTML = `<b>الخدمة المقترحة: ${data.detected_job}</b><div style="margin-top:8px">${data.matches.length ? data.matches.map(artisanCard).join('') : 'ما لقيناش مهني مطابق حالياً.'}</div>`;
+}
+
+loadCategories();
+loadArtisans();
+</script>
+</body>
+</html>
