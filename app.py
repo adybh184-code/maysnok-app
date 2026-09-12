@@ -87,7 +87,7 @@ def health():
 @app.get("/")
 def homepage():
     return send_from_directory(".", "index.html") 
-    @app.get("/admin")
+@app.get("/admin")
 def admin():
     return """
     <html dir="rtl">
