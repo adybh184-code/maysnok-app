@@ -602,7 +602,7 @@ body{
 
 <p>أنشئ حسابك واعرض أعمالك للزبناء.</p>
 
-<button>إنشاء حساب مهني</button>
+<button id="professionalRegisterBtn">إنشاء حساب مهني</button>
 
 </div>
 
@@ -1223,6 +1223,9 @@ function escapeJs(value){
 renderCategories();
 
 renderArtisans();
+    document.getElementById("professionalRegisterBtn").onclick = function () {
+    alert("زر إنشاء الحساب المهني خدام الآن");
+};
 
 </script>
 
