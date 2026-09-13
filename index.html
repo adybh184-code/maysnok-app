@@ -1,152 +1,1162 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <title>Maysnok - خدمات مهنية</title>
-  <style>
-    *{box-sizing:border-box}
-    body{margin:0;font-family:Tahoma,Arial,sans-serif;background:#f5f7fb;color:#172033}
-    .app{max-width:760px;margin:auto;min-height:100vh;background:white}
-    header{position:sticky;top:0;background:#fff;border-bottom:1px solid #e8ebf1;padding:14px 16px;z-index:5;display:flex;align-items:center;justify-content:space-between}
-    .brand{font-size:22px;font-weight:800}
-    .brand span{color:#5b5cf0}
-    .avatar{width:38px;height:38px;border-radius:50%;background:#eef0ff;display:grid;place-items:center}
-    .hero{padding:24px 16px;background:linear-gradient(135deg,#5b5cf0,#7b5cff);color:white}
-    .hero h1{margin:0 0 8px;font-size:27px}
-    .hero p{margin:0 0 18px;opacity:.92;line-height:1.6}
-    .search{display:flex;gap:8px}
-    input,select,textarea{width:100%;border:1px solid #dfe3ec;border-radius:14px;padding:13px;font-size:16px;background:#fff}
-    .search input{border:none}
-    button{border:0;border-radius:14px;padding:12px 15px;font-size:15px;font-weight:700;cursor:pointer}
-    .primary{background:#171b2b;color:white}
-    .section{padding:20px 16px}
-    .section h2{font-size:20px;margin:0 0 14px}
-    .cats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-    .cat{background:#f7f8fc;border:1px solid #eceef4;border-radius:16px;padding:14px 8px;text-align:center;min-height:104px}
-    .cat .icon{font-size:27px;margin-bottom:7px}
-    .cat .name{font-size:13px;line-height:1.4}
-    .ai{background:#111827;color:white;border-radius:22px;padding:18px}
-    .ai textarea{margin:10px 0;background:#fff;color:#111}
-    .ai .row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-    .ai button{background:#6d5dfc;color:white;width:100%;margin-top:9px}
-    .cards{display:grid;gap:10px}
-    .card{border:1px solid #e8ebf1;border-radius:18px;padding:14px;display:flex;gap:12px;align-items:center}
-    .pic{width:52px;height:52px;border-radius:15px;background:#eef0ff;display:grid;place-items:center;font-size:24px}
-    .meta{flex:1}
-    .name{font-weight:800}
-    .small{font-size:13px;color:#687087;margin-top:4px}
-    .badge{font-size:12px;padding:5px 8px;border-radius:999px;background:#e9fbef;color:#147a37}
-    .nav{position:sticky;bottom:0;background:white;border-top:1px solid #e8ebf1;display:grid;grid-template-columns:repeat(4,1fr);padding:8px 0}
-    .nav div{text-align:center;font-size:12px;color:#697085}
-    .nav b{display:block;font-size:20px;margin-bottom:3px}
-    .empty{color:#7a8194;text-align:center;padding:16px}
-    @media (max-width:520px){.cats{grid-template-columns:repeat(3,1fr)}.hero h1{font-size:24px}}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Maysnok - خدمات مهنية</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f0f2f5;
+    color:#1f2937;
+}
+
+/* الشريط العلوي */
+
+.topbar{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:#1264d8;
+    color:white;
+    min-height:70px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:10px 4%;
+    gap:15px;
+    box-shadow:0 2px 8px rgba(0,0,0,.15);
+}
+
+.logo{
+    font-size:30px;
+    font-weight:bold;
+}
+
+.searchTop{
+    flex:1;
+    max-width:600px;
+    display:flex;
+    gap:7px;
+}
+
+.searchTop input{
+    width:100%;
+    border:none;
+    padding:13px;
+    border-radius:12px;
+    font-size:16px;
+}
+
+.searchTop button{
+    background:white;
+    color:#1264d8;
+    border:none;
+    border-radius:12px;
+    padding:0 18px;
+    font-size:20px;
+    cursor:pointer;
+}
+
+.nav{
+    display:flex;
+    gap:18px;
+    font-size:15px;
+}
+
+.nav span{
+    cursor:pointer;
+}
+
+
+/* التخطيط */
+
+.layout{
+    max-width:1450px;
+    margin:20px auto;
+    padding:0 15px;
+    display:grid;
+    grid-template-columns:250px minmax(0,700px) 270px;
+    gap:18px;
+}
+
+
+/* البطاقات العامة */
+
+.panel{
+    background:white;
+    border-radius:16px;
+    padding:16px;
+    box-shadow:0 1px 5px rgba(0,0,0,.08);
+}
+
+.panel h3{
+    margin-top:0;
+}
+
+
+/* القائمة الجانبية */
+
+.category{
+    padding:12px;
+    margin:5px 0;
+    border-radius:10px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.category:hover{
+    background:#eef5ff;
+    color:#1264d8;
+}
+
+.city{
+    padding:10px;
+    border-radius:9px;
+    margin:4px 0;
+    cursor:pointer;
+}
+
+.city:hover{
+    background:#eef5ff;
+}
+
+
+/* الواجهة الوسطى */
+
+.hero{
+    position:relative;
+    min-height:205px;
+    border-radius:18px;
+    overflow:hidden;
+    margin-bottom:15px;
+    background:
+    linear-gradient(90deg,rgba(18,100,216,.85),rgba(18,100,216,.30)),
+    url("https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1200&q=80");
+    background-size:cover;
+    background-position:center;
+    color:white;
+    padding:35px;
+    display:flex;
+    align-items:center;
+}
+
+.hero h1{
+    font-size:33px;
+    margin:0 0 10px;
+}
+
+.hero p{
+    font-size:18px;
+    margin:0;
+}
+
+
+/* مربع الطلب */
+
+.composer{
+    background:white;
+    border-radius:16px;
+    padding:16px;
+    margin-bottom:15px;
+    box-shadow:0 1px 5px rgba(0,0,0,.08);
+}
+
+.composerRow{
+    display:flex;
+    gap:10px;
+}
+
+.avatar{
+    width:47px;
+    height:47px;
+    border-radius:50%;
+    background:#dbeafe;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:23px;
+    flex-shrink:0;
+}
+
+.composer input{
+    flex:1;
+    background:#f0f2f5;
+    border:none;
+    border-radius:25px;
+    padding:13px 18px;
+    font-size:16px;
+}
+
+.composerActions{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    border-top:1px solid #eee;
+    margin-top:14px;
+    padding-top:12px;
+    text-align:center;
+    color:#4b5563;
+}
+
+
+/* الفلاتر */
+
+.filters{
+    display:flex;
+    background:white;
+    border-radius:14px;
+    margin-bottom:15px;
+    overflow:hidden;
+    box-shadow:0 1px 4px rgba(0,0,0,.06);
+}
+
+.filter{
+    flex:1;
+    text-align:center;
+    padding:14px 5px;
+    cursor:pointer;
+}
+
+.filter.active{
+    color:#1264d8;
+    font-weight:bold;
+    border-bottom:3px solid #1264d8;
+}
+
+
+/* منشور المهني */
+
+.post{
+    background:white;
+    border-radius:16px;
+    margin-bottom:18px;
+    overflow:hidden;
+    box-shadow:0 1px 5px rgba(0,0,0,.10);
+}
+
+.postHeader{
+    padding:15px;
+    display:flex;
+    align-items:center;
+    gap:11px;
+}
+
+.workerAvatar{
+    width:52px;
+    height:52px;
+    border-radius:50%;
+    object-fit:cover;
+    background:#e5e7eb;
+}
+
+.workerInfo{
+    flex:1;
+}
+
+.workerName{
+    font-weight:bold;
+    font-size:18px;
+}
+
+.workerMeta{
+    color:#6b7280;
+    font-size:14px;
+    margin-top:5px;
+}
+
+.rating{
+    color:#f59e0b;
+    font-weight:bold;
+}
+
+.description{
+    padding:0 15px 15px;
+    line-height:1.7;
+}
+
+.workImage{
+    width:100%;
+    height:390px;
+    object-fit:cover;
+    display:block;
+}
+
+.reactions{
+    padding:11px 15px;
+    color:#6b7280;
+    border-bottom:1px solid #eee;
+}
+
+.actions{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    padding:9px;
+    gap:7px;
+}
+
+.actions button{
+    border:none;
+    border-radius:10px;
+    padding:12px 7px;
+    font-size:15px;
+    cursor:pointer;
+}
+
+.call{
+    background:#1264d8;
+    color:white;
+}
+
+.message{
+    background:#e8f1ff;
+    color:#1264d8;
+}
+
+.request{
+    background:#16a34a;
+    color:white;
+}
+
+
+/* الجهة اليمنى */
+
+.professional{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:10px 0;
+    border-bottom:1px solid #eee;
+}
+
+.professional:last-child{
+    border-bottom:none;
+}
+
+.smallAvatar{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    object-fit:cover;
+}
+
+.proInfo{
+    flex:1;
+}
+
+.follow{
+    border:1px solid #1264d8;
+    color:#1264d8;
+    background:white;
+    border-radius:8px;
+    padding:7px 10px;
+}
+
+.register{
+    margin-top:15px;
+    color:white;
+    background:linear-gradient(135deg,#1264d8,#0984e3);
+    border-radius:16px;
+    padding:22px;
+}
+
+.register button{
+    border:none;
+    background:white;
+    color:#1264d8;
+    padding:11px 15px;
+    border-radius:9px;
+    font-weight:bold;
+}
+
+
+/* حالة فارغة */
+
+.empty{
+    background:white;
+    border-radius:16px;
+    padding:35px;
+    text-align:center;
+    color:#6b7280;
+}
+
+
+/* الهاتف */
+
+.mobileNav{
+    display:none;
+}
+
+@media(max-width:1000px){
+
+    .layout{
+        grid-template-columns:1fr;
+        max-width:720px;
+    }
+
+    .leftSide,
+    .rightSide{
+        display:none;
+    }
+
+    .nav{
+        display:none;
+    }
+
+    .topbar{
+        flex-wrap:wrap;
+    }
+
+    .logo{
+        width:100%;
+        text-align:center;
+    }
+
+    .hero{
+        min-height:170px;
+    }
+
+    .hero h1{
+        font-size:26px;
+    }
+
+    .workImage{
+        height:300px;
+    }
+
+    body{
+        padding-bottom:75px;
+    }
+
+    .mobileNav{
+        position:fixed;
+        bottom:0;
+        left:0;
+        right:0;
+        height:65px;
+        display:grid;
+        grid-template-columns:repeat(4,1fr);
+        background:white;
+        border-top:1px solid #ddd;
+        z-index:100;
+    }
+
+    .mobileNav div{
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        flex-direction:column;
+        font-size:13px;
+    }
+
+}
+
+</style>
 </head>
+
 <body>
-<div class="app">
-  <header>
-    <div class="brand"><span>May</span>snok</div>
-    <div class="avatar">👤</div>
-  </header>
 
-  <section class="hero">
-    <h1>لقا المهني المناسب بسهولة</h1>
-    <p>خدمات قريبة منك، تقييمات واضحة، واتصال مباشر.</p>
-    <div class="search">
-      <input id="citySearch" placeholder="اكتب المدينة: كلميم أو تزنيت">
-      <button class="primary" onclick="loadArtisans()">بحث</button>
+
+<!-- الأعلى -->
+
+<div class="topbar">
+
+    <div class="logo">
+        🏠 Maysnok
     </div>
-  </section>
 
-  <section class="section">
-    <h2>الخدمات</h2>
-    <div class="cats" id="categories"></div>
-  </section>
+    <div class="searchTop">
+        <input
+        id="mainSearch"
+        placeholder="ابحث عن مهني، خدمة أو مدينة..."
+        oninput="renderArtisans()">
 
-  <section class="section">
-    <div class="ai">
-      <h2 style="margin:0">🤖 المساعد الذكي</h2>
-      <p style="opacity:.85">قول شنو المشكل ديالك، وهو يقترح عليك نوع المهني.</p>
-      <textarea id="problem" rows="3" placeholder="مثال: عندي تسرب الماء فالحمام"></textarea>
-      <div class="row">
-        <input id="aiCity" placeholder="المدينة">
-        <button onclick="aiMatch()">اقترح لي مهني</button>
-      </div>
-      <div id="aiResult" style="margin-top:12px"></div>
+        <button>🔍</button>
     </div>
-  </section>
 
-  <section class="section">
-    <h2>مهنيون مقترحون</h2>
-    <div class="cards" id="artisans"></div>
-  </section>
+    <div class="nav">
+        <span>🏠 الرئيسية</span>
+        <span>💬 الرسائل</span>
+        <span>🔔 الإشعارات</span>
+        <span>👤 حسابي</span>
+    </div>
 
-  <div class="nav">
-    <div><b>🏠</b>الرئيسية</div>
-    <div><b>🔎</b>بحث</div>
-    <div><b>💬</b>الرسائل</div>
-    <div><b>👤</b>حسابي</div>
-  </div>
 </div>
 
-<script>
-const catsEl = document.getElementById('categories');
-const artsEl = document.getElementById('artisans');
 
-async function loadCategories(){
-  const r = await fetch('/api/categories');
-  const data = await r.json();
-  catsEl.innerHTML = data.map(c => `
-    <div class="cat" onclick="filterJob('${c.name}')">
-      <div class="icon">${c.icon}</div>
-      <div class="name">${c.name}</div>
-    </div>`).join('');
-}
+<div class="layout">
 
-function artisanCard(a){
-  return `<div class="card">
-    <div class="pic">🧰</div>
-    <div class="meta">
-      <div class="name">${a.name} — ${a.job}</div>
-      <div class="small">📍 ${a.city} · ⭐ ${a.rating}</div>
+
+<!-- اليسار -->
+
+<div class="leftSide">
+
+    <div class="panel">
+
+        <h3>التصنيفات</h3>
+
+        <div class="category" onclick="filterJob('كهربائي')">
+            ⚡ كهربائي
+        </div>
+
+        <div class="category" onclick="filterJob('سباك')">
+            🔧 سباك
+        </div>
+
+        <div class="category" onclick="filterJob('بناء')">
+            🧱 بناء وترميم
+        </div>
+
+        <div class="category" onclick="filterJob('ألمنيوم')">
+            🪟 ألمنيوم وزجاج
+        </div>
+
+        <div class="category" onclick="filterJob('إصلاح')">
+            🏠 إصلاح المنازل
+        </div>
+
+        <div class="category" onclick="filterJob('نقل')">
+            🚚 نقل الأثاث
+        </div>
+
+        <div class="category" onclick="filterJob('إعلاميات')">
+            💻 الإعلاميات
+        </div>
+
+        <div class="category" onclick="filterJob('صباغ')">
+            🎨 صباغ
+        </div>
+
+        <div class="category" onclick="filterJob('تنظيف')">
+            🧹 تنظيف
+        </div>
+
+        <div class="category" onclick="filterJob('ميكانيك')">
+            🚗 ميكانيك
+        </div>
+
+        <div class="category" onclick="filterJob('نجار')">
+            🪚 نجارة
+        </div>
+
+        <div class="category" onclick="filterJob('حداد')">
+            🔩 حدادة ولحام
+        </div>
+
     </div>
-    <span class="badge">${a.available ? 'متاح الآن' : 'غير متاح'}</span>
-  </div>`;
+
+
+    <div class="panel" style="margin-top:15px">
+
+        <h3>📍 اختر مدينتك</h3>
+
+        <div class="city" onclick="filterCity('كلميم')">
+            📍 كلميم
+        </div>
+
+        <div class="city" onclick="filterCity('تزنيت')">
+            📍 تزنيت
+        </div>
+
+        <div class="city" onclick="filterCity('أكادير')">
+            📍 أكادير
+        </div>
+
+        <div class="city" onclick="filterCity('طانطان')">
+            📍 طانطان
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- الوسط -->
+
+<main>
+
+<div class="hero">
+
+    <div>
+        <h1>مهنيون من مدينتك بثقة وسهولة</h1>
+        <p>ابحث • تواصل • اطلب الخدمة</p>
+    </div>
+
+</div>
+
+
+<div class="composer">
+
+    <div class="composerRow">
+
+        <div class="avatar">
+            👤
+        </div>
+
+        <input
+        placeholder="ما الخدمة التي تحتاجها اليوم؟">
+
+    </div>
+
+    <div class="composerActions">
+        <div>🖼️ صورة</div>
+        <div>🎥 فيديو</div>
+        <div>🧰 طلب خدمة</div>
+    </div>
+
+</div>
+
+
+<div class="filters">
+
+    <div
+    class="filter active"
+    onclick="showAll(this)">
+        كل المهنيين
+    </div>
+
+    <div
+    class="filter"
+    onclick="sortNearby(this)">
+        الأقرب إليك
+    </div>
+
+    <div
+    class="filter"
+    onclick="sortRating(this)">
+        الأعلى تقييماً
+    </div>
+
+</div>
+
+
+<div id="feed"></div>
+
+</main>
+
+
+<!-- اليمين -->
+
+<div class="rightSide">
+
+<div class="panel">
+
+<h3>مهنيون مقترحون</h3>
+
+<div id="suggested"></div>
+
+</div>
+
+
+<div class="register">
+
+<h2>سجل كمهني</h2>
+
+<p>
+قدم خدماتك للزبناء ووسع نشاطك.
+</p>
+
+<button>
+إنشاء حساب مهني
+</button>
+
+</div>
+
+
+<div class="panel" style="margin-top:15px">
+
+<h3>لماذا Maysnok؟</h3>
+
+<p>✅ مهنيون موثوقون</p>
+<p>⭐ تقييمات حقيقية</p>
+<p>💬 تواصل مباشر</p>
+<p>📍 البحث حسب المدينة</p>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<!-- الهاتف -->
+
+<div class="mobileNav">
+
+<div>
+🏠
+<span>الرئيسية</span>
+</div>
+
+<div>
+🔍
+<span>بحث</span>
+</div>
+
+<div>
+💬
+<span>الرسائل</span>
+</div>
+
+<div>
+👤
+<span>حسابي</span>
+</div>
+
+</div>
+
+
+<script>
+
+/* صور أعمال حقيقية، مع التركيز على العمل وليس الوجه */
+
+const jobImages = {
+
+    "كهربائي":
+    "https://images.unsplash.com/photo-1621905251918-48416bd8575a?auto=format&fit=crop&w=1000&q=80",
+
+    "سباك":
+    "https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?auto=format&fit=crop&w=1000&q=80",
+
+    "نجار":
+    "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1000&q=80",
+
+    "نجارة":
+    "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1000&q=80",
+
+    "تنظيف":
+    "https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=1000&q=80",
+
+    "بناء":
+    "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1000&q=80",
+
+    "صباغ":
+    "https://images.unsplash.com/photo-1562259949-e8e7689d7828?auto=format&fit=crop&w=1000&q=80"
+
+};
+
+
+const defaultImage =
+"https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1000&q=80";
+
+
+let selectedJob="";
+let selectedCity="";
+
+
+function getArtisans(){
+
+    let artisans =
+    JSON.parse(localStorage.getItem("artisans") || "[]");
+
+    return artisans.filter(function(a){
+
+        return !a.status || a.status==="نشط";
+
+    });
+
 }
 
-async function loadArtisans(){
-  const city = document.getElementById('citySearch').value.trim();
-  const r = await fetch('/api/artisans?city=' + encodeURIComponent(city));
-  const data = await r.json();
-  artsEl.innerHTML = data.length ? data.map(artisanCard).join('') : '<div class="empty">ما لقيناش مهنيين بهاد البحث حالياً.</div>';
+
+function findImage(job){
+
+    for(let key in jobImages){
+
+        if(job.includes(key)){
+            return jobImages[key];
+        }
+
+    }
+
+    return defaultImage;
 }
 
-async function filterJob(job){
-  const r = await fetch('/api/artisans?job=' + encodeURIComponent(job));
-  const data = await r.json();
-  artsEl.innerHTML = data.length ? data.map(artisanCard).join('') : '<div class="empty">غادي نضيفو مهنيين أكثر فهاد الخدمة.</div>';
-  artsEl.scrollIntoView({behavior:'smooth'});
+
+function renderArtisans(){
+
+    let artisans=getArtisans();
+
+    let search=
+    document.getElementById("mainSearch")
+    .value
+    .trim()
+    .toLowerCase();
+
+    artisans=artisans.filter(function(a){
+
+        let text=
+        (
+            (a.name || "")+" "+
+            (a.job || "")+" "+
+            (a.city || "")
+        ).toLowerCase();
+
+        let matchesSearch=
+        !search || text.includes(search);
+
+        let matchesJob=
+        !selectedJob ||
+        (a.job || "").includes(selectedJob);
+
+        let matchesCity=
+        !selectedCity ||
+        (a.city || "").includes(selectedCity);
+
+        return(
+            matchesSearch &&
+            matchesJob &&
+            matchesCity
+        );
+
+    });
+
+
+    let feed=document.getElementById("feed");
+
+    feed.innerHTML="";
+
+
+    if(artisans.length===0){
+
+        feed.innerHTML=`
+
+        <div class="empty">
+
+            <h2>👷 لا يوجد مهنيون بعد</h2>
+
+            <p>
+            أضف مهني من لوحة الإدارة وسيظهر هنا.
+            </p>
+
+        </div>
+
+        `;
+
+        renderSuggested([]);
+
+        return;
+
+    }
+
+
+    artisans.forEach(function(a,index){
+
+        let image=findImage(a.job || "");
+
+        let rating=
+        a.rating || "5.0";
+
+        feed.innerHTML+=`
+
+        <article class="post">
+
+            <div class="postHeader">
+
+                <div class="avatar">
+                    👷
+                </div>
+
+                <div class="workerInfo">
+
+                    <div class="workerName">
+                        ${escapeHtml(a.name || "مهني")}
+                    </div>
+
+                    <div class="workerMeta">
+
+                        ${escapeHtml(a.job || "")}
+                        •
+                        📍 ${escapeHtml(a.city || "")}
+
+                    </div>
+
+                </div>
+
+                <div class="rating">
+
+                    ⭐ ${rating}
+
+                </div>
+
+            </div>
+
+
+            <div class="description">
+
+                متخصص في
+                <strong>
+                ${escapeHtml(a.job || "الخدمات المهنية")}
+                </strong>.
+
+                خدمة مهنية وتواصل مباشر مع الزبون.
+
+            </div>
+
+
+            <img
+            class="workImage"
+            src="${image}"
+            alt="صورة عمل مهني"
+            onerror="this.style.display='none'">
+
+
+            <div class="reactions">
+
+                👍 ${12 + index * 7}
+                &nbsp;&nbsp;
+
+                💬 تعليقات
+
+            </div>
+
+
+            <div class="actions">
+
+                <button
+                class="call"
+                onclick="callArtisan('${safePhone(a.phone)}')">
+
+                    📞 اتصال
+
+                </button>
+
+
+                <button
+                class="message"
+                onclick="messageArtisan('${safePhone(a.phone)}')">
+
+                    💬 رسالة
+
+                </button>
+
+
+                <button
+                class="request"
+                onclick="requestService('${escapeJs(a.name || "المهني")}')">
+
+                    🧰 طلب خدمة
+
+                </button>
+
+            </div>
+
+        </article>
+
+        `;
+
+    });
+
+
+    renderSuggested(artisans);
+
 }
 
-async function aiMatch(){
-  const text = document.getElementById('problem').value.trim();
-  const city = document.getElementById('aiCity').value.trim();
-  const out = document.getElementById('aiResult');
-  if(!text){ out.innerHTML = 'كتب المشكل ديالك أولاً.'; return; }
-  out.innerHTML = 'جاري البحث...';
-  const r = await fetch('/api/ai-match', {
-    method:'POST',
-    headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({text, city})
-  });
-  const data = await r.json();
-  out.innerHTML = `<b>الخدمة المقترحة: ${data.detected_job}</b><div style="margin-top:8px">${data.matches.length ? data.matches.map(artisanCard).join('') : 'ما لقيناش مهني مطابق حالياً.'}</div>`;
+
+function renderSuggested(artisans){
+
+    let box=document.getElementById("suggested");
+
+    box.innerHTML="";
+
+    artisans.slice(0,4).forEach(function(a){
+
+        box.innerHTML+=`
+
+        <div class="professional">
+
+            <div class="avatar">
+                👷
+            </div>
+
+            <div class="proInfo">
+
+                <strong>
+                    ${escapeHtml(a.name || "")}
+                </strong>
+
+                <br>
+
+                <small>
+                    ${escapeHtml(a.job || "")}
+                    •
+                    ${escapeHtml(a.city || "")}
+                </small>
+
+            </div>
+
+            <button
+            class="follow"
+            onclick="requestService('${escapeJs(a.name || "")}')">
+
+                تواصل
+
+            </button>
+
+        </div>
+
+        `;
+
+    });
+
 }
 
-loadCategories();
-loadArtisans();
+
+function filterJob(job){
+
+    selectedJob=job;
+
+    renderArtisans();
+
+}
+
+
+function filterCity(city){
+
+    selectedCity=city;
+
+    renderArtisans();
+
+}
+
+
+function showAll(element){
+
+    selectedJob="";
+    selectedCity="";
+
+    setActive(element);
+
+    renderArtisans();
+
+}
+
+
+function sortRating(element){
+
+    setActive(element);
+
+    renderArtisans();
+
+}
+
+
+function sortNearby(element){
+
+    setActive(element);
+
+    alert("ميزة الأقرب إليك سنربطها بالموقع الجغرافي لاحقاً.");
+
+}
+
+
+function setActive(element){
+
+    document
+    .querySelectorAll(".filter")
+    .forEach(function(el){
+
+        el.classList.remove("active");
+
+    });
+
+    element.classList.add("active");
+
+}
+
+
+function callArtisan(phone){
+
+    if(!phone){
+
+        alert("رقم الهاتف غير متوفر");
+
+        return;
+
+    }
+
+    window.location.href="tel:"+phone;
+
+}
+
+
+function messageArtisan(phone){
+
+    if(!phone){
+
+        alert("رقم الهاتف غير متوفر");
+
+        return;
+
+    }
+
+    let clean=
+    phone.replace(/\D/g,"");
+
+    if(clean.startsWith("0")){
+
+        clean="212"+clean.substring(1);
+
+    }
+
+    window.open(
+        "https://wa.me/"+clean,
+        "_blank"
+    );
+
+}
+
+
+function requestService(name){
+
+    alert(
+        "سيتم إرسال طلب الخدمة إلى "+name
+    );
+
+}
+
+
+function safePhone(value){
+
+    return String(value || "")
+    .replace(/[^0-9+]/g,"");
+
+}
+
+
+function escapeHtml(value){
+
+    return String(value || "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+function escapeJs(value){
+
+    return String(value || "")
+    .replace(/\\/g,"\\\\")
+    .replace(/'/g,"\\'");
+
+}
+
+
+/* تشغيل الصفحة */
+
+renderArtisans();
+
 </script>
+
 </body>
 </html>
