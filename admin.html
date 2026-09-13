@@ -6,83 +6,145 @@
 <title>لوحة إدارة Maysnok</title>
 
 <style>
+*{box-sizing:border-box}
+
 body{
     margin:0;
     font-family:Arial,sans-serif;
     background:#f4f7fb;
+    color:#1f2937;
 }
+
 header{
     background:#1264d8;
     color:white;
-    padding:22px;
+    padding:24px;
     text-align:center;
 }
+
+header h1{
+    margin:0 0 8px;
+    font-size:34px;
+}
+
 .container{
-    max-width:900px;
+    max-width:1000px;
     margin:auto;
     padding:20px;
 }
+
 .stats{
     display:grid;
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:repeat(4,1fr);
     gap:12px;
 }
+
 .card{
     background:white;
     padding:18px;
-    border-radius:15px;
+    border-radius:16px;
     text-align:center;
+    box-shadow:0 2px 8px rgba(0,0,0,.06);
 }
+
 .card strong{
+    display:block;
+    margin-top:8px;
     font-size:30px;
     color:#1264d8;
 }
+
 .menu{
     margin-top:20px;
     display:grid;
+    grid-template-columns:repeat(2,1fr);
     gap:10px;
 }
+
 button{
     border:0;
-    padding:15px;
+    padding:14px;
     border-radius:12px;
-    font-size:17px;
+    font-size:16px;
     cursor:pointer;
 }
+
 .btn{
     background:white;
+    box-shadow:0 2px 6px rgba(0,0,0,.06);
 }
-.add{
+
+.green{
     background:#16a34a;
     color:white;
 }
-.stop{
+
+.red{
     background:#dc2626;
     color:white;
 }
-#addForm,#artisanList{
+
+.orange{
+    background:#f59e0b;
+    color:white;
+}
+
+.blue{
+    background:#1264d8;
+    color:white;
+}
+
+.section{
     display:none;
     background:white;
-    padding:20px;
     margin-top:20px;
-    border-radius:15px;
+    padding:20px;
+    border-radius:16px;
+    box-shadow:0 2px 8px rgba(0,0,0,.06);
 }
-input{
-    width:95%;
+
+input,select{
+    width:100%;
     padding:12px;
     margin:6px 0;
-    border:1px solid #ddd;
-    border-radius:8px;
+    border:1px solid #d1d5db;
+    border-radius:9px;
+    font-size:16px;
 }
-.artisan{
+
+.item{
     padding:15px 0;
-    border-bottom:1px solid #ddd;
+    border-bottom:1px solid #e5e7eb;
 }
-.delete{
-    background:#dc2626;
-    color:white;
+
+.smallBtn{
     padding:8px 12px;
-    margin-top:8px;
+    margin:5px 2px;
+    font-size:14px;
+}
+
+.activeText{
+    color:#16a34a;
+    font-weight:bold;
+}
+
+.stoppedText{
+    color:#dc2626;
+    font-weight:bold;
+}
+
+.search{
+    margin-bottom:15px;
+}
+
+@media(max-width:700px){
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .menu{
+        grid-template-columns:1fr;
+    }
 }
 </style>
 </head>
@@ -97,143 +159,500 @@ input{
 <div class="container">
 
 <div class="stats">
+
     <div class="card">
-        <div>👷 المهنيون</div>
+        👷 المهنيون
         <strong id="artisanCount">0</strong>
     </div>
 
     <div class="card">
-        <div>👥 الزبناء</div>
-        <strong>0</strong>
+        👥 الزبناء
+        <strong id="customerCount">0</strong>
     </div>
 
     <div class="card">
-        <div>📋 الطلبات</div>
-        <strong>0</strong>
+        📋 الطلبات
+        <strong id="orderCount">0</strong>
     </div>
 
     <div class="card">
-        <div>💳 الاشتراكات</div>
-        <strong>0</strong>
+        💳 الاشتراكات
+        <strong id="subscriptionCount">0</strong>
     </div>
+
 </div>
 
 <div class="menu">
-    <button class="btn" id="showArtisans">👷 المهنيون</button>
-    <button class="btn">👥 الزبناء</button>
-    <button class="btn">📋 الطلبات</button>
-    <button class="btn">💳 الاشتراكات</button>
-    <button class="btn">📊 الإحصائيات</button>
-    <button class="add" id="addButton">➕ إضافة مهني</button>
+
+    <button class="btn" onclick="openSection('artisansSection')">
+        👷 المهنيون
+    </button>
+
+    <button class="btn" onclick="openSection('customersSection')">
+        👥 الزبناء
+    </button>
+
+    <button class="btn" onclick="openSection('ordersSection')">
+        📋 الطلبات
+    </button>
+
+    <button class="btn" onclick="openSection('subscriptionsSection')">
+        💳 الاشتراكات
+    </button>
+
+    <button class="btn" onclick="openSection('statsSection')">
+        📊 الإحصائيات
+    </button>
+
+    <button class="green" onclick="openSection('addArtisanSection')">
+        ➕ إضافة مهني
+    </button>
+
 </div>
 
-<div id="addForm">
-    <h2>➕ إضافة مهني</h2>
 
-    <input id="name" placeholder="اسم المهني">
-    <input id="job" placeholder="المهنة">
-    <input id="city" placeholder="المدينة">
-    <input id="phone" placeholder="رقم الهاتف">
+<!-- إضافة مهني -->
 
-    <br><br>
-    <button class="add" id="saveArtisan">💾 حفظ المهني</button>
+<div id="addArtisanSection" class="section">
+
+<h2>➕ إضافة مهني</h2>
+
+<input id="name" placeholder="اسم المهني">
+
+<input id="job" placeholder="المهنة">
+
+<input id="city" placeholder="المدينة">
+
+<input id="phone" placeholder="رقم الهاتف">
+
+<select id="subscription">
+    <option value="مجاني">اشتراك مجاني</option>
+    <option value="نشط">اشتراك نشط</option>
+    <option value="منتهي">اشتراك منتهي</option>
+</select>
+
+<button class="green" onclick="saveArtisan()">
+💾 حفظ المهني
+</button>
+
 </div>
+
+
+<!-- المهنيون -->
+
+<div id="artisansSection" class="section">
+
+<h2>👷 لائحة المهنيين</h2>
+
+<input
+class="search"
+id="artisanSearch"
+placeholder="🔎 البحث بالاسم أو المهنة أو المدينة"
+oninput="showArtisans()"
+>
 
 <div id="artisanList"></div>
 
 </div>
 
+
+<!-- الزبناء -->
+
+<div id="customersSection" class="section">
+
+<h2>👥 الزبناء</h2>
+
+<p>هنا ستظهر حسابات الزبناء.</p>
+
+<div id="customerList"></div>
+
+</div>
+
+
+<!-- الطلبات -->
+
+<div id="ordersSection" class="section">
+
+<h2>📋 الطلبات</h2>
+
+<p>هنا ستظهر طلبات الزبناء للمهنيين.</p>
+
+<div id="orderList"></div>
+
+</div>
+
+
+<!-- الاشتراكات -->
+
+<div id="subscriptionsSection" class="section">
+
+<h2>💳 الاشتراكات</h2>
+
+<div id="subscriptionList"></div>
+
+</div>
+
+
+<!-- الإحصائيات -->
+
+<div id="statsSection" class="section">
+
+<h2>📊 الإحصائيات</h2>
+
+<p>👷 عدد المهنيين: <strong id="statArtisans">0</strong></p>
+
+<p>👥 عدد الزبناء: <strong id="statCustomers">0</strong></p>
+
+<p>📋 عدد الطلبات: <strong id="statOrders">0</strong></p>
+
+<p>💳 الاشتراكات النشطة: <strong id="statSubscriptions">0</strong></p>
+
+</div>
+
+</div>
+
+
 <script>
-function getArtisans(){
-    return JSON.parse(localStorage.getItem('artisans') || '[]');
+
+function getData(key){
+    return JSON.parse(localStorage.getItem(key) || '[]');
 }
 
-function updateCount(){
-    document.getElementById('artisanCount').textContent = getArtisans().length;
+function saveData(key,data){
+    localStorage.setItem(key,JSON.stringify(data));
 }
 
-function showArtisans(){
-    let artisans = getArtisans();
-    let list = document.getElementById('artisanList');
 
-    list.innerHTML = '<h2>👷 لائحة المهنيين</h2>';
+function openSection(id){
 
-    if(artisans.length === 0){
-        list.innerHTML += '<p>لا يوجد مهنيون مضافون بعد.</p>';
-    }
-
-    artisans.forEach(function(a,index){
-        list.innerHTML += `
-        <div class="artisan">
-            👷 <strong>${a.name}</strong><br>
-            🛠️ ${a.job}<br>
-            📍 ${a.city}<br>
-            📞 ${a.phone}<br>
-            <button class="delete" onclick="deleteArtisan(${index})">
-                🗑️ حذف
-            </button>
-        </div>`;
+    document.querySelectorAll('.section').forEach(function(section){
+        section.style.display='none';
     });
 
-    list.style.display='block';
-    list.scrollIntoView({behavior:'smooth'});
-}
+    document.getElementById(id).style.display='block';
 
-function deleteArtisan(index){
-    let artisans = getArtisans();
-
-    if(confirm('هل تريد حذف هذا المهني؟')){
-        artisans.splice(index,1);
-        localStorage.setItem('artisans',JSON.stringify(artisans));
-        updateCount();
+    if(id==='artisansSection'){
         showArtisans();
     }
+
+    if(id==='subscriptionsSection'){
+        showSubscriptions();
+    }
+
+    updateDashboard();
+
+    document.getElementById(id).scrollIntoView({
+        behavior:'smooth'
+    });
 }
 
-document.getElementById('addButton').onclick=function(){
-    document.getElementById('addForm').style.display='block';
-    document.getElementById('addForm').scrollIntoView({behavior:'smooth'});
-};
 
-document.getElementById('showArtisans').onclick=showArtisans;
-
-document.getElementById('saveArtisan').onclick=function(){
+function saveArtisan(){
 
     let name=document.getElementById('name').value.trim();
     let job=document.getElementById('job').value.trim();
     let city=document.getElementById('city').value.trim();
     let phone=document.getElementById('phone').value.trim();
+    let subscription=document.getElementById('subscription').value;
 
     if(!name || !job || !city || !phone){
         alert('عمر جميع المعلومات');
         return;
     }
 
-    let artisans=getArtisans();
+    let artisans=getData('artisans');
 
     artisans.push({
+        id:Date.now(),
         name:name,
         job:job,
         city:city,
-        phone:phone
+        phone:phone,
+        status:'نشط',
+        subscription:subscription
     });
 
-    localStorage.setItem('artisans',JSON.stringify(artisans));
+    saveData('artisans',artisans);
 
     document.getElementById('name').value='';
     document.getElementById('job').value='';
     document.getElementById('city').value='';
     document.getElementById('phone').value='';
 
-    document.getElementById('addForm').style.display='none';
+    alert('تم حفظ المهني بنجاح');
 
-    updateCount();
+    updateDashboard();
+
+    openSection('artisansSection');
+}
+
+
+function showArtisans(){
+
+    let artisans=getData('artisans');
+
+    let search=
+    document.getElementById('artisanSearch').value.toLowerCase();
+
+    let list=document.getElementById('artisanList');
+
+    list.innerHTML='';
+
+    let filtered=artisans.filter(function(a){
+
+        return(
+            a.name.toLowerCase().includes(search) ||
+            a.job.toLowerCase().includes(search) ||
+            a.city.toLowerCase().includes(search)
+        );
+
+    });
+
+    if(filtered.length===0){
+        list.innerHTML='<p>لا يوجد مهنيون.</p>';
+        return;
+    }
+
+    filtered.forEach(function(a){
+
+        let statusClass=
+        a.status==='نشط' ? 'activeText' : 'stoppedText';
+
+        list.innerHTML+=`
+
+        <div class="item">
+
+        👷 <strong>${a.name}</strong><br>
+
+        🛠️ ${a.job}<br>
+
+        📍 ${a.city}<br>
+
+        📞 ${a.phone}<br>
+
+        الحالة:
+        <span class="${statusClass}">
+        ${a.status}
+        </span>
+        <br>
+
+        💳 الاشتراك:
+        ${a.subscription}
+        <br><br>
+
+        <button
+        class="blue smallBtn"
+        onclick="editArtisan(${a.id})">
+        ✏️ تعديل
+        </button>
+
+        <button
+        class="orange smallBtn"
+        onclick="toggleArtisan(${a.id})">
+        ⏸️ توقيف / تشغيل
+        </button>
+
+        <button
+        class="red smallBtn"
+        onclick="deleteArtisan(${a.id})">
+        🗑️ حذف
+        </button>
+
+        </div>
+
+        `;
+
+    });
+}
+
+
+function deleteArtisan(id){
+
+    if(!confirm('هل تريد حذف هذا المهني؟')){
+        return;
+    }
+
+    let artisans=getData('artisans');
+
+    artisans=artisans.filter(function(a){
+        return a.id!==id;
+    });
+
+    saveData('artisans',artisans);
+
+    showArtisans();
+    updateDashboard();
+}
+
+
+function toggleArtisan(id){
+
+    let artisans=getData('artisans');
+
+    let artisan=artisans.find(function(a){
+        return a.id===id;
+    });
+
+    if(!artisan){
+        return;
+    }
+
+    artisan.status=
+    artisan.status==='نشط'
+    ? 'متوقف'
+    : 'نشط';
+
+    saveData('artisans',artisans);
+
+    showArtisans();
+}
+
+
+function editArtisan(id){
+
+    let artisans=getData('artisans');
+
+    let artisan=artisans.find(function(a){
+        return a.id===id;
+    });
+
+    if(!artisan){
+        return;
+    }
+
+    let newName=prompt('اسم المهني',artisan.name);
+
+    if(newName===null){
+        return;
+    }
+
+    let newJob=prompt('المهنة',artisan.job);
+
+    let newCity=prompt('المدينة',artisan.city);
+
+    let newPhone=prompt('رقم الهاتف',artisan.phone);
+
+    artisan.name=newName || artisan.name;
+    artisan.job=newJob || artisan.job;
+    artisan.city=newCity || artisan.city;
+    artisan.phone=newPhone || artisan.phone;
+
+    saveData('artisans',artisans);
+
     showArtisans();
 
-    alert('تم حفظ المهني بنجاح');
-};
+    alert('تم تعديل معلومات المهني');
+}
 
-updateCount();
+
+function showSubscriptions(){
+
+    let artisans=getData('artisans');
+
+    let list=document.getElementById('subscriptionList');
+
+    list.innerHTML='';
+
+    if(artisans.length===0){
+        list.innerHTML='<p>لا توجد اشتراكات.</p>';
+        return;
+    }
+
+    artisans.forEach(function(a){
+
+        list.innerHTML+=`
+
+        <div class="item">
+
+        👷 <strong>${a.name}</strong><br>
+
+        🛠️ ${a.job}<br>
+
+        💳 حالة الاشتراك:
+        <strong>${a.subscription}</strong>
+
+        <br><br>
+
+        <button
+        class="green smallBtn"
+        onclick="changeSubscription(${a.id},'نشط')">
+        ✅ تفعيل
+        </button>
+
+        <button
+        class="orange smallBtn"
+        onclick="changeSubscription(${a.id},'منتهي')">
+        ❌ إنهاء
+        </button>
+
+        </div>
+
+        `;
+
+    });
+}
+
+
+function changeSubscription(id,status){
+
+    let artisans=getData('artisans');
+
+    let artisan=artisans.find(function(a){
+        return a.id===id;
+    });
+
+    if(!artisan){
+        return;
+    }
+
+    artisan.subscription=status;
+
+    saveData('artisans',artisans);
+
+    showSubscriptions();
+
+    updateDashboard();
+}
+
+
+function updateDashboard(){
+
+    let artisans=getData('artisans');
+    let customers=getData('customers');
+    let orders=getData('orders');
+
+    let activeSubscriptions=
+    artisans.filter(function(a){
+        return a.subscription==='نشط';
+    }).length;
+
+    document.getElementById('artisanCount').textContent=
+    artisans.length;
+
+    document.getElementById('customerCount').textContent=
+    customers.length;
+
+    document.getElementById('orderCount').textContent=
+    orders.length;
+
+    document.getElementById('subscriptionCount').textContent=
+    activeSubscriptions;
+
+    document.getElementById('statArtisans').textContent=
+    artisans.length;
+
+    document.getElementById('statCustomers').textContent=
+    customers.length;
+
+    document.getElementById('statOrders').textContent=
+    orders.length;
+
+    document.getElementById('statSubscriptions').textContent=
+    activeSubscriptions;
+}
+
+updateDashboard();
+
 </script>
 
 </body>
