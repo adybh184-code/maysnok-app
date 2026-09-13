@@ -6,207 +6,235 @@
 <title>لوحة إدارة Maysnok</title>
 
 <style>
-*{
-  box-sizing:border-box;
-}
 body{
-  margin:0;
-  font-family:Arial, sans-serif;
-  background:#f4f7fb;
-  color:#1f2937;
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f4f7fb;
 }
-.header{
-  background:#2563eb;
-  color:white;
-  padding:25px;
-}
-.header h1{
-  margin:0;
-}
-.header p{
-  margin:8px 0 0;
+header{
+    background:#1264d8;
+    color:white;
+    padding:22px;
+    text-align:center;
 }
 .container{
-  max-width:1100px;
-  margin:30px auto;
-  padding:15px;
+    max-width:900px;
+    margin:auto;
+    padding:20px;
 }
 .stats{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-  gap:15px;
-  margin-bottom:25px;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
 }
-.stat{
-  background:white;
-  padding:22px;
-  border-radius:16px;
-  box-shadow:0 3px 15px #00000010;
+.card{
+    background:white;
+    padding:18px;
+    border-radius:15px;
+    text-align:center;
 }
-.stat h3{
-  margin:0 0 10px;
-  color:#6b7280;
-}
-.stat strong{
-  font-size:30px;
+.card strong{
+    font-size:30px;
+    color:#1264d8;
 }
 .menu{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:18px;
+    margin-top:20px;
+    display:grid;
+    gap:10px;
+}
+button{
+    border:0;
+    padding:15px;
+    border-radius:12px;
+    font-size:17px;
+    cursor:pointer;
 }
 .btn{
-  background:white;
-  border:none;
-  padding:28px 15px;
-  border-radius:18px;
-  font-size:18px;
-  font-weight:bold;
-  cursor:pointer;
-  box-shadow:0 3px 15px #00000010;
-}
-.btn:hover{
-  background:#2563eb;
-  color:white;
+    background:white;
 }
 .add{
-  background:#16a34a;
-  color:white;
+    background:#16a34a;
+    color:white;
 }
 .stop{
-  background:#ef4444;
-  color:white;
+    background:#dc2626;
+    color:white;
+}
+#addForm,#artisanList{
+    display:none;
+    background:white;
+    padding:20px;
+    margin-top:20px;
+    border-radius:15px;
+}
+input{
+    width:95%;
+    padding:12px;
+    margin:6px 0;
+    border:1px solid #ddd;
+    border-radius:8px;
+}
+.artisan{
+    padding:15px 0;
+    border-bottom:1px solid #ddd;
+}
+.delete{
+    background:#dc2626;
+    color:white;
+    padding:8px 12px;
+    margin-top:8px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="header">
-  <h1>⚙️ لوحة إدارة Maysnok</h1>
-  <p>مرحبا بك — إدارة المنصة</p>
-</div>
+<header>
+    <h1>Maysnok</h1>
+    <div>لوحة الإدارة</div>
+</header>
 
 <div class="container">
 
-  <div class="stats">
-
-    <div class="stat">
-      <h3>👷 المهنيون</h3>
-      <strong>4</strong>
+<div class="stats">
+    <div class="card">
+        <div>👷 المهنيون</div>
+        <strong id="artisanCount">0</strong>
     </div>
 
-    <div class="stat">
-      <h3>👥 الزبناء</h3>
-      <strong>0</strong>
+    <div class="card">
+        <div>👥 الزبناء</div>
+        <strong>0</strong>
     </div>
 
-    <div class="stat">
-      <h3>📋 الطلبات</h3>
-      <strong>0</strong>
+    <div class="card">
+        <div>📋 الطلبات</div>
+        <strong>0</strong>
     </div>
 
-    <div class="stat">
-      <h3>💳 الاشتراكات</h3>
-      <strong>0</strong>
+    <div class="card">
+        <div>💳 الاشتراكات</div>
+        <strong>0</strong>
     </div>
-
-  </div>
-
-  <div class="menu">
-
-<button class="btn" id="showArtisans">👷 المهنيون</button>
-
-    <button class="btn">👥 الزبناء</button>
-
-    <button class="btn">📋 الطلبات</button>
-
-    <button class="btn">💳 الاشتراكات</button>
-
-    <button class="btn">📊 الإحصائيات</button>
-
-    <button class="btn add">➕ إضافة مهني</button>
-
-    <button class="btn stop">⛔ حذف / توقيف مهني</button>
-
-  </div>
-
-</div>  
- </div>
-  <div id="addForm" style="display:none; background:white; padding:20px; margin:20px; border-radius:15px;">
-    <h2>إضافة مهني</h2>
-
-    <input id="name" placeholder="اسم المهني"><br><br>
-    <input id="job" placeholder="المهنة"><br><br>
-    <input id="city" placeholder="المدينة"><br><br>
-    <input id="phone" placeholder="رقم الهاتف"><br><br>
-
-    <button id="saveArtisan">حفظ المهني</button>
 </div>
 
+<div class="menu">
+    <button class="btn" id="showArtisans">👷 المهنيون</button>
+    <button class="btn">👥 الزبناء</button>
+    <button class="btn">📋 الطلبات</button>
+    <button class="btn">💳 الاشتراكات</button>
+    <button class="btn">📊 الإحصائيات</button>
+    <button class="add" id="addButton">➕ إضافة مهني</button>
+</div>
+
+<div id="addForm">
+    <h2>➕ إضافة مهني</h2>
+
+    <input id="name" placeholder="اسم المهني">
+    <input id="job" placeholder="المهنة">
+    <input id="city" placeholder="المدينة">
+    <input id="phone" placeholder="رقم الهاتف">
+
+    <br><br>
+    <button class="add" id="saveArtisan">💾 حفظ المهني</button>
+</div>
+
+<div id="artisanList"></div>
+
+</div>
 
 <script>
-document.querySelector('.add').onclick = function () {
-    document.getElementById('addForm').style.display = 'block';
+function getArtisans(){
+    return JSON.parse(localStorage.getItem('artisans') || '[]');
+}
+
+function updateCount(){
+    document.getElementById('artisanCount').textContent = getArtisans().length;
+}
+
+function showArtisans(){
+    let artisans = getArtisans();
+    let list = document.getElementById('artisanList');
+
+    list.innerHTML = '<h2>👷 لائحة المهنيين</h2>';
+
+    if(artisans.length === 0){
+        list.innerHTML += '<p>لا يوجد مهنيون مضافون بعد.</p>';
+    }
+
+    artisans.forEach(function(a,index){
+        list.innerHTML += `
+        <div class="artisan">
+            👷 <strong>${a.name}</strong><br>
+            🛠️ ${a.job}<br>
+            📍 ${a.city}<br>
+            📞 ${a.phone}<br>
+            <button class="delete" onclick="deleteArtisan(${index})">
+                🗑️ حذف
+            </button>
+        </div>`;
+    });
+
+    list.style.display='block';
+    list.scrollIntoView({behavior:'smooth'});
+}
+
+function deleteArtisan(index){
+    let artisans = getArtisans();
+
+    if(confirm('هل تريد حذف هذا المهني؟')){
+        artisans.splice(index,1);
+        localStorage.setItem('artisans',JSON.stringify(artisans));
+        updateCount();
+        showArtisans();
+    }
+}
+
+document.getElementById('addButton').onclick=function(){
+    document.getElementById('addForm').style.display='block';
+    document.getElementById('addForm').scrollIntoView({behavior:'smooth'});
 };
 
-document.getElementById('saveArtisan').onclick = function () {
-    let name = document.getElementById('name').value;
-    let job = document.getElementById('job').value;
-    let city = document.getElementById('city').value;
-    let phone = document.getElementById('phone').value;
+document.getElementById('showArtisans').onclick=showArtisans;
 
-    if (!name || !job || !city || !phone) {
+document.getElementById('saveArtisan').onclick=function(){
+
+    let name=document.getElementById('name').value.trim();
+    let job=document.getElementById('job').value.trim();
+    let city=document.getElementById('city').value.trim();
+    let phone=document.getElementById('phone').value.trim();
+
+    if(!name || !job || !city || !phone){
         alert('عمر جميع المعلومات');
         return;
     }
-let artisans = JSON.parse(localStorage.getItem('artisans') || '[]');
 
-artisans.push({
-    name: name,
-    job: job,
-    city: city,
-    phone: phone
-});
+    let artisans=getArtisans();
 
-localStorage.setItem('artisans', JSON.stringify(artisans));
+    artisans.push({
+        name:name,
+        job:job,
+        city:city,
+        phone:phone
+    });
 
-let list = document.getElementById('artisanList');
+    localStorage.setItem('artisans',JSON.stringify(artisans));
 
-if (!list) {
-    list = document.createElement('div');
-    list.id = 'artisanList';
-    list.style.padding = '20px';
-    list.style.margin = '20px';
-    list.style.background = 'white';
-    list.style.borderRadius = '15px';
-    document.getElementById('addForm').after(list);
-}
+    document.getElementById('name').value='';
+    document.getElementById('job').value='';
+    document.getElementById('city').value='';
+    document.getElementById('phone').value='';
 
-list.innerHTML += `
-    <div style="padding:15px;border-bottom:1px solid #ddd">
-        👷 <b>${name}</b><br>
-        ${job} — ${city}<br>
-        📞 ${phone}
-    </div>
-`;
-    alert('تم حفظ المهني: ' + name);  
-      document.getElementById('addForm').style.display = 'none';
+    document.getElementById('addForm').style.display='none';
+
+    updateCount();
+    showArtisans();
+
+    alert('تم حفظ المهني بنجاح');
 };
-  document.getElementById('showArtisans').onclick = function () {
-    let list = document.getElementById('artisanList');
 
-    if (!list) {
-        alert('لم تتم إضافة أي مهني بعد');
-        return;
-    }
+updateCount();
+</script>
 
-    if (list.style.display === 'none') {
-        list.style.display = 'block';
-    } else {
-        list.style.display = 'none';
-    }
-};
-</script>  
 </body>
 </html>
