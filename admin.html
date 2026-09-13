@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>لوحة إدارة Maysnok</title>
+
+<style>
+*{
+  box-sizing:border-box;
+}
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:#f4f7fb;
+  color:#1f2937;
+}
+.header{
+  background:#2563eb;
+  color:white;
+  padding:25px;
+}
+.header h1{
+  margin:0;
+}
+.header p{
+  margin:8px 0 0;
+}
+.container{
+  max-width:1100px;
+  margin:30px auto;
+  padding:15px;
+}
+.stats{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:15px;
+  margin-bottom:25px;
+}
+.stat{
+  background:white;
+  padding:22px;
+  border-radius:16px;
+  box-shadow:0 3px 15px #00000010;
+}
+.stat h3{
+  margin:0 0 10px;
+  color:#6b7280;
+}
+.stat strong{
+  font-size:30px;
+}
+.menu{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:18px;
+}
+.btn{
+  background:white;
+  border:none;
+  padding:28px 15px;
+  border-radius:18px;
+  font-size:18px;
+  font-weight:bold;
+  cursor:pointer;
+  box-shadow:0 3px 15px #00000010;
+}
+.btn:hover{
+  background:#2563eb;
+  color:white;
+}
+.add{
+  background:#16a34a;
+  color:white;
+}
+.stop{
+  background:#ef4444;
+  color:white;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <h1>⚙️ لوحة إدارة Maysnok</h1>
+  <p>مرحبا بك — إدارة المنصة</p>
+</div>
+
+<div class="container">
+
+  <div class="stats">
+
+    <div class="stat">
+      <h3>👷 المهنيون</h3>
+      <strong>4</strong>
+    </div>
+
+    <div class="stat">
+      <h3>👥 الزبناء</h3>
+      <strong>0</strong>
+    </div>
+
+    <div class="stat">
+      <h3>📋 الطلبات</h3>
+      <strong>0</strong>
+    </div>
+
+    <div class="stat">
+      <h3>💳 الاشتراكات</h3>
+      <strong>0</strong>
+    </div>
+
+  </div>
+
+  <div class="menu">
+
+    <button class="btn">👷 المهنيون</button>
+
+    <button class="btn">👥 الزبناء</button>
+
+    <button class="btn">📋 الطلبات</button>
+
+    <button class="btn">💳 الاشتراكات</button>
+
+    <button class="btn">📊 الإحصائيات</button>
+
+    <button class="btn add">➕ إضافة مهني</button>
+
+    <button class="btn stop">⛔ حذف / توقيف مهني</button>
+
+  </div>
+
+</div>
+
+</body>
+</html>
