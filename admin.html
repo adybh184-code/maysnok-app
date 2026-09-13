@@ -133,6 +133,16 @@ body{
 
 </div>  
  </div>
+  <div id="addForm" style="display:none; background:white; padding:20px; margin:20px; border-radius:15px;">
+    <h2>إضافة مهني</h2>
+
+    <input id="name" placeholder="اسم المهني"><br><br>
+    <input id="job" placeholder="المهنة"><br><br>
+    <input id="city" placeholder="المدينة"><br><br>
+    <input id="phone" placeholder="رقم الهاتف"><br><br>
+
+    <button id="saveArtisan">حفظ المهني</button>
+</div>
 <script>
 document.querySelector('.add').onclick = function () {
     let name = prompt('اسم المهني:');
