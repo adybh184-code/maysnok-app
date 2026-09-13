@@ -133,9 +133,21 @@ body{
 
 </div>  
  </div>
- <script>
+<script>
 document.querySelector('.add').onclick = function () {
-    alert('إضافة مهني');
+    let name = prompt('اسم المهني:');
+    if (!name) return;
+
+    let job = prompt('المهنة:');
+    if (!job) return;
+
+    let city = prompt('المدينة:');
+    if (!city) return;
+
+    let phone = prompt('رقم الهاتف:');
+    if (!phone) return;
+
+    alert('تم إدخال المهني: ' + name);
 };
 </script> 
 </body>
