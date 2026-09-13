@@ -160,7 +160,36 @@ document.getElementById('saveArtisan').onclick = function () {
         alert('عمر جميع المعلومات');
         return;
     }
+let artisans = JSON.parse(localStorage.getItem('artisans') || '[]');
 
+artisans.push({
+    name: name,
+    job: job,
+    city: city,
+    phone: phone
+});
+
+localStorage.setItem('artisans', JSON.stringify(artisans));
+
+let list = document.getElementById('artisanList');
+
+if (!list) {
+    list = document.createElement('div');
+    list.id = 'artisanList';
+    list.style.padding = '20px';
+    list.style.margin = '20px';
+    list.style.background = 'white';
+    list.style.borderRadius = '15px';
+    document.getElementById('addForm').after(list);
+}
+
+list.innerHTML += `
+    <div style="padding:15px;border-bottom:1px solid #ddd">
+        👷 <b>${name}</b><br>
+        ${job} — ${city}<br>
+        📞 ${phone}
+    </div>
+`;
     alert('تم حفظ المهني: ' + name);  
       document.getElementById('addForm').style.display = 'none';
 };
