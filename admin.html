@@ -143,22 +143,27 @@ body{
 
     <button id="saveArtisan">حفظ المهني</button>
 </div>
+
+
 <script>
 document.querySelector('.add').onclick = function () {
-    let name = prompt('اسم المهني:');
-    if (!name) return;
-
-    let job = prompt('المهنة:');
-    if (!job) return;
-
-    let city = prompt('المدينة:');
-    if (!city) return;
-
-    let phone = prompt('رقم الهاتف:');
-    if (!phone) return;
-
-    alert('تم إدخال المهني: ' + name);
+    document.getElementById('addForm').style.display = 'block';
 };
-</script> 
+
+document.getElementById('saveArtisan').onclick = function () {
+    let name = document.getElementById('name').value;
+    let job = document.getElementById('job').value;
+    let city = document.getElementById('city').value;
+    let phone = document.getElementById('phone').value;
+
+    if (!name || !job || !city || !phone) {
+        alert('عمر جميع المعلومات');
+        return;
+    }
+
+    alert('تم حفظ المهني: ' + name);  
+      document.getElementById('addForm').style.display = 'none';
+};
+</script>   
 </body>
 </html>
