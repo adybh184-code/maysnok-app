@@ -87,21 +87,9 @@ def health():
 @app.get("/")
 def homepage():
     return send_from_directory(".", "index.html") 
-@app.get("/admin")
+   @app.get("/admin")
 def admin():
-    return """
-    <html dir="rtl">
-    <head>
-        <meta charset="UTF-8">
-        <title>لوحة إدارة Maysnok</title>
-    </head>
-    <body style="font-family:Arial; padding:30px">
-        <h1>لوحة إدارة Maysnok</h1>
-        <h2>مرحبا بك 👋</h2>
-        <p>إدارة المهنيين والطلبات والاشتراكات</p>
-    </body>
-    </html>
-    """
+    return send_from_directory(".", "admin.html")
 if __name__ == "__main__":
     
     port = int(os.environ.get("PORT", 5000))
