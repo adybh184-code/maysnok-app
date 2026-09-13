@@ -193,6 +193,20 @@ list.innerHTML += `
     alert('تم حفظ المهني: ' + name);  
       document.getElementById('addForm').style.display = 'none';
 };
-</script>   
+  document.getElementById('showArtisans').onclick = function () {
+    let list = document.getElementById('artisanList');
+
+    if (!list) {
+        alert('لم تتم إضافة أي مهني بعد');
+        return;
+    }
+
+    if (list.style.display === 'none') {
+        list.style.display = 'block';
+    } else {
+        list.style.display = 'none';
+    }
+};
+</script>  
 </body>
 </html>
