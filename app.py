@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, send_from_directory
+from flask import Flask, jsonify, request, send_from_directory,Response
 import os
 
 app = Flask(__name__, static_folder="static", static_url_path="/static")
@@ -90,8 +90,19 @@ def homepage():
 
 @app.get("/admin")
 def admin():
-    return send_from_directory(".", "admin.html")
+    auth = request.authorization
 
+    admin_user = os.environ.get("ADMIN_USER")
+    admin_password = os.environ.get("ADMIN_PASSWORD")
+
+    if not auth or auth.username != admin_user or auth.password != admin_password:
+        return Response(
+            "Login required",
+            401,
+            {"WWW-Authenticate": 'Basic realm="Maysnok Admin"'}
+        )
+
+    return send_from_directory(".", "admin.html")
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
