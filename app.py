@@ -345,7 +345,7 @@ def register_user():
     finally:
         cur.close()
         conn.close()
-       @app.get("/api/admin/users")
+@app.get("/api/admin/users")
 def admin_users():
     if not session.get("admin_logged_in"):
         return jsonify({
