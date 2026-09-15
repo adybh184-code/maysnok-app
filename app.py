@@ -345,6 +345,38 @@ def register_user():
     finally:
         cur.close()
         conn.close()
+       @app.get("/api/admin/users")
+def admin_users():
+    if not session.get("admin_logged_in"):
+        return jsonify({
+            "ok": False,
+            "message": "غير مسموح"
+        }), 401
+
+    conn = get_db()
+    cur = conn.cursor(cursor_factory=RealDictCursor)
+
+    cur.execute("""
+        SELECT
+            id,
+            role,
+            full_name,
+            phone,
+            job,
+            city,
+            active,
+            verified,
+            subscription_status
+        FROM users
+        ORDER BY id DESC
+    """)
+
+    users = cur.fetchall()
+
+    cur.close()
+    conn.close()
+
+    return jsonify(users) 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
