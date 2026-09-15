@@ -319,151 +319,183 @@ oninput="showArtisans()"
 </div>
 
 
-<script>
+ <script>
 
-function getData(key){
-    return JSON.parse(localStorage.getItem(key) || '[]');
-}
+let adminUsers = [];
 
-function saveData(key,data){
-    localStorage.setItem(key,JSON.stringify(data));
+async function loadUsers(){
+
+    try{
+
+        let response = await fetch("/api/admin/users");
+
+        if(response.status === 401){
+            window.location.href = "/admin-login";
+            return;
+        }
+
+        adminUsers = await response.json();
+
+        updateDashboard();
+
+    }catch(error){
+
+        alert("تعذر جلب البيانات من قاعدة البيانات");
+
+    }
 }
 
 
 function openSection(id){
 
-    document.querySelectorAll('.section').forEach(function(section){
-        section.style.display='none';
+    document.querySelectorAll(".section").forEach(function(section){
+        section.style.display = "none";
     });
 
-    document.getElementById(id).style.display='block';
+    document.getElementById(id).style.display = "block";
 
-    if(id==='artisansSection'){
+    if(id === "artisansSection"){
         showArtisans();
     }
 
-    if(id==='subscriptionsSection'){
+    if(id === "customersSection"){
+        showCustomers();
+    }
+
+    if(id === "ordersSection"){
+        showOrders();
+    }
+
+    if(id === "subscriptionsSection"){
         showSubscriptions();
     }
 
     updateDashboard();
 
     document.getElementById(id).scrollIntoView({
-        behavior:'smooth'
+        behavior: "smooth"
     });
 }
 
 
-function saveArtisan(){
+async function saveArtisan(){
 
-    let name=document.getElementById('name').value.trim();
-    let job=document.getElementById('job').value.trim();
-    let city=document.getElementById('city').value.trim();
-    let phone=document.getElementById('phone').value.trim();
-    let subscription=document.getElementById('subscription').value;
+    let name = document.getElementById("name").value.trim();
+    let job = document.getElementById("job").value.trim();
+    let city = document.getElementById("city").value.trim();
+    let phone = document.getElementById("phone").value.trim();
+    let password = document.getElementById("password").value;
 
-    if(!name || !job || !city || !phone){
-        alert('عمر جميع المعلومات');
+    if(!name || !job || !city || !phone || !password){
+        alert("عمر جميع المعلومات");
         return;
     }
 
-    let artisans=getData('artisans');
+    try{
 
-    artisans.push({
-        id:Date.now(),
-        name:name,
-        job:job,
-        city:city,
-        phone:phone,
-        status:'نشط',
-        subscription:subscription
-    });
+        let response = await fetch("/api/register", {
 
-    saveData('artisans',artisans);
+            method: "POST",
 
-    document.getElementById('name').value='';
-    document.getElementById('job').value='';
-    document.getElementById('city').value='';
-    document.getElementById('phone').value='';
+            headers:{
+                "Content-Type": "application/json"
+            },
 
-    alert('تم حفظ المهني بنجاح');
+            body: JSON.stringify({
+                role: "professional",
+                full_name: name,
+                job: job,
+                city: city,
+                phone: phone,
+                password: password
+            })
 
-    updateDashboard();
+        });
 
-    openSection('artisansSection');
+        let data = await response.json();
+
+        if(!response.ok){
+            alert(data.message || "تعذر إنشاء الحساب");
+            return;
+        }
+
+        document.getElementById("name").value = "";
+        document.getElementById("job").value = "";
+        document.getElementById("city").value = "";
+        document.getElementById("phone").value = "";
+        document.getElementById("password").value = "";
+
+        alert("تم إنشاء حساب المهني بنجاح ✅");
+
+        await loadUsers();
+
+        openSection("artisansSection");
+
+    }catch(error){
+
+        alert("وقع خطأ أثناء إنشاء الحساب");
+
+    }
 }
 
 
 function showArtisans(){
 
-    let artisans=getData('artisans');
+    let search =
+        document.getElementById("artisanSearch").value.toLowerCase();
 
-    let search=
-    document.getElementById('artisanSearch').value.toLowerCase();
+    let list =
+        document.getElementById("artisanList");
 
-    let list=document.getElementById('artisanList');
+    let artisans =
+        adminUsers.filter(function(user){
+            return user.role === "professional";
+        });
 
-    list.innerHTML='';
+    let filtered =
+        artisans.filter(function(a){
 
-    let filtered=artisans.filter(function(a){
+            let text =
+                (a.full_name || "") + " " +
+                (a.job || "") + " " +
+                (a.city || "");
 
-        return(
-            a.name.toLowerCase().includes(search) ||
-            a.job.toLowerCase().includes(search) ||
-            a.city.toLowerCase().includes(search)
-        );
+            return text.toLowerCase().includes(search);
+        });
 
-    });
+    list.innerHTML = "";
 
-    if(filtered.length===0){
-        list.innerHTML='<p>لا يوجد مهنيون.</p>';
+    if(filtered.length === 0){
+        list.innerHTML = "<p>لا يوجد مهنيون.</p>";
         return;
     }
 
     filtered.forEach(function(a){
 
-        let statusClass=
-        a.status==='نشط' ? 'activeText' : 'stoppedText';
+        let status =
+            a.active ? "🟢 نشط" : "🔴 متوقف";
 
-        list.innerHTML+=`
+        let verified =
+            a.verified ? "🛡️ موثق" : "غير موثق";
+
+        list.innerHTML += `
 
         <div class="item">
 
-        👷 <strong>${a.name}</strong><br>
+            👷 <strong>${a.full_name}</strong><br>
 
-        🛠️ ${a.job}<br>
+            🛠️ ${a.job || "-"}<br>
 
-        📍 ${a.city}<br>
+            📍 ${a.city || "-"}<br>
 
-        📞 ${a.phone}<br>
+            📞 ${a.phone}<br>
 
-        الحالة:
-        <span class="${statusClass}">
-        ${a.status}
-        </span>
-        <br>
+            ${status}<br>
 
-        💳 الاشتراك:
-        ${a.subscription}
-        <br><br>
+            ${verified}<br>
 
-        <button
-        class="blue smallBtn"
-        onclick="editArtisan(${a.id})">
-        ✏️ تعديل
-        </button>
-
-        <button
-        class="orange smallBtn"
-        onclick="toggleArtisan(${a.id})">
-        ⏸️ توقيف / تشغيل
-        </button>
-
-        <button
-        class="red smallBtn"
-        onclick="deleteArtisan(${a.id})">
-        🗑️ حذف
-        </button>
+            💳 الاشتراك:
+            ${a.subscription_status || "trial"}
 
         </div>
 
@@ -473,124 +505,73 @@ function showArtisans(){
 }
 
 
-function deleteArtisan(id){
+function showCustomers(){
 
-    if(!confirm('هل تريد حذف هذا المهني؟')){
+    let list =
+        document.getElementById("customerList");
+
+    let customers =
+        adminUsers.filter(function(user){
+            return user.role === "customer";
+        });
+
+    list.innerHTML = "";
+
+    if(customers.length === 0){
+        list.innerHTML = "<p>لا يوجد زبناء حالياً.</p>";
         return;
     }
 
-    let artisans=getData('artisans');
+    customers.forEach(function(c){
 
-    artisans=artisans.filter(function(a){
-        return a.id!==id;
+        list.innerHTML += `
+
+        <div class="item">
+
+            👤 <strong>${c.full_name}</strong><br>
+
+            📞 ${c.phone}<br>
+
+            الحالة:
+            ${c.active ? "🟢 نشط" : "🔴 متوقف"}
+
+        </div>
+
+        `;
+
     });
-
-    saveData('artisans',artisans);
-
-    showArtisans();
-    updateDashboard();
-}
-
-
-function toggleArtisan(id){
-
-    let artisans=getData('artisans');
-
-    let artisan=artisans.find(function(a){
-        return a.id===id;
-    });
-
-    if(!artisan){
-        return;
-    }
-
-    artisan.status=
-    artisan.status==='نشط'
-    ? 'متوقف'
-    : 'نشط';
-
-    saveData('artisans',artisans);
-
-    showArtisans();
-}
-
-
-function editArtisan(id){
-
-    let artisans=getData('artisans');
-
-    let artisan=artisans.find(function(a){
-        return a.id===id;
-    });
-
-    if(!artisan){
-        return;
-    }
-
-    let newName=prompt('اسم المهني',artisan.name);
-
-    if(newName===null){
-        return;
-    }
-
-    let newJob=prompt('المهنة',artisan.job);
-
-    let newCity=prompt('المدينة',artisan.city);
-
-    let newPhone=prompt('رقم الهاتف',artisan.phone);
-
-    artisan.name=newName || artisan.name;
-    artisan.job=newJob || artisan.job;
-    artisan.city=newCity || artisan.city;
-    artisan.phone=newPhone || artisan.phone;
-
-    saveData('artisans',artisans);
-
-    showArtisans();
-
-    alert('تم تعديل معلومات المهني');
 }
 
 
 function showSubscriptions(){
 
-    let artisans=getData('artisans');
+    let list =
+        document.getElementById("subscriptionList");
 
-    let list=document.getElementById('subscriptionList');
+    let artisans =
+        adminUsers.filter(function(user){
+            return user.role === "professional";
+        });
 
-    list.innerHTML='';
+    list.innerHTML = "";
 
-    if(artisans.length===0){
-        list.innerHTML='<p>لا توجد اشتراكات.</p>';
+    if(artisans.length === 0){
+        list.innerHTML = "<p>لا توجد اشتراكات.</p>";
         return;
     }
 
     artisans.forEach(function(a){
 
-        list.innerHTML+=`
+        list.innerHTML += `
 
         <div class="item">
 
-        👷 <strong>${a.name}</strong><br>
+            👷 <strong>${a.full_name}</strong><br>
 
-        🛠️ ${a.job}<br>
+            🛠️ ${a.job || "-"}<br>
 
-        💳 حالة الاشتراك:
-        <strong>${a.subscription}</strong>
-
-        <br><br>
-
-        <button
-        class="green smallBtn"
-        onclick="changeSubscription(${a.id},'نشط')">
-        ✅ تفعيل
-        </button>
-
-        <button
-        class="orange smallBtn"
-        onclick="changeSubscription(${a.id},'منتهي')">
-        ❌ إنهاء
-        </button>
+            💳 حالة الاشتراك:
+            <strong>${a.subscription_status || "trial"}</strong>
 
         </div>
 
@@ -600,67 +581,59 @@ function showSubscriptions(){
 }
 
 
-function changeSubscription(id,status){
+function showOrders(){
 
-    let artisans=getData('artisans');
-
-    let artisan=artisans.find(function(a){
-        return a.id===id;
-    });
-
-    if(!artisan){
-        return;
-    }
-
-    artisan.subscription=status;
-
-    saveData('artisans',artisans);
-
-    showSubscriptions();
-
-    updateDashboard();
+    document.getElementById("orderList").innerHTML =
+        "<p>سنربط طلبات الزبناء في المرحلة التالية.</p>";
 }
 
 
 function updateDashboard(){
 
-    let artisans=getData('artisans');
-    let customers=getData('customers');
-    let orders=getData('orders');
+    let artisans =
+        adminUsers.filter(function(user){
+            return user.role === "professional";
+        });
 
-    let activeSubscriptions=
-    artisans.filter(function(a){
-        return a.subscription==='نشط';
-    }).length;
+    let customers =
+        adminUsers.filter(function(user){
+            return user.role === "customer";
+        });
 
-    document.getElementById('artisanCount').textContent=
-    artisans.length;
+    let activeSubscriptions =
+        artisans.filter(function(user){
+            return user.subscription_status === "active";
+        }).length;
 
-    document.getElementById('customerCount').textContent=
-    customers.length;
+    document.getElementById("artisanCount").textContent =
+        artisans.length;
 
-    document.getElementById('orderCount').textContent=
-    orders.length;
+    document.getElementById("customerCount").textContent =
+        customers.length;
 
-    document.getElementById('subscriptionCount').textContent=
-    activeSubscriptions;
+    document.getElementById("orderCount").textContent =
+        "0";
 
-    document.getElementById('statArtisans').textContent=
-    artisans.length;
+    document.getElementById("subscriptionCount").textContent =
+        activeSubscriptions;
 
-    document.getElementById('statCustomers').textContent=
-    customers.length;
+    document.getElementById("statArtisans").textContent =
+        artisans.length;
 
-    document.getElementById('statOrders').textContent=
-    orders.length;
+    document.getElementById("statCustomers").textContent =
+        customers.length;
 
-    document.getElementById('statSubscriptions').textContent=
-    activeSubscriptions;
+    document.getElementById("statOrders").textContent =
+        "0";
+
+    document.getElementById("statSubscriptions").textContent =
+        activeSubscriptions;
 }
 
-updateDashboard();
 
-</script>
+loadUsers();
+
+</script>  
 
 </body>
 </html>
