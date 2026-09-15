@@ -1402,7 +1402,35 @@ function createProfessionalAccount() {
         return;
     }
 
+fetch("/api/register", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        role: "professional",
+        full_name: name,
+        job: job,
+        city: city,
+        phone: phone,
+        password: password
+    })
+})
+.then(async function(response) {
+    const data = await response.json();
 
+    if (!response.ok) {
+        throw new Error(data.message || "تعذر إنشاء الحساب");
+    }
+
+    alert("تم إنشاء الحساب المهني بنجاح ✅");
+    window.location.reload();
+})
+.catch(function(error) {
+    alert(error.message);
+});
+
+return;
     let artisans =
     JSON.parse(
         localStorage.getItem("artisans") || "[]"
