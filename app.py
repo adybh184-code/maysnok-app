@@ -270,7 +270,81 @@ def admin():
 def admin_logout():
     session.clear()
     return redirect("/admin-login")                                                                                                                                            
+@app.post("/api/register")
+def register_user():
+    data = request.get_json(silent=True) or {}
 
+    role = data.get("role", "").strip()
+    full_name = data.get("full_name", "").strip()
+    phone = data.get("phone", "").strip()
+    password = data.get("password", "")
+    job = data.get("job", "").strip()
+    city = data.get("city", "").strip()
+
+    if role not in ["professional", "customer"]:
+        return jsonify({
+            "ok": False,
+            "message": "نوع الحساب غير صحيح"
+        }), 400
+
+    if not full_name or not phone or not password:
+        return jsonify({
+            "ok": False,
+            "message": "عمر جميع المعلومات"
+        }), 400
+
+    if role == "professional" and (not job or not city):
+        return jsonify({
+            "ok": False,
+            "message": "اختر المهنة والمدينة"
+        }), 400
+
+    password_hash = generate_password_hash(password)
+
+    conn = get_db()
+    cur = conn.cursor(cursor_factory=RealDictCursor)
+
+    try:
+        cur.execute("""
+            INSERT INTO users
+            (role, full_name, phone, password_hash, job, city)
+            VALUES (%s, %s, %s, %s, %s, %s)
+            RETURNING id, role, full_name, phone, job, city
+        """, (
+            role,
+            full_name,
+            phone,
+            password_hash,
+            job or None,
+            city or None
+        ))
+
+        user = cur.fetchone()
+        conn.commit()
+
+        return jsonify({
+            "ok": True,
+            "message": "تم إنشاء الحساب بنجاح",
+            "user": user
+        })
+
+    except psycopg2.Error as e:
+        conn.rollback()
+
+        if e.pgcode == "23505":
+            return jsonify({
+                "ok": False,
+                "message": "رقم الهاتف مسجل من قبل"
+            }), 409
+
+        return jsonify({
+            "ok": False,
+            "message": "وقع خطأ أثناء إنشاء الحساب"
+        }), 500
+
+    finally:
+        cur.close()
+        conn.close()
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
