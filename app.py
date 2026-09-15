@@ -1,10 +1,88 @@
 from flask import Flask, jsonify, request, send_from_directory, session, redirect
 import os
-
+import psycopg2
+from psycopg2.extras import RealDictCursor
+from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__, static_folder="static", static_url_path="/static")
 app.secret_key = os.environ.get("SECRET_KEY")
 
+
+# =========================
+# DATABASE
+# =========================
+def get_db():
+    database_url = os.environ.get("DATABASE_URL")
+
+    if not database_url:
+        raise RuntimeError("DATABASE_URL غير موجود")
+
+    return psycopg2.connect(database_url)
+
+
+def init_db():
+    conn = get_db()
+    cur = conn.cursor()
+
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS users (
+            id SERIAL PRIMARY KEY,
+            role VARCHAR(20) NOT NULL,
+            full_name VARCHAR(150) NOT NULL,
+            phone VARCHAR(30) UNIQUE NOT NULL,
+            password_hash TEXT NOT NULL,
+            job VARCHAR(100),
+            city VARCHAR(100),
+            areas TEXT,
+            photo_url TEXT,
+            available BOOLEAN DEFAULT TRUE,
+            verified BOOLEAN DEFAULT FALSE,
+            active BOOLEAN DEFAULT TRUE,
+            rating NUMERIC(3,2) DEFAULT 0,
+            rating_count INTEGER DEFAULT 0,
+            subscription_status VARCHAR(30) DEFAULT 'trial',
+            trial_ends_at TIMESTAMPTZ DEFAULT NOW() + INTERVAL '30 days',
+            created_at TIMESTAMPTZ DEFAULT NOW()
+        )
+    """)
+
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS service_requests (
+            id SERIAL PRIMARY KEY,
+            customer_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+            professional_id INTEGER REFERENCES users(id) ON DELETE SET NULL,
+            description TEXT,
+            photo_url TEXT,
+            voice_url TEXT,
+            status VARCHAR(30) DEFAULT 'pending',
+            quoted_price NUMERIC(10,2),
+            customer_lat DOUBLE PRECISION,
+            customer_lng DOUBLE PRECISION,
+            created_at TIMESTAMPTZ DEFAULT NOW()
+        )
+    """)
+
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS reviews (
+            id SERIAL PRIMARY KEY,
+            customer_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+            professional_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+            stars INTEGER CHECK (stars >= 1 AND stars <= 5),
+            comment TEXT,
+            created_at TIMESTAMPTZ DEFAULT NOW()
+        )
+    """)
+
+    conn.commit()
+    cur.close()
+    conn.close()
+
+
+try:
+    init_db()
+    print("Database ready")
+except Exception as e:
+    print("Database error:", e)
 CATEGORIES = [
     {"id": "electric", "name": "كهربائي", "icon": "⚡"},
     {"id": "plumber", "name": "سباك", "icon": "🔧"},
