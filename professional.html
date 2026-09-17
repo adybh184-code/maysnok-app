@@ -191,45 +191,45 @@ button{
 
     <div class="features">
 
-       <div class="feature" onclick="openRequests()" style="cursor:pointer;">
-            <span class="icon">🔔</span>
-            <span>طلبات الزبناء والإشعارات</span>
-        </div>
+<div class="feature" onclick="openRequests()">
+    <span class="icon">🔔</span>
+    <span>طلبات الزبناء والإشعارات</span>
+</div>
 
-        <div class="feature">
-            <span class="icon">🎤</span>
-            <span>استقبال الطلبات والرسائل الصوتية</span>
-        </div>
+<div class="feature" onclick="openVoiceRequests()">
+    <span class="icon">🎤</span>
+    <span>استقبال الطلبات والرسائل الصوتية</span>
+</div>
 
-        <div class="feature">
-            <span class="icon">📞</span>
-            <span>اتصال مباشر مع الزبون</span>
-        </div>
+<div class="feature" onclick="callCustomer()">
+    <span class="icon">📞</span>
+    <span>اتصال مباشر مع الزبون</span>
+</div>
 
-        <div class="feature">
-            <span class="icon">📸</span>
-            <span>صور المشكل والأعمال</span>
-        </div>
+<div class="feature" onclick="openPhotos()">
+    <span class="icon">📷</span>
+    <span>صور المشكل والأعمال</span>
+</div>
 
-        <div class="feature">
-            <span class="icon">💰</span>
-            <span>إرسال عرض السعر للزبون</span>
-        </div>
+<div class="feature" onclick="sendPrice()">
+    <span class="icon">💰</span>
+    <span>إرسال عرض السعر للزبون</span>
+</div>
 
-        <div class="feature">
-            <span class="icon">🗺️</span>
-            <span>الموقع والخريطة وتتبع الوصول</span>
-        </div>
+<div class="feature" onclick="openLocation()">
+    <span class="icon">🗺️</span>
+    <span>الموقع والخريطة وتتبع الوصول</span>
+</div>
 
-        <div class="feature">
-            <span class="icon">⭐</span>
-            <span>التقييمات وآراء الزبناء</span>
-        </div>
+<div class="feature" onclick="openReviews()">
+    <span class="icon">⭐</span>
+    <span>التقييمات وآراء الزبناء</span>
+</div>
 
-        <div class="feature">
-            <span class="icon">🛡️</span>
-            <span>توثيق الحساب المهني</span>
-        </div>
+<div class="feature" onclick="openVerification()">
+    <span class="icon">🛡️</span>
+    <span>توثيق الحساب المهني</span>
+</div>      
 
     </div>
 
@@ -251,6 +251,33 @@ function changeStatus(){
         status.innerHTML = "🔴 غير متاح";
         status.style.color = "#d93025";
     }
+}    
+function openVoiceRequests() {
+    alert("🎤 لا توجد رسائل صوتية جديدة حالياً");
+}
+
+function callCustomer() {
+    alert("📞 لا يوجد زبون للاتصال به حالياً");
+}
+
+function openPhotos() {
+    alert("📷 لا توجد صور جديدة حالياً");
+}
+
+function sendPrice() {
+    alert("💰 لا يوجد طلب لإرسال عرض سعر حالياً");
+}
+
+function openLocation() {
+    alert("🗺️ لا يوجد طلب نشط لعرض موقع الزبون حالياً");
+}
+
+function openReviews() {
+    alert("⭐ لا توجد تقييمات جديدة حالياً");
+}
+
+function openVerification() {
+    alert("🛡️ توثيق الحساب المهني قيد المراجعة");
 }    
 function openRequests() {
     alert("🔔 لا توجد طلبات جديدة حالياً");
