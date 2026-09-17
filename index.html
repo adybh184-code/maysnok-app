@@ -1700,7 +1700,28 @@ document.querySelectorAll(".categoryCard").forEach(function(card) {
         };
     };
 });   
-    
+ // ===== إرسال طلب لأي مهني من جميع الخدمات =====
+function sendServiceRequest(proName, proJob, proPhone) {
+
+    let requests = JSON.parse(
+        localStorage.getItem("serviceRequests") || "[]"
+    );
+
+    requests.push({
+        professional: proName || "",
+        job: proJob || "",
+        phone: proPhone || "",
+        status: "جديد",
+        date: new Date().toLocaleString("ar-MA")
+    });
+
+    localStorage.setItem(
+        "serviceRequests",
+        JSON.stringify(requests)
+    );
+
+    alert("✅ تم إرسال طلبك إلى المهني بنجاح");
+}   
 </script>
 
 </body>
