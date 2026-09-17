@@ -1051,7 +1051,7 @@ function renderSuggested(artisans){
 
         <button
         class="follow"
-        onclick="requestService('${escapeJs(a.name)}')">
+  onclick="sendServiceRequest('${escapeJs(a.name)}','${escapeJs(a.job)}','${escapeJs(a.phone || '')}')">
 
         تواصل
 
