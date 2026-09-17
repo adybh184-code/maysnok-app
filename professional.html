@@ -191,7 +191,7 @@ button{
 
     <div class="features">
 
-        <div class="feature">
+       <div class="feature" onclick="openRequests()" style="cursor:pointer;">
             <span class="icon">🔔</span>
             <span>طلبات الزبناء والإشعارات</span>
         </div>
@@ -251,7 +251,10 @@ function changeStatus(){
         status.innerHTML = "🔴 غير متاح";
         status.style.color = "#d93025";
     }
-}
+}    
+function openRequests() {
+    alert("🔔 لا توجد طلبات جديدة حالياً");
+}    
 </script>
 
 </body>
