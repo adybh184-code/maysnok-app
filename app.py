@@ -377,6 +377,132 @@ def admin_users():
     conn.close()
 
     return jsonify(users) 
+    # ==============================
+# PROFESSIONAL ACCOUNT
+# ==============================
+
+@app.get("/professional")
+def professional_page():
+    return send_from_directory(".", "professional.html")
+
+
+@app.get("/api/me")
+def api_me():
+    user_id = session.get("user_id")
+
+    if not user_id:
+        return jsonify({
+            "ok": False,
+            "message": "غير مسجل الدخول"
+        }), 401
+
+    conn = get_db()
+    cur = conn.cursor(cursor_factory=RealDictCursor)
+
+    try:
+        cur.execute("""
+            SELECT
+                id,
+                full_name,
+                phone,
+                role,
+                job,
+                city,
+                active,
+                verified,
+                subscription_status
+            FROM users
+            WHERE id = %s
+        """, (user_id,))
+
+        user = cur.fetchone()
+
+        if not user:
+            return jsonify({
+                "ok": False,
+                "message": "الحساب غير موجود"
+            }), 404
+
+        return jsonify({
+            "ok": True,
+            "user": user
+        })
+
+    finally:
+        cur.close()
+        conn.close()
+
+
+@app.post("/api/professional/availability")
+def professional_availability():
+    user_id = session.get("user_id")
+
+    if not user_id:
+        return jsonify({
+            "ok": False,
+            "message": "غير مسجل الدخول"
+        }), 401
+
+    data = request.get_json(silent=True) or {}
+    available = bool(data.get("available"))
+
+    conn = get_db()
+    cur = conn.cursor()
+
+    try:
+        cur.execute("""
+            UPDATE users
+            SET active = %s
+            WHERE id = %s
+              AND role = 'professional'
+        """, (available, user_id))
+
+        conn.commit()
+
+        return jsonify({
+            "ok": True,
+            "available": available
+        })
+
+    finally:
+        cur.close()
+        conn.close()
+
+
+@app.get("/api/requests")
+def professional_requests():
+    user_id = session.get("user_id")
+
+    if not user_id:
+        return jsonify([])
+
+    conn = get_db()
+    cur = conn.cursor(cursor_factory=RealDictCursor)
+
+    try:
+        cur.execute("""
+            SELECT *
+            FROM service_requests
+            WHERE professional_id = %s
+            ORDER BY id DESC
+        """, (user_id,))
+
+        requests_list = cur.fetchall()
+
+        return jsonify(requests_list)
+
+    finally:
+        cur.close()
+        conn.close()
+
+
+@app.post("/api/logout")
+def user_logout():
+    session.clear()
+
+    return jsonify({
+        "ok": True
+    })
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
