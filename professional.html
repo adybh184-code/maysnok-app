@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maysnok - حساب المهني</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f3f5f7;
+    color:#222;
+}
+
+header{
+    background:#1877f2;
+    color:white;
+    padding:15px 25px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:bold;
+}
+
+.home{
+    background:white;
+    color:#1877f2;
+    padding:9px 15px;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.container{
+    max-width:900px;
+    margin:25px auto;
+    padding:15px;
+}
+
+.profile{
+    background:white;
+    border-radius:15px;
+    padding:25px;
+    text-align:center;
+    box-shadow:0 2px 10px #ddd;
+}
+
+.avatar{
+    width:100px;
+    height:100px;
+    border-radius:50%;
+    background:#e7f0ff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:50px;
+    margin:auto;
+}
+
+h2{
+    margin-bottom:5px;
+}
+
+.status{
+    display:inline-block;
+    background:#e7f8ed;
+    color:#16883c;
+    padding:7px 14px;
+    border-radius:20px;
+    margin:10px;
+    font-weight:bold;
+}
+
+.info{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+    margin-top:20px;
+}
+
+.card{
+    background:white;
+    padding:18px;
+    border-radius:12px;
+    box-shadow:0 2px 8px #ddd;
+}
+
+.features{
+    margin-top:20px;
+}
+
+.feature{
+    background:white;
+    padding:17px;
+    margin:10px 0;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:17px;
+    box-shadow:0 1px 5px #ddd;
+}
+
+.icon{
+    font-size:27px;
+}
+
+button{
+    border:0;
+    cursor:pointer;
+    font-size:16px;
+}
+
+.available{
+    background:#19a64a;
+    color:white;
+    padding:12px 22px;
+    border-radius:10px;
+    margin-top:15px;
+}
+
+@media(max-width:600px){
+    .info{
+        grid-template-columns:1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">Maysnok</div>
+    <a class="home" href="/">🏠 الرئيسية</a>
+</header>
+
+<div class="container">
+
+    <div class="profile">
+
+        <div class="avatar">🧑‍🔧</div>
+
+        <h2 id="proName">حساب المهني</h2>
+
+        <div class="status" id="status">
+            🟢 متاح للعمل
+        </div>
+
+        <br>
+
+        <button class="available" onclick="changeStatus()">
+            تغيير حالة التوفر
+        </button>
+
+        <div class="info">
+
+            <div class="card">
+                🔧 المهنة
+                <br>
+                <strong id="proJob">—</strong>
+            </div>
+
+            <div class="card">
+                📍 المدينة
+                <br>
+                <strong id="proCity">—</strong>
+            </div>
+
+            <div class="card">
+                ⭐ التقييم
+                <br>
+                <strong>5.0</strong>
+            </div>
+
+            <div class="card">
+                🛡️ التوثيق
+                <br>
+                <strong>قيد المراجعة</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="features">
+
+        <div class="feature">
+            <span class="icon">🔔</span>
+            <span>طلبات الزبناء والإشعارات</span>
+        </div>
+
+        <div class="feature">
+            <span class="icon">🎤</span>
+            <span>استقبال الطلبات والرسائل الصوتية</span>
+        </div>
+
+        <div class="feature">
+            <span class="icon">📞</span>
+            <span>اتصال مباشر مع الزبون</span>
+        </div>
+
+        <div class="feature">
+            <span class="icon">📸</span>
+            <span>صور المشكل والأعمال</span>
+        </div>
+
+        <div class="feature">
+            <span class="icon">💰</span>
+            <span>إرسال عرض السعر للزبون</span>
+        </div>
+
+        <div class="feature">
+            <span class="icon">🗺️</span>
+            <span>الموقع والخريطة وتتبع الوصول</span>
+        </div>
+
+        <div class="feature">
+            <span class="icon">⭐</span>
+            <span>التقييمات وآراء الزبناء</span>
+        </div>
+
+        <div class="feature">
+            <span class="icon">🛡️</span>
+            <span>توثيق الحساب المهني</span>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+let available = true;
+
+function changeStatus(){
+
+    available = !available;
+
+    const status = document.getElementById("status");
+
+    if(available){
+        status.innerHTML = "🟢 متاح للعمل";
+        status.style.color = "#16883c";
+    }else{
+        status.innerHTML = "🔴 غير متاح";
+        status.style.color = "#d93025";
+    }
+}
+</script>
+
+</body>
+</html>
