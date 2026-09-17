@@ -252,7 +252,26 @@ function changeStatus() {
 }
 
 function openRequests() {
-    alert("🔔 لا توجد طلبات جديدة حالياً");
+
+    const requests =
+        JSON.parse(localStorage.getItem("serviceRequests") || "[]");
+
+    if (requests.length === 0) {
+        alert("🔔 لا توجد طلبات جديدة حالياً");
+        return;
+    }
+
+    let message = "🔔 الطلبات الجديدة\n\n";
+
+    requests.slice().reverse().forEach(function(r, i) {
+
+        message +=
+            (i + 1) + " - " + (r.job || "خدمة") + "\n" +
+            "🧑‍🔧 المهني: " + (r.professional || "—") + "\n" +
+            "📅 " + (r.date || "") + "\n\n";
+    });
+
+    alert(message);
 }
 
 function openVoiceRequests() {
