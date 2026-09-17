@@ -238,20 +238,23 @@ button{
 <script>
 let available = true;
 
-function changeStatus(){
-
+function changeStatus() {
     available = !available;
-
     const status = document.getElementById("status");
 
-    if(available){
+    if (available) {
         status.innerHTML = "🟢 متاح للعمل";
         status.style.color = "#16883c";
-    }else{
+    } else {
         status.innerHTML = "🔴 غير متاح";
         status.style.color = "#d93025";
     }
-}    
+}
+
+function openRequests() {
+    alert("🔔 لا توجد طلبات جديدة حالياً");
+}
+
 function openVoiceRequests() {
     alert("🎤 لا توجد رسائل صوتية جديدة حالياً");
 }
@@ -278,10 +281,7 @@ function openReviews() {
 
 function openVerification() {
     alert("🛡️ توثيق الحساب المهني قيد المراجعة");
-}    
-function openRequests() {
-    alert("🔔 لا توجد طلبات جديدة حالياً");
-}    
+}
 </script>
 
 </body>
