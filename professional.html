@@ -251,24 +251,36 @@ function changeStatus() {
     }
 }
 
-function openRequests() {
-    const requests = JSON.parse(localStorage.getItem("serviceRequests") || "[]");
+async function openRequests() {
+    try {
+        const response = await fetch("/api/requests");
+        const requests = await response.json();
 
-    if (requests.length === 0) {
-        alert("🔔 لا توجد طلبات جديدة حالياً");
-        return;
+        if (!response.ok) {
+            alert("تعذر تحميل الطلبات");
+            return;
+        }
+
+        if (!requests || requests.length === 0) {
+            alert("🔔 لا توجد طلبات جديدة حالياً");
+            return;
+        }
+
+        let message = "🔔 الطلبات الجديدة\n\n";
+
+        requests.forEach(function(r, i) {
+            message +=
+                (i + 1) + " - " + (r.description || "طلب خدمة") + "\n" +
+                "📅 " + (r.created_at || "") + "\n" +
+                "الحالة: " + (r.status || "pending") + "\n\n";
+        });
+
+        alert(message);
+
+    } catch (error) {
+        console.error(error);
+        alert("تعذر تحميل الطلبات، حاول مرة أخرى");
     }
-
-    let message = "🔔 الطلبات الجديدة\n\n";
-
-    requests.slice().reverse().forEach(function(r, i) {
-        message +=
-            (i + 1) + " - " + (r.job || "خدمة") + "\n" +
-            "🔧 المهني: " + (r.professional || "") + "\n" +
-            "📅 " + (r.date || "") + "\n\n";
-    });
-
-    alert(message);
 }
 
 function openVoiceRequests() {
