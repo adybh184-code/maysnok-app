@@ -344,7 +344,7 @@ def register_user():
 
     finally:
         cur.close()
-        conn.close(
+        conn.close()
 
 @app.get("/api/admin/users")
 def admin_users():
