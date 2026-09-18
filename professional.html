@@ -252,9 +252,7 @@ function changeStatus() {
 }
 
 function openRequests() {
-
-    const requests =
-        JSON.parse(localStorage.getItem("serviceRequests") || "[]");
+    const requests = JSON.parse(localStorage.getItem("serviceRequests") || "[]");
 
     if (requests.length === 0) {
         alert("🔔 لا توجد طلبات جديدة حالياً");
@@ -264,10 +262,9 @@ function openRequests() {
     let message = "🔔 الطلبات الجديدة\n\n";
 
     requests.slice().reverse().forEach(function(r, i) {
-
         message +=
             (i + 1) + " - " + (r.job || "خدمة") + "\n" +
-            "🧑‍🔧 المهني: " + (r.professional || "—") + "\n" +
+            "🔧 المهني: " + (r.professional || "") + "\n" +
             "📅 " + (r.date || "") + "\n\n";
     });
 
