@@ -1051,8 +1051,7 @@ function renderSuggested(artisans){
 
         <button
         class="follow"
-  onclick="sendServiceRequest('${escapeJs(a.name)}','${escapeJs(a.job)}','${escapeJs(a.phone || '')}')">
-
+ onclick="sendServiceRequest(${a.id}, '${escapeJs(a.name)}', '${escapeJs(a.job)}')"
         تواصل
 
         </button>
@@ -1609,7 +1608,7 @@ document.querySelectorAll(".categoryCard").forEach(function(card) {
 <div style="margin-top:12px;">
 
     <button
-        onclick="sendServiceRequest('${escapeJs(a.name || "")}','${escapeJs(a.job || "")}','${escapeJs(a.phone || "")}')"
+     onclick="sendServiceRequest(${a.id}, '${escapeJs(a.name || "")}', '${escapeJs(a.job || "")}')"
         style="
             border:0;
             background:#19a64a;
@@ -1717,27 +1716,40 @@ document.querySelectorAll(".categoryCard").forEach(function(card) {
     };
 });   
  // ===== إرسال طلب لأي مهني من جميع الخدمات =====
-function sendServiceRequest(proName, proJob, proPhone) {
+async function sendServiceRequest(proId, proName, proJob) {
 
-    let requests = JSON.parse(
-        localStorage.getItem("serviceRequests") || "[]"
-    );
+    const description = prompt("اشرح باختصار الخدمة التي تحتاجها:");
 
-    requests.push({
-        professional: proName || "",
-        job: proJob || "",
-        phone: proPhone || "",
-        status: "جديد",
-        date: new Date().toLocaleString("ar-MA")
-    });
+    if (description === null) {
+        return;
+    }
 
-    localStorage.setItem(
-        "serviceRequests",
-        JSON.stringify(requests)
-    );
+    try {
+        const response = await fetch("/api/requests", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                professional_id: proId,
+                description: description.trim()
+            })
+        });
 
-    alert("✅ تم إرسال طلبك إلى المهني بنجاح");
-}   
+        const data = await response.json();
+
+        if (!response.ok) {
+            alert(data.error || "تعذر إرسال الطلب");
+            return;
+        }
+
+        alert("✅ تم إرسال طلبك إلى " + proName + " بنجاح");
+
+    } catch (error) {
+        console.error(error);
+        alert("تعذر إرسال الطلب، حاول مرة أخرى");
+    }
+}
 </script>
 
 </body>
