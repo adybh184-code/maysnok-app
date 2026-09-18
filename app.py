@@ -495,7 +495,61 @@ def professional_requests():
     finally:
         cur.close()
         conn.close()
+@app.post("/api/requests")
+def create_request():
+    user_id = session.get("user_id")
 
+    if not user_id:
+        return jsonify({"ok": False, "error": "يجب تسجيل الدخول"}), 401
+
+    data = request.get_json(silent=True) or {}
+
+    professional_id = data.get("professional_id")
+    description = str(data.get("description", "")).strip()
+    photo_url = data.get("photo_url")
+    voice_url = data.get("voice_url")
+    customer_lat = data.get("customer_lat")
+    customer_lng = data.get("customer_lng")
+
+    if not professional_id:
+        return jsonify({"ok": False, "error": "المهني غير محدد"}), 400
+
+    conn = get_db()
+    cur = conn.cursor()
+
+    try:
+        cur.execute("""
+            INSERT INTO service_requests
+            (customer_id, professional_id, description, photo_url,
+             voice_url, customer_lat, customer_lng)
+            VALUES (%s, %s, %s, %s, %s, %s, %s)
+            RETURNING id
+        """, (
+            user_id,
+            professional_id,
+            description,
+            photo_url,
+            voice_url,
+            customer_lat,
+            customer_lng
+        ))
+
+        request_id = cur.fetchone()[0]
+        conn.commit()
+
+        return jsonify({
+            "ok": True,
+            "request_id": request_id,
+            "message": "تم إرسال الطلب بنجاح"
+        })
+
+    except Exception as e:
+        conn.rollback()
+        return jsonify({"ok": False, "error": str(e)}), 500
+
+    finally:
+        cur.close()
+        conn.close()
 
 @app.post("/api/logout")
 def user_logout():
