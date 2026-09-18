@@ -345,6 +345,32 @@ def register_user():
     finally:
         cur.close()
         conn.close()
+        @app.post("/api/login")
+def login_user():
+    data = request.get_json(silent=True) or {}
+
+    phone = str(data.get("phone", "")).strip()
+    password = str(data.get("password", "")).strip()
+
+    if not phone or not password:
+        return jsonify({"ok": False, "error": "أدخل رقم الهاتف وكلمة السر"}), 400
+
+    conn = get_db()
+    user = conn.execute(
+        "SELECT * FROM users WHERE phone = ?",
+        (phone,)
+    ).fetchone()
+    conn.close()
+
+    if not user or user["password"] != password:
+        return jsonify({"ok": False, "error": "رقم الهاتف أو كلمة السر غير صحيحة"}), 401
+
+    session["user_id"] = user["id"]
+
+    return jsonify({
+        "ok": True,
+        "message": "تم تسجيل الدخول بنجاح"
+    })
 @app.get("/api/admin/users")
 def admin_users():
     if not session.get("admin_logged_in"):
