@@ -1751,6 +1751,45 @@ async function sendServiceRequest(proId, proName, proJob) {
     }
 }
 </script>
+<script>
+async function registerCustomer() {
 
+    const fullName = prompt("الاسم الكامل:");
+    if (!fullName) return;
+
+    const phone = prompt("رقم الهاتف:");
+    if (!phone) return;
+
+    const password = prompt("كلمة المرور:");
+    if (!password) return;
+
+    try {
+        const response = await fetch("/api/register", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                role: "customer",
+                full_name: fullName,
+                phone: phone,
+                password: password
+            })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            alert(data.error || "تعذر إنشاء الحساب");
+            return;
+        }
+
+        alert("✅ تم إنشاء حساب الزبون بنجاح");
+
+    } catch (error) {
+        alert("❌ وقع خطأ، حاول مرة أخرى");
+    }
+}
+</script>
 </body>
 </html>
