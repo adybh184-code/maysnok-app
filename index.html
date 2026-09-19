@@ -1787,6 +1787,7 @@ async function registerCustomer() {
         alert("✅ تم إنشاء حساب الزبون بنجاح");
 
     } catch (error) {
+        console.error(error);
         alert("❌ وقع خطأ، حاول مرة أخرى");
     }
 }
