@@ -1628,7 +1628,7 @@ function openCustomerLogin() {
                 alert(data.error || "تعذر تسجيل الدخول");
                 return;
             }
-
+document.getElementById("welcomeScreen").style.display = "none";
             document.getElementById("customerLoginBox").innerHTML = `
                 <div style="background:white;width:100%;max-width:400px;
                 border-radius:20px;padding:30px;text-align:center;">
@@ -2117,7 +2117,6 @@ font-family:Arial,sans-serif;
 <script>
 
 function openWelcomeLogin() {
-    document.getElementById("welcomeScreen").style.display = "none";
     openCustomerLogin();
 }
 
