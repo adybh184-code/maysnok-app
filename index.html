@@ -1533,19 +1533,132 @@ document.querySelectorAll(".nav span")
 });
 
 
-// حسابي
-document.querySelectorAll(".nav span, .mobileNav div")
-.forEach(function(item) {
+// ===== حساب الزبون =====
+document.querySelectorAll(".nav span, .mobileNav div").forEach(function(item) {
 
     if (item.textContent.includes("حسابي")) {
 
-        item.onclick = function () {
-
-            alert("صفحة الحساب سنربطها بعد إنشاء الحساب");
-
+        item.onclick = function() {
+            openCustomerLogin();
         };
+
     }
 });
+
+function openCustomerLogin() {
+
+    const oldBox = document.getElementById("customerLoginBox");
+    if (oldBox) oldBox.remove();
+
+    const box = document.createElement("div");
+    box.id = "customerLoginBox";
+
+    box.style.cssText = `
+        position:fixed;
+        inset:0;
+        background:rgba(0,0,0,.45);
+        z-index:99999;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        padding:15px;
+    `;
+
+    box.innerHTML = `
+        <div style="background:white;width:100%;max-width:400px;
+        border-radius:20px;padding:30px;position:relative;text-align:center;">
+
+            <button onclick="document.getElementById('customerLoginBox').remove()"
+            style="position:absolute;top:10px;right:15px;border:0;
+            background:none;font-size:28px;cursor:pointer;">×</button>
+
+            <div style="font-size:55px;">👤</div>
+
+            <h2 style="color:#1877f2;">حسابي</h2>
+
+            <p style="color:#777;">أدخل رقم الهاتف وكلمة المرور</p>
+
+            <input id="loginPhone"
+            placeholder="رقم الهاتف"
+            style="width:100%;padding:14px;margin:8px 0;
+            border:1px solid #ddd;border-radius:12px;box-sizing:border-box;">
+
+            <input id="loginPassword"
+            type="password"
+            placeholder="كلمة المرور"
+            style="width:100%;padding:14px;margin:8px 0;
+            border:1px solid #ddd;border-radius:12px;box-sizing:border-box;">
+
+            <button id="customerLoginBtn"
+            style="width:100%;padding:14px;margin-top:12px;
+            background:#1877f2;color:white;border:0;
+            border-radius:12px;font-size:17px;cursor:pointer;">
+                دخول
+            </button>
+
+        </div>
+    `;
+
+    document.body.appendChild(box);
+
+    document.getElementById("customerLoginBtn").onclick = async function() {
+
+        const phone = document.getElementById("loginPhone").value.trim();
+        const password = document.getElementById("loginPassword").value;
+
+        if (!phone || !password) {
+            alert("أدخل رقم الهاتف وكلمة المرور");
+            return;
+        }
+
+        try {
+
+            const response = await fetch("/api/login", {
+                method: "POST",
+                headers: {"Content-Type":"application/json"},
+                body: JSON.stringify({
+                    phone: phone,
+                    password: password
+                })
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                alert(data.error || "تعذر تسجيل الدخول");
+                return;
+            }
+
+            document.getElementById("customerLoginBox").innerHTML = `
+                <div style="background:white;width:100%;max-width:400px;
+                border-radius:20px;padding:30px;text-align:center;">
+
+                    <div style="font-size:60px;">👤</div>
+
+                    <h2 style="color:#1877f2;">
+                        ${data.full_name}
+                    </h2>
+
+                    <p>📱 ${data.phone}</p>
+
+                    <p style="color:#28a745;font-weight:bold;">
+                        ✅ الحساب مسجل
+                    </p>
+
+                    <button onclick="document.getElementById('customerLoginBox').remove()"
+                    style="width:100%;padding:14px;background:#1877f2;
+                    color:white;border:0;border-radius:12px;font-size:17px;">
+                        إغلاق
+                    </button>
+
+                </div>
+            `;
+
+        } catch(error) {
+            alert("وقع خطأ، حاول مرة أخرى");
+        }
+    };
+}
 // ===== فتح جميع الخدمات =====
 document.querySelectorAll(".categoryCard").forEach(function(card) {
 
