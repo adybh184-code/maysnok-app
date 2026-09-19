@@ -345,7 +345,64 @@ def register_user():
     finally:
         cur.close()
         conn.close()
+@app.post("/api/login")
+def login():
+    data = request.get_json(silent=True) or {}
 
+    phone = str(data.get("phone", "")).strip()
+    password = str(data.get("password", ""))
+
+    if not phone or not password:
+        return jsonify({
+            "ok": False,
+            "error": "أدخل رقم الهاتف وكلمة المرور"
+        }), 400
+
+    conn = get_db()
+    cur = conn.cursor(cursor_factory=RealDictCursor)
+
+    try:
+        cur.execute("""
+            SELECT id, role, full_name, phone, password_hash, active
+            FROM users
+            WHERE phone = %s
+            LIMIT 1
+        """, (phone,))
+
+        user = cur.fetchone()
+
+        if not user:
+            return jsonify({
+                "ok": False,
+                "error": "رقم الهاتف غير مسجل"
+            }), 401
+
+        if not check_password_hash(user["password_hash"], password):
+            return jsonify({
+                "ok": False,
+                "error": "كلمة المرور غير صحيحة"
+            }), 401
+
+        if not user["active"]:
+            return jsonify({
+                "ok": False,
+                "error": "الحساب موقوف"
+            }), 403
+
+        session["user_id"] = user["id"]
+        session["role"] = user["role"]
+
+        return jsonify({
+            "ok": True,
+            "id": user["id"],
+            "role": user["role"],
+            "full_name": user["full_name"],
+            "phone": user["phone"]
+        })
+
+    finally:
+        cur.close()
+        conn.close()
 @app.get("/api/admin/users")
 def admin_users():
     if not session.get("admin_logged_in"):
