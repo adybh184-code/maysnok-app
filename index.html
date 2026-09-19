@@ -2024,5 +2024,118 @@ async function submitCustomerRegistration() {
     }
 }
 </script>
+  <!-- ===== شاشة الدخول الأولى Maysnok ===== -->
+<div id="welcomeScreen" style="
+position:fixed;
+inset:0;
+background:#f0f2f5;
+z-index:999999;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:20px;
+direction:rtl;
+font-family:Arial,sans-serif;
+">
+
+    <div style="
+    background:white;
+    width:100%;
+    max-width:420px;
+    padding:35px 25px;
+    border-radius:22px;
+    text-align:center;
+    box-shadow:0 5px 25px rgba(0,0,0,.15);
+    ">
+
+        <div style="
+        font-size:38px;
+        font-weight:bold;
+        color:#1877f2;
+        margin-bottom:8px;
+        ">
+            Maysnok
+        </div>
+
+        <div style="font-size:55px;margin:10px;">👤</div>
+
+        <h2 style="margin:5px 0 10px;">
+            مرحباً بك
+        </h2>
+
+        <p style="color:#777;margin-bottom:25px;">
+            سجل الدخول أو أنشئ حساباً جديداً
+        </p>
+
+        <button onclick="openWelcomeLogin()" style="
+        width:100%;
+        padding:15px;
+        border:0;
+        border-radius:12px;
+        background:#1877f2;
+        color:white;
+        font-size:18px;
+        font-weight:bold;
+        cursor:pointer;
+        margin-bottom:12px;
+        ">
+            🔐 تسجيل الدخول
+        </button>
+
+        <button onclick="openCustomerFromWelcome()" style="
+        width:100%;
+        padding:15px;
+        border:1px solid #1877f2;
+        border-radius:12px;
+        background:white;
+        color:#1877f2;
+        font-size:17px;
+        font-weight:bold;
+        cursor:pointer;
+        margin-bottom:12px;
+        ">
+            👤 إنشاء حساب زبون
+        </button>
+
+        <button onclick="openProfessionalFromWelcome()" style="
+        width:100%;
+        padding:15px;
+        border:1px solid #1877f2;
+        border-radius:12px;
+        background:white;
+        color:#1877f2;
+        font-size:17px;
+        font-weight:bold;
+        cursor:pointer;
+        ">
+            🧑‍🔧 إنشاء حساب مهني
+        </button>
+
+    </div>
+</div>
+
+<script>
+
+function openWelcomeLogin() {
+    document.getElementById("welcomeScreen").style.display = "none";
+    openCustomerLogin();
+}
+
+function openCustomerFromWelcome() {
+    document.getElementById("welcomeScreen").style.display = "none";
+    registerCustomer();
+}
+
+function openProfessionalFromWelcome() {
+    document.getElementById("welcomeScreen").style.display = "none";
+
+    const btn = document.getElementById("professionalRegisterBtn");
+
+    if (btn) {
+        btn.click();
+    }
+}
+
+</script>  
 </body>
 </html>
