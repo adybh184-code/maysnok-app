@@ -857,89 +857,362 @@ header{
 .createProfessional{
     color:#7a5700 !important;
     font-weight:800 !important;
+}
+   /* ===== تصميم شاشة دخول Maysnok ===== */
+
+#welcomeScreen{
+    position:fixed;
+    inset:0;
+    z-index:9999;
+    background:#f5f7fb;
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    overflow-y:auto;
+    padding:20px 10px;
+    direction:rtl;
+    font-family:Arial,Tahoma,sans-serif;
+}
+
+.maysnok-login{
+    position:relative;
+    width:100%;
+    max-width:430px;
+    min-height:760px;
+    background:#ffffff;
+    border-radius:32px;
+    overflow:hidden;
+    box-shadow:0 15px 45px rgba(0,0,0,.10);
+}
+
+.login-content{
+    position:relative;
+    z-index:5;
+    padding:55px 35px 35px;
+    text-align:center;
+}
+
+/* الزخارف الملونة */
+.shape{
+    position:absolute;
+    z-index:1;
+}
+
+.shape-yellow{
+    width:120px;
+    height:230px;
+    background:#ffb900;
+    top:-40px;
+    left:-65px;
+    border-radius:50%;
+    transform:rotate(20deg);
+}
+
+.shape-blue-top{
+    width:125px;
+    height:220px;
+    background:#0866ff;
+    top:-45px;
+    right:-70px;
+    border-radius:50%;
+    transform:rotate(-18deg);
+}
+
+.shape-red{
+    width:145px;
+    height:145px;
+    background:#f32f3c;
+    bottom:-70px;
+    left:-55px;
+    border-radius:50%;
+}
+
+.shape-blue-bottom{
+    width:150px;
+    height:160px;
+    background:#0866ff;
+    bottom:-75px;
+    right:-60px;
+    border-radius:50%;
+}
+
+/* الشعار */
+.m-logo{
+    width:95px;
+    height:85px;
+    margin:0 auto 5px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:52px;
+}
+
+.maysnok-title{
+    font-size:46px;
+    font-weight:900;
+    direction:ltr;
+    line-height:1;
+    margin-bottom:8px;
+}
+
+.maysnok-title .may{
+    color:#0759d9;
+}
+
+.maysnok-title .s{
+    color:#ef3340;
+}
+
+.maysnok-title .nok{
+    color:#0759d9;
+}
+
+.tagline{
+    font-size:14px;
+    color:#303747;
+    margin:12px 0 32px;
+}
+
+.tagline:before{
+    content:"—";
+    color:#ffb400;
+    font-weight:bold;
+    margin-left:8px;
+}
+
+.tagline:after{
+    content:"—";
+    color:#0866ff;
+    font-weight:bold;
+    margin-right:8px;
+}
+
+/* العنوان */
+.login-content h2{
+    font-size:25px;
+    color:#172033;
+    margin:0 0 7px;
+}
+
+.login-subtitle{
+    color:#8b93a3;
+    font-size:14px;
+    margin-bottom:25px;
+}
+
+/* خانات الدخول */
+.login-field{
+    width:100%;
+    height:58px;
+    border:1px solid #d9dfe9;
+    border-radius:14px;
+    display:flex;
+    align-items:center;
+    padding:0 15px;
+    margin-bottom:14px;
+    background:#fff;
+    box-sizing:border-box;
+}
+
+.login-field:focus-within{
+    border-color:#0866ff;
+    box-shadow:0 0 0 3px rgba(8,102,255,.08);
+}
+
+.login-field input{
+    flex:1;
+    height:100%;
+    border:0;
+    outline:0;
+    background:transparent;
+    font-size:15px;
+    direction:rtl;
+}
+
+.login-field .icon{
+    font-size:20px;
+    margin-left:10px;
+}
+
+.eye-btn{
+    border:0;
+    background:transparent;
+    font-size:19px;
+    cursor:pointer;
+}
+
+/* زر الدخول */
+.login-btn{
+    width:100%;
+    height:57px;
+    border:0;
+    border-radius:14px;
+    background:linear-gradient(90deg,#0755d9,#0878f9);
+    color:white;
+    font-size:18px;
+    font-weight:800;
+    cursor:pointer;
+    margin-top:10px;
+    box-shadow:0 9px 22px rgba(8,102,255,.20);
+}
+
+.login-btn:hover{
+    transform:translateY(-1px);
+}
+
+/* أو */
+.login-separator{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    color:#9aa1ad;
+    margin:22px 0;
+}
+
+.login-separator:before,
+.login-separator:after{
+    content:"";
+    height:1px;
+    background:#e1e5eb;
+    flex:1;
+}
+
+/* إنشاء الحساب */
+.new-account-text{
+    color:#626b7b;
+    font-size:14px;
+    margin-bottom:12px;
+}
+
+.new-account-btn{
+    width:100%;
+    height:52px;
+    border-radius:14px;
+    background:#fff;
+    border:1px solid #ccd9ef;
+    color:#0759d9;
+    font-size:15px;
+    font-weight:800;
+    cursor:pointer;
+    margin-bottom:10px;
+}
+
+.professional-account-btn{
+    border-color:#ffd76a;
+    background:#fff9e8;
+    color:#765700;
+}
+
+/* الهاتف */
+@media(max-width:480px){
+    #welcomeScreen{
+        padding:0;
+        background:white;
+    }
+
+    .maysnok-login{
+        max-width:none;
+        min-height:100vh;
+        border-radius:0;
+        box-shadow:none;
+    }
+
+    .login-content{
+        padding:45px 25px 30px;
+    }
+
+    .maysnok-title{
+        font-size:42px;
+    }
 } 
 </style>
 <!-- ===== شاشة الدخول الجديدة Maysnok ===== -->
 <div class="overlay" id="welcomeScreen">
-    <div class="welcomeCard modernLogin">
+ <div class="maysnok-login">
 
-        <div class="brandLogo">
-            <div class="peopleLogo">🤝</div>
+    <div class="shape shape-yellow"></div>
+    <div class="shape shape-blue-top"></div>
+    <div class="shape shape-red"></div>
+    <div class="shape shape-blue-bottom"></div>
 
-            <div class="brandName">
-                <span class="blue">May</span><span class="red">s</span><span class="blue">nok</span>
-            </div>
+    <div class="login-content">
 
-            <div class="brandLine">
-                <span></span>
-                كل ما تحتاجه في مكان واحد
-                <span></span>
-            </div>
+        <div class="m-logo">🤝</div>
+
+        <div class="maysnok-title">
+            <span class="blue">May</span><span class="red">s</span><span class="blue">nok</span>
         </div>
 
-        <h2>مرحباً بك في Maysnok</h2>
-        <p class="loginText">
+        <div class="slogan">
+            كل ما تحتاجه في مكان واحد
+        </div>
+
+        <h2 class="welcome-title">
+            مرحباً بك في Maysnok
+        </h2>
+
+        <p class="welcome-text">
             تواصل، شارك، واكتشف خدمات مهنية قريبة منك
         </p>
 
-        <div class="loginInput">
-            <span>📱</span>
-            <input id="welcomePhone" type="tel" placeholder="رقم الهاتف">
+        <div class="new-login-field">
+            <span class="field-icon">📱</span>
+            <input
+                id="welcomePhone"
+                type="tel"
+                placeholder="رقم الهاتف">
         </div>
 
-        <div class="loginInput">
-            <span>🔒</span>
-            <input id="welcomePassword" type="password" placeholder="كلمة المرور">
+        <div class="new-login-field">
+            <span class="field-icon">🔒</span>
+
+            <input
+                id="welcomePassword"
+                type="password"
+                placeholder="كلمة المرور">
+
+            <button
+                type="button"
+                class="eye-login"
+                onclick="toggleWelcomePassword()">
+                👁️
+            </button>
         </div>
 
-        <div id="welcomeLoginMessage" class="message"></div>
+        <div id="welcomeLoginMessage" class="login-message"></div>
 
-        <button class="loginMainButton" onclick="welcomeLogin()">
+        <a class="forgot" href="javascript:void(0)">
+            نسيت كلمة المرور؟
+        </a>
+
+        <button class="main-login" onclick="welcomeLogin()">
             تسجيل الدخول
         </button>
 
-        <div class="separator">
+        <div class="divider-new">
             <span></span>
-            <b>أو</b>
+            أو
             <span></span>
         </div>
 
-        <p class="noAccount">ليس لديك حساب؟</p>
-
-        <button class="createCustomer" onclick="openRegister('customer')">
-            👤 إنشاء حساب زبون
-        </button>
-
-        <button class="createProfessional" onclick="openRegister('professional')">
-            🧑‍🔧 إنشاء حساب مهني
-        </button>
-
-    </div>
-</div>
-    <div class="welcomeCard">
-
-        <div class="welcomeLogo">🛠️</div>
-
-        <h1>May<span>snok</span></h1>
-
-        <p>
-            لقا المهني المناسب بسهولة<br>
-            وتواصل معاه مباشرة.
+        <p class="account-question">
+            ليس لديك حساب؟
         </p>
 
-        <button class="mainBtn" onclick="openLogin()">
-            🔐 تسجيل الدخول
-        </button>
-
-        <button class="secondaryBtn" onclick="openRegister('customer')">
+        <button
+            class="new-account-btn"
+            onclick="openRegister('customer')">
             👤 إنشاء حساب زبون
         </button>
 
-        <button class="secondaryBtn proRegister" onclick="openRegister('professional')">
+        <button
+            class="new-account-btn professional-account-btn"
+            onclick="openRegister('professional')">
             🧑‍🔧 إنشاء حساب مهني
         </button>
 
     </div>
+</div>  
 </div>
 
 <!-- القائمة السفلية -->
