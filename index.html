@@ -2277,7 +2277,7 @@ async function welcomeLogin() {
             return;
         }
 
-        document.getElementById("welcomeScreen").style.display = "none";
+       document.getElementById("welcomeScreen").remove();
         alert("✅ تم تسجيل الدخول بنجاح، مرحبا " + (data.full_name || ""));
 
     } catch (error) {
