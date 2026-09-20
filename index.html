@@ -1628,10 +1628,16 @@ function openCustomerLogin() {
                 alert(data.error || "تعذر تسجيل الدخول");
                 return;
             }
-document.getElementById("welcomeScreen").style.display = "none";
 document.getElementById("customerLoginBox").remove();
 
-alert("✅ مرحبا " + data.full_name + "، تم تسجيل الدخول بنجاح");  
+const welcomeScreen = document.getElementById("welcomeScreen");
+if (welcomeScreen) {
+    welcomeScreen.style.display = "none";
+}
+
+alert("✅ تم تسجيل الدخول بنجاح، مرحبا " + (data.full_name || ""));
+
+window.location.reload();
         } catch(error) {
             alert("وقع خطأ، حاول مرة أخرى");
         }
