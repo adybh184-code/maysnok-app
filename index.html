@@ -1628,32 +1628,10 @@ function openCustomerLogin() {
                 alert(data.error || "تعذر تسجيل الدخول");
                 return;
             }
-    document.getElementById("welcomeScreen").style.display = "none";
-            document.getElementById("customerLoginBox").innerHTML = `
-                <div style="background:white;width:100%;max-width:400px;
-                border-radius:20px;padding:30px;text-align:center;">
+document.getElementById("welcomeScreen").style.display = "none";
+document.getElementById("customerLoginBox").remove();
 
-                    <div style="font-size:60px;">👤</div>
-
-                    <h2 style="color:#1877f2;">
-                        ${data.full_name}
-                    </h2>
-
-                    <p>📱 ${data.phone}</p>
-
-                    <p style="color:#28a745;font-weight:bold;">
-                        ✅ الحساب مسجل
-                    </p>
-
-                    <button onclick="document.getElementById('customerLoginBox').remove()"
-                    style="width:100%;padding:14px;background:#1877f2;
-                    color:white;border:0;border-radius:12px;font-size:17px;">
-                        إغلاق
-                    </button>
-
-                </div>
-            `;
-
+alert("✅ مرحبا " + data.full_name + "، تم تسجيل الدخول بنجاح");  
         } catch(error) {
             alert("وقع خطأ، حاول مرة أخرى");
         }
