@@ -8,468 +8,494 @@
 <style>
 *{
     box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
 body{
-    margin:0;
-    font-family:Arial,sans-serif;
-    background:#f0f2f5;
-    color:#1f2937;
+    font-family:Arial,Tahoma,sans-serif;
+    background:#f4f7fb;
+    color:#172033;
+    padding-bottom:80px;
+}
+
+button,input,select,textarea{
+    font-family:inherit;
+}
+
+/* ===== الرأس ===== */
+header{
+    background:linear-gradient(135deg,#0866ff,#00a6ff);
+    color:white;
+    padding:18px 16px 28px;
+    border-radius:0 0 28px 28px;
+    box-shadow:0 8px 25px rgba(8,102,255,.22);
 }
 
 .topbar{
-    position:sticky;
-    top:0;
-    z-index:100;
-    background:#1264d8;
-    color:white;
-    min-height:70px;
+    max-width:1000px;
+    margin:auto;
     display:flex;
     align-items:center;
-    gap:15px;
-    padding:10px 3%;
-    box-shadow:0 2px 8px rgba(0,0,0,.15);
+    justify-content:space-between;
 }
 
 .logo{
-    font-size:30px;
+    font-size:31px;
+    font-weight:900;
+    letter-spacing:.5px;
+}
+
+.logo span{
+    color:#ffd43b;
+}
+
+.accountBtn{
+    border:0;
+    background:white;
+    color:#0866ff;
     font-weight:bold;
-    white-space:nowrap;
-}
-
-.searchTop{
-    flex:1;
-    display:flex;
-    gap:8px;
-}
-
-.searchTop input{
-    width:100%;
-    border:0;
-    border-radius:12px;
-    padding:14px;
-    font-size:16px;
-}
-
-.searchTop button{
-    border:0;
-    background:white;
-    color:#1264d8;
-    border-radius:12px;
-    padding:0 20px;
-    font-size:20px;
-}
-
-.nav{
-    display:flex;
-    gap:18px;
-}
-
-.layout{
-    max-width:1450px;
-    margin:18px auto;
-    padding:0 14px;
-    display:grid;
-    grid-template-columns:270px minmax(0,720px) 280px;
-    gap:18px;
-}
-
-.panel{
-    background:white;
+    padding:10px 15px;
     border-radius:16px;
-    padding:14px;
-    box-shadow:0 1px 5px rgba(0,0,0,.08);
-}
-
-.panel h3{
-    margin:4px 0 15px;
-}
-
-/* صور المهن */
-
-.categoryGrid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:10px;
-}
-
-.categoryCard{
-    position:relative;
-    height:125px;
-    border-radius:14px;
-    overflow:hidden;
-    cursor:pointer;
-    background:#ddd;
-}
-
-.categoryCard img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    transition:.25s;
-}
-
-.categoryCard:hover img{
-    transform:scale(1.05);
-}
-
-.categoryShade{
-    position:absolute;
-    inset:0;
-    background:linear-gradient(
-        to top,
-        rgba(0,0,0,.75),
-        rgba(0,0,0,.05)
-    );
-}
-
-.categoryName{
-    position:absolute;
-    bottom:10px;
-    right:10px;
-    left:10px;
-    color:white;
-    font-weight:bold;
-    font-size:15px;
-    text-shadow:0 1px 4px #000;
-}
-
-.city{
-    padding:11px;
-    margin:5px 0;
-    border-radius:10px;
     cursor:pointer;
 }
-
-.city:hover{
-    background:#eaf2ff;
-    color:#1264d8;
-}
-
-/* الوسط */
 
 .hero{
-    min-height:210px;
-    border-radius:18px;
-    padding:35px;
-    display:flex;
-    align-items:center;
-    color:white;
-    background:
-    linear-gradient(
-        90deg,
-        rgba(7,78,174,.90),
-        rgba(18,100,216,.25)
-    ),
-    url("https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1400&q=85");
-    background-size:cover;
-    background-position:center;
-    margin-bottom:15px;
+    max-width:1000px;
+    margin:25px auto 0;
 }
 
 .hero h1{
-    margin:0 0 12px;
-    font-size:34px;
+    font-size:27px;
+    margin-bottom:9px;
 }
 
 .hero p{
-    margin:0;
-    font-size:19px;
+    color:#eaf4ff;
+    line-height:1.8;
 }
 
-.composer{
-    background:white;
-    padding:15px;
-    border-radius:16px;
-    margin-bottom:15px;
-    box-shadow:0 1px 5px rgba(0,0,0,.08);
-}
-
-.composerRow{
+.searchBox{
     display:flex;
+    margin-top:20px;
+    background:white;
+    padding:6px;
+    border-radius:18px;
+}
+
+.searchBox input{
+    flex:1;
+    border:0;
+    outline:0;
+    padding:13px;
+    font-size:16px;
+    min-width:0;
+}
+
+.searchBox button{
+    border:0;
+    background:#0866ff;
+    color:white;
+    width:50px;
+    border-radius:14px;
+    font-size:20px;
+}
+
+/* ===== المحتوى ===== */
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:20px 14px;
+}
+
+.sectionTitle{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin:7px 2px 15px;
+}
+
+.sectionTitle h2{
+    font-size:20px;
+}
+
+.sectionTitle span{
+    color:#777;
+    font-size:13px;
+}
+
+/* ===== المهن ===== */
+.jobs{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
     gap:10px;
 }
 
-.avatar{
-    width:48px;
-    height:48px;
-    border-radius:50%;
-    background:#e5efff;
+.job{
+    background:white;
+    border-radius:18px;
+    padding:15px 5px;
+    text-align:center;
+    box-shadow:0 3px 14px rgba(0,0,0,.06);
+    cursor:pointer;
+    transition:.2s;
+}
+
+.job:active{
+    transform:scale(.96);
+}
+
+.jobIcon{
+    width:54px;
+    height:54px;
+    border-radius:18px;
+    margin:0 auto 8px;
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:23px;
-    flex-shrink:0;
+    font-size:28px;
+    background:#eef5ff;
 }
 
-.composer input{
-    flex:1;
+.job:nth-child(2n) .jobIcon{
+    background:#fff2e7;
+}
+
+.job:nth-child(3n) .jobIcon{
+    background:#eafbf2;
+}
+
+.job:nth-child(4n) .jobIcon{
+    background:#fff9dc;
+}
+
+.jobName{
+    font-size:13px;
+    font-weight:bold;
+}
+
+/* ===== طلب سريع ===== */
+.quickRequest{
+    margin:24px 0;
+    background:linear-gradient(135deg,#fff,#edf6ff);
+    border:1px solid #dbeaff;
+    border-radius:22px;
+    padding:19px;
+}
+
+.quickRequest h3{
+    color:#0866ff;
+    margin-bottom:8px;
+}
+
+.quickRequest p{
+    color:#677184;
+    font-size:14px;
+    line-height:1.7;
+}
+
+.quickRequest button{
+    width:100%;
+    margin-top:14px;
+    padding:14px;
     border:0;
-    background:#f0f2f5;
-    border-radius:25px;
-    padding:13px 18px;
+    border-radius:15px;
+    background:#0866ff;
+    color:white;
     font-size:16px;
-}
-
-.composerActions{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    text-align:center;
-    border-top:1px solid #eee;
-    margin-top:13px;
-    padding-top:12px;
-}
-
-.filters{
-    background:white;
-    border-radius:14px;
-    display:flex;
-    margin-bottom:15px;
-    overflow:hidden;
-}
-
-.filter{
-    flex:1;
-    padding:14px 5px;
-    text-align:center;
+    font-weight:bold;
     cursor:pointer;
 }
 
-.filter.active{
-    color:#1264d8;
-    font-weight:bold;
-    border-bottom:3px solid #1264d8;
+/* ===== المهنيون ===== */
+.professionals{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
 }
 
-/* منشورات */
-
-.post{
+.proCard{
     background:white;
-    border-radius:16px;
-    overflow:hidden;
-    margin-bottom:18px;
-    box-shadow:0 1px 5px rgba(0,0,0,.10);
+    border-radius:20px;
+    padding:15px;
+    box-shadow:0 3px 15px rgba(0,0,0,.06);
 }
 
-.postHeader{
-    padding:15px;
+.proTop{
     display:flex;
     align-items:center;
     gap:11px;
 }
 
-.workerIcon{
-    width:50px;
-    height:50px;
+.avatar{
+    width:55px;
+    height:55px;
     border-radius:50%;
-    background:#e8f1ff;
+    background:linear-gradient(135deg,#0866ff,#00b6ff);
+    color:white;
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:24px;
+    font-size:26px;
 }
 
-.workerInfo{
-    flex:1;
-}
-
-.workerName{
-    font-size:18px;
+.proName{
     font-weight:bold;
+    margin-bottom:4px;
 }
 
-.workerMeta{
-    color:#6b7280;
-    font-size:14px;
+.proJob{
+    color:#697386;
+    font-size:13px;
+}
+
+.available{
+    color:#0b9b55;
+    font-size:12px;
     margin-top:5px;
 }
 
 .rating{
-    color:#e99a00;
-    font-weight:bold;
+    margin:11px 0;
+    font-size:13px;
 }
 
-.description{
-    padding:0 15px 14px;
-    line-height:1.7;
-}
-
-.workImage{
+.proCard button{
     width:100%;
-    height:390px;
-    object-fit:cover;
-    display:block;
-}
-
-.reactions{
-    padding:11px 15px;
-    color:#6b7280;
-    border-bottom:1px solid #eee;
-}
-
-.actions{
-    padding:9px;
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:7px;
-}
-
-.actions button{
     border:0;
-    padding:12px 5px;
-    border-radius:10px;
-    font-size:15px;
+    border-radius:13px;
+    padding:11px;
+    background:#edf4ff;
+    color:#0866ff;
+    font-weight:bold;
     cursor:pointer;
 }
 
-.call{
-    background:#1264d8;
+/* ===== نافذة البداية ===== */
+.overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(12,22,40,.58);
+    backdrop-filter:blur(5px);
+    z-index:1000;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:16px;
+}
+
+.welcomeCard{
+    width:100%;
+    max-width:410px;
+    background:white;
+    border-radius:30px;
+    padding:28px 22px;
+    text-align:center;
+    box-shadow:0 25px 70px rgba(0,0,0,.25);
+}
+
+.welcomeLogo{
+    width:90px;
+    height:90px;
+    margin:auto;
+    border-radius:27px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:44px;
+    background:linear-gradient(135deg,#0866ff,#00b7ff);
+    box-shadow:0 10px 25px rgba(8,102,255,.25);
+}
+
+.welcomeCard h1{
+    color:#0866ff;
+    font-size:34px;
+    margin:15px 0 5px;
+}
+
+.welcomeCard h1 span{
+    color:#ffb400;
+}
+
+.welcomeCard p{
+    color:#697386;
+    line-height:1.7;
+    margin-bottom:22px;
+}
+
+.mainBtn{
+    width:100%;
+    border:0;
+    padding:15px;
+    border-radius:16px;
+    background:linear-gradient(135deg,#0866ff,#008cff);
     color:white;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+    margin-bottom:10px;
+}
+
+.secondaryBtn{
+    width:100%;
+    border:1px solid #dbe5f5;
+    padding:14px;
+    border-radius:16px;
+    background:white;
+    color:#0866ff;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    margin-bottom:9px;
+}
+
+.proRegister{
+    background:#fff7dc;
+    color:#805d00;
+    border-color:#ffe28a;
+}
+
+/* ===== Modal ===== */
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(15,25,45,.65);
+    z-index:2000;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:16px;
+}
+
+.modalCard{
+    width:100%;
+    max-width:410px;
+    max-height:92vh;
+    overflow:auto;
+    background:white;
+    border-radius:28px;
+    padding:25px 20px;
+    box-shadow:0 25px 70px rgba(0,0,0,.28);
+}
+
+.close{
+    float:left;
+    width:37px;
+    height:37px;
+    border:0;
+    border-radius:50%;
+    background:#f1f3f7;
+    font-size:20px;
+    cursor:pointer;
+}
+
+.modalIcon{
+    width:75px;
+    height:75px;
+    border-radius:50%;
+    background:#eaf3ff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:38px;
+    margin:10px auto;
+}
+
+.modalCard h2{
+    text-align:center;
+    color:#0866ff;
+    margin-bottom:5px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#7a8392;
+    font-size:14px;
+    margin-bottom:20px;
+}
+
+.field{
+    margin-bottom:12px;
+}
+
+.field label{
+    display:block;
+    font-size:13px;
+    font-weight:bold;
+    margin:0 5px 6px;
+}
+
+.field input,
+.field select{
+    width:100%;
+    border:1px solid #dfe5ed;
+    background:#f8fafc;
+    border-radius:14px;
+    padding:14px;
+    outline:0;
+    font-size:15px;
+}
+
+.field input:focus,
+.field select:focus{
+    border-color:#0866ff;
+    background:white;
 }
 
 .message{
-    background:#e8f1ff;
-    color:#1264d8;
-}
-
-.request{
-    background:#16a34a;
-    color:white;
-}
-
-/* اليمين */
-
-.professional{
-    display:flex;
-    gap:9px;
-    align-items:center;
-    padding:10px 0;
-    border-bottom:1px solid #eee;
-}
-
-.proInfo{
-    flex:1;
-}
-
-.follow{
-    border:1px solid #1264d8;
-    background:white;
-    color:#1264d8;
-    border-radius:8px;
-    padding:7px;
-}
-
-.register{
-    margin-top:15px;
-    background:#1264d8;
-    color:white;
-    border-radius:16px;
-    padding:20px;
-}
-
-.register button{
-    border:0;
-    background:white;
-    color:#1264d8;
-    padding:11px 15px;
-    border-radius:9px;
-    font-weight:bold;
-}
-
-.empty{
-    background:white;
-    border-radius:16px;
-    padding:35px;
+    margin:10px 0;
     text-align:center;
+    font-size:14px;
+    min-height:18px;
 }
 
+.success{color:#079455;}
+.error{color:#d92d20;}
+
+/* ===== Bottom nav ===== */
 .mobileNav{
-    display:none;
+    position:fixed;
+    bottom:0;
+    right:0;
+    left:0;
+    height:68px;
+    background:white;
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    border-top:1px solid #e7ebf1;
+    z-index:500;
 }
 
-@media(max-width:1000px){
+.mobileNav div{
+    text-align:center;
+    color:#687386;
+    font-size:20px;
+    cursor:pointer;
+}
 
-    .layout{
-        grid-template-columns:1fr;
-        max-width:720px;
-    }
+.mobileNav span{
+    display:block;
+    font-size:11px;
+    margin-top:3px;
+}
 
-    .rightSide{
-        display:none;
-    }
+.mobileNav .active{
+    color:#0866ff;
+}
 
-    .leftSide{
-        order:-1;
-    }
-
-    .categoryGrid{
+/* ===== Desktop ===== */
+@media(max-width:650px){
+    .jobs{
         grid-template-columns:repeat(3,1fr);
     }
 
-    .categoryCard{
-        height:115px;
-    }
-
-    .nav{
-        display:none;
-    }
-
-    .topbar{
-        flex-wrap:wrap;
-    }
-
-    .logo{
-        width:100%;
-        text-align:center;
-    }
-
-    body{
-        padding-bottom:70px;
-    }
-
-    .mobileNav{
-        display:grid;
-        grid-template-columns:repeat(4,1fr);
-        position:fixed;
-        bottom:0;
-        left:0;
-        right:0;
-        height:65px;
-        background:white;
-        z-index:100;
-        border-top:1px solid #ddd;
-    }
-
-    .mobileNav div{
-        display:flex;
-        flex-direction:column;
-        justify-content:center;
-        align-items:center;
-        font-size:13px;
-    }
-}
-
-@media(max-width:600px){
-
-    .categoryGrid{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .categoryCard{
-        height:120px;
-    }
-
-    .hero{
-        min-height:165px;
-        padding:22px;
+    .professionals{
+        grid-template-columns:1fr;
     }
 
     .hero h1{
-        font-size:25px;
-    }
-
-    .workImage{
-        height:280px;
+        font-size:23px;
     }
 }
 </style>
@@ -477,1819 +503,497 @@ body{
 
 <body>
 
-<div class="topbar">
-
-    <div class="logo">🏠 Maysnok</div>
-
-    <div class="searchTop">
-        <input
-        id="mainSearch"
-        placeholder="ابحث عن مهني أو خدمة أو مدينة..."
-        oninput="renderArtisans()">
-
-        <button>🔍</button>
+<header>
+    <div class="topbar">
+        <div class="logo">May<span>snok</span></div>
+        <button class="accountBtn" onclick="openLogin()">👤 حسابي</button>
     </div>
 
-    <div class="nav">
-        <span>🏠 الرئيسية</span>
-        <span>💬 الرسائل</span>
-        <span>🔔 الإشعارات</span>
-        <span>👤 حسابي</span>
+    <div class="hero">
+        <h1>المهني اللي محتاجو قريب منك 👋</h1>
+        <p>اختار الخدمة وتواصل بسهولة مع المهني المناسب.</p>
+
+        <div class="searchBox">
+            <input id="searchInput" placeholder="شنو الخدمة اللي كتقلب عليها؟">
+            <button onclick="searchJobs()">🔍</button>
+        </div>
+    </div>
+</header>
+
+<main class="container">
+
+    <div class="sectionTitle">
+        <h2>اختار المهنة</h2>
+        <span>الخدمات الأكثر طلباً</span>
     </div>
 
-</div>
+    <div class="jobs" id="jobs">
+        <div class="job" onclick="chooseJob('كهربائي')">
+            <div class="jobIcon">⚡</div>
+            <div class="jobName">كهربائي</div>
+        </div>
 
+        <div class="job" onclick="chooseJob('سباك')">
+            <div class="jobIcon">🚰</div>
+            <div class="jobName">سباك</div>
+        </div>
 
-<div class="layout">
+        <div class="job" onclick="chooseJob('صباغ')">
+            <div class="jobIcon">🎨</div>
+            <div class="jobName">صباغ</div>
+        </div>
 
-<!-- الجانب الأيسر -->
+        <div class="job" onclick="chooseJob('نجار')">
+            <div class="jobIcon">🪚</div>
+            <div class="jobName">نجار</div>
+        </div>
 
-<div class="leftSide">
+        <div class="job" onclick="chooseJob('بناء وترميم')">
+            <div class="jobIcon">🏗️</div>
+            <div class="jobName">بناء وترميم</div>
+        </div>
 
-<div class="panel">
+        <div class="job" onclick="chooseJob('الزليج والرخام')">
+            <div class="jobIcon">🔲</div>
+            <div class="jobName">الزليج والرخام</div>
+        </div>
 
-<h3>الخدمات</h3>
+        <div class="job" onclick="chooseJob('ألمنيوم وزجاج')">
+            <div class="jobIcon">🪟</div>
+            <div class="jobName">ألمنيوم وزجاج</div>
+        </div>
 
-<div class="categoryGrid" id="categoryGrid"></div>
+        <div class="job" onclick="chooseJob('تنظيف')">
+            <div class="jobIcon">🧹</div>
+            <div class="jobName">تنظيف</div>
+        </div>
 
-</div>
+        <div class="job" onclick="chooseJob('ميكانيكي')">
+            <div class="jobIcon">🚗</div>
+            <div class="jobName">ميكانيكي</div>
+        </div>
 
+        <div class="job" onclick="chooseJob('نقل الأثاث')">
+            <div class="jobIcon">🚚</div>
+            <div class="jobName">نقل الأثاث</div>
+        </div>
 
-<div class="panel" style="margin-top:15px">
+        <div class="job" onclick="chooseJob('إصلاح المنازل')">
+            <div class="jobIcon">🏠</div>
+            <div class="jobName">إصلاح المنازل</div>
+        </div>
 
-<h3>📍 اختر مدينتك</h3>
-
-<div class="city" onclick="filterCity('كلميم')">كلميم</div>
-<div class="city" onclick="filterCity('تزنيت')">تزنيت</div>
-<div class="city" onclick="filterCity('أكادير')">أكادير</div>
-<div class="city" onclick="filterCity('طانطان')">طانطان</div>
-<div class="city" onclick="filterCity('العيون')">العيون</div>
-
-</div>
-
-</div>
-
-
-<!-- الوسط -->
-
-<main>
-
-<div class="hero">
-    <div>
-        <h1>المهني المناسب قريب منك</h1>
-        <p>ابحث • شاهد أعماله • تواصل • اطلب الخدمة</p>
+        <div class="job" onclick="chooseJob('إعلاميات')">
+            <div class="jobIcon">💻</div>
+            <div class="jobName">إعلاميات</div>
+        </div>
     </div>
-</div>
 
+    <div class="quickRequest">
+        <h3>🎤 ما عارفش شكون تحتاج؟</h3>
+        <p>دير طلب خدمة وشرح المشكل ديالك، ومن بعد نقدروا نوجهوك للمهني المناسب.</p>
+        <button onclick="openLogin()">اطلب خدمة الآن</button>
+    </div>
 
-<div class="composer">
+    <div class="sectionTitle">
+        <h2>مهنيون مقترحون</h2>
+        <span>قريباً حسب مدينتك</span>
+    </div>
 
-<div class="composerRow">
-
-<div class="avatar">👤</div>
-
-<input placeholder="ما الخدمة التي تحتاجها اليوم؟">
-
-</div>
-
-<div class="composerActions">
-<div>📷 صورة</div>
-<div>🎥 فيديو</div>
-<div>🧰 طلب خدمة</div>
-</div>
-
-</div>
-
-
-<div class="filters">
-
-<div class="filter active" onclick="showAll(this)">
-كل المهنيين
-</div>
-
-<div class="filter" onclick="sortRating(this)">
-الأعلى تقييماً
-</div>
-
-<div class="filter" onclick="nearMe(this)">
-الأقرب إليك
-</div>
-
-</div>
-
-
-<div id="feed"></div>
+    <div class="professionals" id="professionals">
+        <div class="proCard">
+            <div class="proTop">
+                <div class="avatar">👨‍🔧</div>
+                <div>
+                    <div class="proName">المهنيون سيظهرون هنا</div>
+                    <div class="proJob">Maysnok</div>
+                    <div class="available">● متاح</div>
+                </div>
+            </div>
+            <div class="rating">⭐ سيتم عرض التقييمات هنا</div>
+            <button onclick="openLogin()">طلب خدمة</button>
+        </div>
+    </div>
 
 </main>
 
+<!-- شاشة الدخول الأولى -->
+<div class="overlay" id="welcomeScreen">
+    <div class="welcomeCard">
 
-<!-- اليمين -->
+        <div class="welcomeLogo">🛠️</div>
 
-<div class="rightSide">
+        <h1>May<span>snok</span></h1>
 
-<div class="panel">
+        <p>
+            لقا المهني المناسب بسهولة<br>
+            وتواصل معاه مباشرة.
+        </p>
 
-<h3>مهنيون مقترحون</h3>
+        <button class="mainBtn" onclick="openLogin()">
+            🔐 تسجيل الدخول
+        </button>
 
-<div id="suggested"></div>
+        <button class="secondaryBtn" onclick="openRegister('customer')">
+            👤 إنشاء حساب زبون
+        </button>
 
+        <button class="secondaryBtn proRegister" onclick="openRegister('professional')">
+            🧑‍🔧 إنشاء حساب مهني
+        </button>
+
+        <button class="secondaryBtn" onclick="enterAsGuest()">
+            تصفح الخدمات
+        </button>
+
+    </div>
 </div>
 
-
-<div class="register">
-
-<h2>هل أنت مهني؟</h2>
-
-<p>أنشئ حسابك واعرض أعمالك للزبناء.</p>
-
-<button id="professionalRegisterBtn">إنشاء حساب مهني</button>
-<button onclick="registerCustomer()" style="margin-top:10px;">👤 إنشاء حساب زبون</button>
-</div>
-
-
-<div class="panel" style="margin-top:15px">
-
-<h3>لماذا Maysnok؟</h3>
-
-<p>✅ اختيار المهني حسب المدينة</p>
-<p>⭐ تقييم المهنيين</p>
-<p>📷 مشاهدة الأعمال السابقة</p>
-<p>💬 تواصل مباشر</p>
-
-</div>
-
-</div>
-
-</div>
-
-
+<!-- القائمة السفلية -->
 <div class="mobileNav">
-
-<div>🏠<span>الرئيسية</span></div>
-
-<div>🔍<span>بحث</span></div>
-
-<div>💬<span>الرسائل</span></div>
-
-<div>👤<span>حسابي</span></div>
-
+    <div class="active" onclick="goHome()">🏠<span>الرئيسية</span></div>
+    <div onclick="focusSearch()">🔍<span>بحث</span></div>
+    <div onclick="alert('الرسائل ستتوفر هنا')">💬<span>الرسائل</span></div>
+    <div onclick="openLogin()">👤<span>حسابي</span></div>
 </div>
 
+<div id="modalArea"></div>
 
 <script>
 
-/*
-صور حقيقية للخدمات.
-اخترنا صور أدوات وأعمال قدر الإمكان،
-وليس صور وجوه المهنيين.
-*/
+/* =========================
+   وظائف عامة
+========================= */
 
-const categories = [
-
-{
-name:"كهربائي",
-image:"https://images.unsplash.com/photo-1621905251918-48416bd8575a?auto=format&fit=crop&w=700&q=85"
-},
-
-{
-name:"سباك",
-image:"https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?auto=format&fit=crop&w=700&q=85"
-},
-
-{
-name:"بناء وترميم",
-image:"https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=700&q=85"
-},
-
-{
-name:"ألمنيوم وزجاج",
-image:"https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=700&q=85"
-},
-
-{
-name:"إصلاح المنازل",
-image:"https://images.unsplash.com/photo-1581783898377-1c85bf937427?auto=format&fit=crop&w=700&q=85"
-},
-
-{
-name:"نقل الأثاث",
-image:"https://images.unsplash.com/photo-1600518464441-9154a4dea21b?auto=format&fit=crop&w=700&q=85"
-},
-
-{
-name:"الإعلاميات",
-image:"https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=700&q=85"
-},
-
-{
-name:"صباغ",
-image:"https://images.unsplash.com/photo-1562259949-e8e7689d7828?auto=format&fit=crop&w=700&q=85"
-},
-
-{
-name:"تموين المناسبات",
-image:"https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=700&q=85"
-},
-
-{
-name:"تنظيف",
-image:"https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=700&q=85"
-},
-
-{
-name:"ميكانيك",
-image:"https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&w=700&q=85"
-},
-
-{
-name:"نجارة",
-image:"https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=700&q=85"
-},
-
-{
-name:"حدادة ولحام",
-image:"https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=700&q=85"
+function closeModal(){
+    document.getElementById("modalArea").innerHTML="";
 }
 
-];
+function enterAsGuest(){
+    const welcome=document.getElementById("welcomeScreen");
+    if(welcome) welcome.style.display="none";
+}
+
+function goHome(){
+    window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function focusSearch(){
+    document.getElementById("searchInput").focus();
+}
+
+function chooseJob(job){
+    document.getElementById("searchInput").value=job;
+    document.getElementById("searchInput").scrollIntoView({
+        behavior:"smooth",
+        block:"center"
+    });
+}
+
+function searchJobs(){
+    const value=document.getElementById("searchInput").value.trim();
+
+    if(!value){
+        alert("اكتب المهنة التي تبحث عنها");
+        return;
+    }
+
+    alert("🔍 البحث عن: " + value);
+}
 
 
-const jobImages = {
+/* =========================
+   تسجيل الدخول
+========================= */
 
-"كهربائي":
-"https://images.unsplash.com/photo-1621905251918-48416bd8575a?auto=format&fit=crop&w=1100&q=85",
+function openLogin(){
 
-"سباك":
-"https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?auto=format&fit=crop&w=1100&q=85",
+    document.getElementById("modalArea").innerHTML=`
+    <div class="modal">
+        <div class="modalCard">
 
-"بناء":
-"https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1100&q=85",
+            <button class="close" onclick="closeModal()">×</button>
 
-"صباغ":
-"https://images.unsplash.com/photo-1562259949-e8e7689d7828?auto=format&fit=crop&w=1100&q=85",
+            <div class="modalIcon">👤</div>
 
-"تنظيف":
-"https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=1100&q=85",
-
-"ميكانيك":
-"https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&w=1100&q=85",
-
-"نجار":
-"https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1100&q=85",
-
-"نجارة":
-"https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1100&q=85",
-
-"حدادة":
-"https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=1100&q=85"
-
-};
-
-
-const defaultImage =
-"https://images.unsplash.com/photo-1581783898377-1c85bf937427?auto=format&fit=crop&w=1100&q=85";
-
-
-let selectedJob="";
-let selectedCity="";
-
-
-function renderCategories(){
-
-    let box=document.getElementById("categoryGrid");
-
-    box.innerHTML="";
-
-    categories.forEach(function(category){
-
-        box.innerHTML+=`
-
-        <div
-        class="categoryCard"
-        onclick="filterJob('${category.name}')">
-
-            <img
-            src="${category.image}"
-            alt="${category.name}">
-
-            <div class="categoryShade"></div>
-
-            <div class="categoryName">
-                ${category.name}
+            <h2>تسجيل الدخول</h2>
+            <div class="subtitle">
+                مرحباً بك في Maysnok
             </div>
 
-        </div>
-
-        `;
-
-    });
-
-}
-
-
-function getArtisans(){
-
-    let artisans=
-    JSON.parse(
-        localStorage.getItem("artisans") || "[]"
-    );
-
-    return artisans.filter(function(a){
-
-        return !a.status || a.status==="نشط";
-
-    });
-
-}
-
-
-function getJobImage(job){
-
-    job=job || "";
-
-    for(let key in jobImages){
-
-        if(job.includes(key)){
-            return jobImages[key];
-        }
-
-    }
-
-    return defaultImage;
-
-}
-
-
-function renderArtisans(){
-
-    let artisans=getArtisans();
-
-    let search=
-    document
-    .getElementById("mainSearch")
-    .value
-    .trim()
-    .toLowerCase();
-
-
-    artisans=artisans.filter(function(a){
-
-        let text=(
-            (a.name || "")+" "+
-            (a.job || "")+" "+
-            (a.city || "")
-        ).toLowerCase();
-
-
-        let okSearch=
-        !search ||
-        text.includes(search);
-
-
-        let okJob=
-        !selectedJob ||
-        (a.job || "").includes(selectedJob) ||
-        selectedJob.includes(a.job || "");
-
-
-        let okCity=
-        !selectedCity ||
-        (a.city || "").includes(selectedCity);
-
-
-        return okSearch && okJob && okCity;
-
-    });
-
-
-    let feed=
-    document.getElementById("feed");
-
-
-    feed.innerHTML="";
-
-
-    if(artisans.length===0){
-
-        feed.innerHTML=`
-
-        <div class="empty">
-
-        <h2>لم يتم العثور على مهنيين</h2>
-
-        <p>
-        أضف المهني من لوحة الإدارة
-        وسيظهر هنا.
-        </p>
-
-        </div>
-
-        `;
-
-        renderSuggested([]);
-
-        return;
-
-    }
-
-
-    artisans.forEach(function(a,index){
-
-        let image=getJobImage(a.job);
-
-        let rating=a.rating || "5.0";
-
-
-        feed.innerHTML+=`
-
-        <div class="post">
-
-        <div class="postHeader">
-
-        <div class="workerIcon">
-        👷
-        </div>
-
-        <div class="workerInfo">
-
-        <div class="workerName">
-        ${escapeHtml(a.name)}
-        </div>
-
-        <div class="workerMeta">
-
-        ${escapeHtml(a.job)}
-        •
-        📍 ${escapeHtml(a.city)}
-
-        </div>
-
-        </div>
-
-        <div class="rating">
-        ⭐ ${rating}
-        </div>
-
-        </div>
-
-
-        <div class="description">
-
-        متخصص في
-        <strong>
-        ${escapeHtml(a.job)}
-        </strong>.
-
-        شاهد أعماله وتواصل معه مباشرة.
-
-        </div>
-
-
-        <img
-        class="workImage"
-        src="${image}"
-        alt="صورة أعمال">
-
-
-        <div class="reactions">
-
-        👍 ${10 + index * 8}
-
-        &nbsp;&nbsp;
-
-        💬 تعليقات
-
-        </div>
-
-
-        <div class="actions">
-
-        <button
-        class="call"
-        onclick="callArtisan('${safePhone(a.phone)}')">
-
-        📞 اتصال
-
-        </button>
-
-
-        <button
-        class="message"
-        onclick="messageArtisan('${safePhone(a.phone)}')">
-
-        💬 رسالة
-
-        </button>
-
-
-        <button
-        class="request"
-        onclick="requestService('${escapeJs(a.name)}')">
-
-        🧰 طلب خدمة
-
-        </button>
-
-        </div>
-
-        </div>
-
-        `;
-
-    });
-
-
-    renderSuggested(artisans);
-
-}
-
-
-function renderSuggested(artisans){
-
-    let box=
-    document.getElementById("suggested");
-
-    box.innerHTML="";
-
-
-    if(artisans.length===0){
-
-        box.innerHTML=
-        "<p>لا يوجد مهنيون حالياً.</p>";
-
-        return;
-
-    }
-
-
-    artisans.slice(0,4).forEach(function(a){
-
-        box.innerHTML+=`
-
-        <div class="professional">
-
-        <div class="workerIcon">
-        👷
-        </div>
-
-        <div class="proInfo">
-
-        <strong>
-        ${escapeHtml(a.name)}
-        </strong>
-
-        <br>
-
-        <small>
-        ${escapeHtml(a.job)}
-        •
-        ${escapeHtml(a.city)}
-        </small>
-
-        </div>
-
-
-        <button
-        class="follow"
- onclick="sendServiceRequest(${a.id}, '${escapeJs(a.name)}', '${escapeJs(a.job)}')"
-        تواصل
-
-        </button>
-
-        </div>
-
-        `;
-
-    });
-
-}
-
-
-function filterJob(job){
-
-    selectedJob=job;
-
-    renderArtisans();
-
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
-
-}
-
-
-function filterCity(city){
-
-    selectedCity=city;
-
-    renderArtisans();
-
-}
-
-
-function showAll(element){
-
-    selectedJob="";
-    selectedCity="";
-
-    setActive(element);
-
-    renderArtisans();
-
-}
-
-
-function sortRating(element){
-
-    setActive(element);
-
-    renderArtisans();
-
-}
-
-
-function nearMe(element){
-
-    setActive(element);
-
-    alert(
-    "سنربط خاصية الأقرب إليك بالموقع الجغرافي لاحقاً."
-    );
-
-}
-
-
-function setActive(element){
-
-    document
-    .querySelectorAll(".filter")
-    .forEach(function(item){
-
-        item.classList.remove("active");
-
-    });
-
-    element.classList.add("active");
-
-}
-
-
-function callArtisan(phone){
-
-    if(!phone){
-
-        alert("رقم الهاتف غير متوفر");
-
-        return;
-
-    }
-
-    window.location.href=
-    "tel:"+phone;
-
-}
-
-
-function messageArtisan(phone){
-
-    if(!phone){
-
-        alert("رقم الهاتف غير متوفر");
-
-        return;
-
-    }
-
-    let number=
-    phone.replace(/\D/g,"");
-
-
-    if(number.startsWith("0")){
-
-        number=
-        "212"+number.substring(1);
-
-    }
-
-
-    window.open(
-        "https://wa.me/"+number,
-        "_blank"
-    );
-
-}
-
-
-function requestService(name){
-
-    alert(
-        "طلب خدمة إلى "+name
-    );
-
-}
-
-
-function safePhone(value){
-
-    return String(value || "")
-    .replace(/[^0-9+]/g,"");
-
-}
-
-
-function escapeHtml(value){
-
-    return String(value || "")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
-
-}
-
-
-function escapeJs(value){
-
-    return String(value || "")
-    .replace(/\\/g,"\\\\")
-    .replace(/'/g,"\\'");
-
-}
-
-
-renderCategories();
-
-renderArtisans();
-    
-// ===== تشغيل أزرار Maysnok =====
-
-// إنشاء حساب مهني
-document.getElementById("professionalRegisterBtn").onclick = function () {
-    showRegisterForm();
-};
-
-// إنشاء استمارة تسجيل المهني
-function showRegisterForm() {
-
-    let oldForm = document.getElementById("registerProfessionalBox");
-    if (oldForm) {
-        oldForm.remove();
-    }
-
-    let box = document.createElement("div");
-    box.id = "registerProfessionalBox";
-
-    box.style.position = "fixed";
-    box.style.top = "0";
-    box.style.left = "0";
-    box.style.right = "0";
-    box.style.bottom = "0";
-    box.style.background = "rgba(0,0,0,0.55)";
-    box.style.zIndex = "9999";
-    box.style.display = "flex";
-    box.style.alignItems = "center";
-    box.style.justifyContent = "center";
-    box.style.padding = "20px";
-
-    box.innerHTML = `
-        <div style="
-            background:white;
-            width:100%;
-            max-width:480px;
-            border-radius:20px;
-            padding:25px;
-            max-height:90vh;
-            overflow:auto;
-        ">
-
-            <button onclick="closeRegisterForm()"
-            style="
-                float:left;
-                border:none;
-                background:#eee;
-                width:38px;
-                height:38px;
-                border-radius:50%;
-                font-size:20px;
-                cursor:pointer;
-            ">✕</button>
-
-            <h2 style="color:#1264d8;">
-                إنشاء حساب مهني
-            </h2>
-
-            <p>
-                أدخل معلوماتك للانضمام إلى Maysnok
-            </p>
-
-            <input id="regName"
-            placeholder="الاسم الكامل"
-            style="${inputStyle()}">
-
-            <select id="regJob"
-            style="${inputStyle()}">
-                <option value="">اختر المهنة</option>
-                <option>كهربائي</option>
-                <option>سباك</option>
-                <option>بناء وترميم</option>
-                <option>ألمنيوم وزجاج</option>
-                <option>إصلاح المنازل</option>
-                <option>نقل الأثاث</option>
-                <option>الإعلاميات</option>
-                <option>صباغ</option>
-                <option>تموين المناسبات</option>
-                <option>تنظيف</option>
-                <option>ميكانيك</option>
-                <option>نجارة</option>
-                <option>حدادة ولحام</option>
-            </select>
-
-            <select id="regCity"
-            style="${inputStyle()}">
-                <option value="">اختر المدينة</option>
-                <option>كلميم</option>
-                <option>تزنيت</option>
-                <option>أكادير</option>
-                <option>طانطان</option>
-                <option>العيون</option>
-            </select>
-
-            <input id="regPhone"
-            type="tel"
-            placeholder="رقم الهاتف"
-            style="${inputStyle()}">
-
-            <input id="regPassword"
-            type="password"
-            placeholder="كلمة السر"
-            style="${inputStyle()}">
-
-            <button onclick="createProfessionalAccount()"
-            style="
-                width:100%;
-                border:none;
-                background:#1264d8;
-                color:white;
-                padding:15px;
-                border-radius:12px;
-                font-size:17px;
-                font-weight:bold;
-                cursor:pointer;
-                margin-top:8px;
-            ">
-                إنشاء الحساب
-            </button>
-
-        </div>
-    `;
-
-    document.body.appendChild(box);
-}
-
-
-// شكل خانات التسجيل
-function inputStyle() {
-    return `
-        width:100%;
-        padding:14px;
-        margin:7px 0;
-        border:1px solid #ddd;
-        border-radius:11px;
-        font-size:16px;
-        background:white;
-    `;
-}
-
-
-// إغلاق التسجيل
-function closeRegisterForm() {
-
-    let box =
-    document.getElementById("registerProfessionalBox");
-
-    if (box) {
-        box.remove();
-    }
-}
-
-
-// حفظ حساب المهني
-function createProfessionalAccount() {
-
-    let name =
-    document.getElementById("regName").value.trim();
-
-    let job =
-    document.getElementById("regJob").value;
-
-    let city =
-    document.getElementById("regCity").value;
-
-    let phone =
-    document.getElementById("regPhone").value.trim();
-
-    let password =
-    document.getElementById("regPassword").value;
-
-
-    if (!name || !job || !city || !phone || !password) {
-
-        alert("عمر جميع المعلومات");
-
-        return;
-    }
-
-fetch("/api/register", {
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-        role: "professional",
-        full_name: name,
-        job: job,
-        city: city,
-        phone: phone,
-        password: password
-    })
-})
-.then(async function(response) {
-    const data = await response.json();
-
-    if (!response.ok) {
-        throw new Error(data.message || "تعذر إنشاء الحساب");
-    }
-
-    alert("تم إنشاء الحساب المهني بنجاح ✅");
-    window.location.reload();
-})
-.catch(function(error) {
-    alert(error.message);
-});
-
-return;
-    let artisans =
-    JSON.parse(
-        localStorage.getItem("artisans") || "[]"
-    );
-
-
-    artisans.push({
-        name: name,
-        job: job,
-        city: city,
-        phone: phone,
-        status: "نشط",
-        rating: 5.0
-    });
-
-
-    localStorage.setItem(
-        "artisans",
-        JSON.stringify(artisans)
-    );
-
-
-    closeRegisterForm();
-
-    renderArtisans();
-
-    alert("تم إنشاء الحساب المهني بنجاح");
-}
-
-
-// الضغط على الرئيسية
-document.querySelectorAll(".nav span, .mobileNav div")
-.forEach(function(item) {
-
-    if (item.textContent.includes("الرئيسية")) {
-
-        item.onclick = function () {
-
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-
-        };
-    }
-});
-
-
-// الضغط على البحث
-document.querySelectorAll(".mobileNav div")
-.forEach(function(item) {
-
-    if (item.textContent.includes("بحث")) {
-
-        item.onclick = function () {
-
-            let search =
-            document.getElementById("mainSearch");
-
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-
-            setTimeout(function () {
-                search.focus();
-            }, 400);
-
-        };
-    }
-});
-
-
-// الرسائل
-document.querySelectorAll(".nav span, .mobileNav div")
-.forEach(function(item) {
-
-    if (item.textContent.includes("الرسائل")) {
-
-        item.onclick = function () {
-
-            alert("لا توجد رسائل جديدة حالياً");
-
-        };
-    }
-});
-
-
-// الإشعارات
-document.querySelectorAll(".nav span")
-.forEach(function(item) {
-
-    if (item.textContent.includes("الإشعارات")) {
-
-        item.onclick = function () {
-
-            alert("لا توجد إشعارات جديدة حالياً");
-
-        };
-    }
-});
-
-
-// ===== حساب الزبون =====
-document.querySelectorAll(".nav span, .mobileNav div").forEach(function(item) {
-
-    if (item.textContent.includes("حسابي")) {
-
-        item.onclick = function() {
-            openCustomerLogin();
-        };
-
-    }
-});
-
-function openCustomerLogin() {
-
-    const oldBox = document.getElementById("customerLoginBox");
-    if (oldBox) oldBox.remove();
-
-    const box = document.createElement("div");
-    box.id = "customerLoginBox";
-
-    box.style.cssText = `
-        position:fixed;
-        inset:0;
-        background:rgba(0,0,0,.45);
-        z-index:99999;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        padding:15px;
-    `;
-
-    box.innerHTML = `
-        <div style="background:white;width:100%;max-width:400px;
-        border-radius:20px;padding:30px;position:relative;text-align:center;">
-
-            <button onclick="document.getElementById('customerLoginBox').remove()"
-            style="position:absolute;top:10px;right:15px;border:0;
-            background:none;font-size:28px;cursor:pointer;">×</button>
-
-            <div style="font-size:55px;">👤</div>
-
-            <h2 style="color:#1877f2;">حسابي</h2>
-
-            <p style="color:#777;">أدخل رقم الهاتف وكلمة المرور</p>
-
-            <input id="loginPhone"
-            placeholder="رقم الهاتف"
-            style="width:100%;padding:14px;margin:8px 0;
-            border:1px solid #ddd;border-radius:12px;box-sizing:border-box;">
-
-            <input id="loginPassword"
-            type="password"
-            placeholder="كلمة المرور"
-            style="width:100%;padding:14px;margin:8px 0;
-            border:1px solid #ddd;border-radius:12px;box-sizing:border-box;">
-
-            <button id="customerLoginBtn"
-            style="width:100%;padding:14px;margin-top:12px;
-            background:#1877f2;color:white;border:0;
-            border-radius:12px;font-size:17px;cursor:pointer;">
+            <div class="field">
+                <label>رقم الهاتف</label>
+                <input
+                    id="loginPhone"
+                    type="tel"
+                    placeholder="مثال: 0612345678">
+            </div>
+
+            <div class="field">
+                <label>كلمة المرور</label>
+                <input
+                    id="loginPassword"
+                    type="password"
+                    placeholder="كلمة المرور">
+            </div>
+
+            <div id="loginMessage" class="message"></div>
+
+            <button class="mainBtn" onclick="loginUser()">
                 دخول
             </button>
 
-        </div>
-    `;
-
-    document.body.appendChild(box);
-
-    document.getElementById("customerLoginBtn").onclick = async function() {
-
-        const phone = document.getElementById("loginPhone").value.trim();
-        const password = document.getElementById("loginPassword").value;
-
-        if (!phone || !password) {
-            alert("أدخل رقم الهاتف وكلمة المرور");
-            return;
-        }
-
-        try {
-
-            const response = await fetch("/api/login", {
-                method: "POST",
-                headers: {"Content-Type":"application/json"},
-                body: JSON.stringify({
-                    phone: phone,
-                    password: password
-                })
-            });
-
-            const data = await response.json();
-
-            if (!response.ok) {
-                alert(data.error || "تعذر تسجيل الدخول");
-                return;
-            }
-document.getElementById("customerLoginBox").remove();
-
-const welcomeScreen = document.getElementById("welcomeScreen");
-if (welcomeScreen) {
-    welcomeScreen.style.display = "none";
-}
-
-alert("✅ تم تسجيل الدخول بنجاح، مرحبا " + (data.full_name || ""));
-
-window.location.reload();
-        } catch(error) {
-            alert("وقع خطأ، حاول مرة أخرى");
-        }
-    };
-}
-// ===== فتح جميع الخدمات =====
-document.querySelectorAll(".categoryCard").forEach(function(card) {
-
-    card.style.cursor = "pointer";
-
-    card.onclick = function () {
-
-        const serviceName = card.innerText.trim();
-
-        const artisans =
-            JSON.parse(localStorage.getItem("artisans") || "[]");
-
-        const filtered = artisans.filter(function(a) {
-            const job = (a.job || "").trim();
-
-            return job.includes(serviceName) ||
-                   serviceName.includes(job);
-        });
-
-        let content = "";
-
-        if (filtered.length === 0) {
-
-            content = `
-                <div style="
-                    padding:25px;
-                    text-align:center;
-                    font-size:18px;
-                    color:#666;
-                ">
-                    لا يوجد مهنيون في هذه الخدمة حالياً
-                </div>
-            `;
-
-        } else {
-
-            filtered.forEach(function(a) {
-
-                content += `
-                    <div style="
-                        border:1px solid #ddd;
-                        border-radius:12px;
-                        padding:15px;
-                        margin:12px 0;
-                        background:white;
-                    ">
-
-                        <strong style="font-size:18px;">
-                            ${a.name || "مهني"}
-                        </strong>
-
-                        <div style="margin-top:7px;">
-                            🛠️ ${a.job || ""}
-                        </div>
-
-                      <div style="margin-top:7px;">
-    📍 ${a.city || ""}
-</div>
-
-<div style="margin-top:12px;">
-
-    <button
-     onclick="sendServiceRequest(${a.id}, '${escapeJs(a.name || "")}', '${escapeJs(a.job || "")}')"
-        style="
-            border:0;
-            background:#19a64a;
-            color:white;
-            padding:10px 18px;
-            border-radius:8px;
-            cursor:pointer;
-            margin-left:8px;
-        ">
-        🛠️ طلب الخدمة
-    </button>
-
-    <button
-        onclick="window.location.href='tel:${a.phone || ""}'"
-        style="
-            border:0;
-            background:#1264d8;
-            color:white;
-            padding:10px 18px;
-            border-radius:8px;
-            cursor:pointer;
-        ">
-        📞 اتصال
-    </button>
-
-</div>
-
-                    </div>
-                `;
-            });
-        }
-
-        const oldBox =
-            document.getElementById("servicePopup");
-
-        if (oldBox) {
-            oldBox.remove();
-        }
-
-        const box = document.createElement("div");
-
-        box.id = "servicePopup";
-
-        box.style.cssText = `
-            position:fixed;
-            top:0;
-            left:0;
-            width:100%;
-            height:100%;
-            background:rgba(0,0,0,.55);
-            z-index:99999;
-            overflow:auto;
-            padding:30px 15px;
-        `;
-
-        box.innerHTML = `
-            <div style="
-                max-width:600px;
-                margin:auto;
-                background:#f5f6f8;
-                border-radius:16px;
-                padding:20px;
-                direction:rtl;
-                position:relative;
-            ">
-
-                <button
-                    id="closeServicePopup"
-                    style="
-                        position:absolute;
-                        left:15px;
-                        top:12px;
-                        border:0;
-                        background:transparent;
-                        font-size:28px;
-                        cursor:pointer;
-                    ">
-                    ×
-                </button>
-
-                <h2 style="
-                    color:#1264d8;
-                    margin-top:5px;
-                ">
-                    ${serviceName}
-                </h2>
-
-                ${content}
-
-            </div>
-        `;
-
-        document.body.appendChild(box);
-
-        document.getElementById("closeServicePopup").onclick =
-            function() {
-                box.remove();
-            };
-
-        box.onclick = function(e) {
-            if (e.target === box) {
-                box.remove();
-            }
-        };
-    };
-});   
- // ===== إرسال طلب لأي مهني من جميع الخدمات =====
-async function sendServiceRequest(proId, proName, proJob) {
-
-    const description = prompt("اشرح باختصار الخدمة التي تحتاجها:");
-
-    if (description === null) {
-        return;
-    }
-
-    try {
-        const response = await fetch("/api/requests", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                professional_id: proId,
-                description: description.trim()
-            })
-        });
-
-        const data = await response.json();
-
-        if (!response.ok) {
-            alert(data.error || "تعذر إرسال الطلب");
-            return;
-        }
-
-        alert("✅ تم إرسال طلبك إلى " + proName + " بنجاح");
-
-    } catch (error) {
-        console.error(error);
-        alert("تعذر إرسال الطلب، حاول مرة أخرى");
-    }
-}
-</script>
-<script>
-function registerCustomer() {
-
-    const oldBox = document.getElementById("customerRegisterBox");
-    if (oldBox) oldBox.remove();
-
-    const box = document.createElement("div");
-    box.id = "customerRegisterBox";
-
-    box.style.cssText = `
-        position:fixed;
-        inset:0;
-        background:rgba(0,0,0,.45);
-        z-index:99999;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        padding:15px;
-    `;
-
-    box.innerHTML = `
-        <div dir="rtl" style="
-            width:100%;
-            max-width:520px;
-            background:white;
-            border-radius:22px;
-            padding:30px;
-            box-shadow:0 15px 50px rgba(0,0,0,.25);
-            position:relative;
-        ">
-
-            <button onclick="document.getElementById('customerRegisterBox').remove()"
-                style="
-                    position:absolute;
-                    left:20px;
-                    top:18px;
-                    border:0;
-                    background:#eee;
-                    width:38px;
-                    height:38px;
-                    border-radius:50%;
-                    font-size:22px;
-                    cursor:pointer;
-                ">×</button>
-
-            <div style="text-align:center;font-size:55px;">👤</div>
-
-            <h2 style="
-                text-align:center;
-                color:#1877f2;
-                margin:10px 0;
-            ">
-                إنشاء حساب زبون
-            </h2>
-
-            <p style="text-align:center;color:#666;">
-                أدخل معلوماتك للانضمام إلى Maysnok
-            </p>
-
-            <input id="customerName"
-                placeholder="الاسم الكامل"
-                style="${customerInputStyle()}">
-
-            <input id="customerPhone"
-                type="tel"
-                placeholder="رقم الهاتف"
-                style="${customerInputStyle()}">
-
-            <input id="customerPassword"
-                type="password"
-                placeholder="كلمة المرور"
-                style="${customerInputStyle()}">
-
-            <button onclick="submitCustomerRegistration()"
-                style="
-                    width:100%;
-                    padding:15px;
-                    margin-top:12px;
-                    border:0;
-                    border-radius:10px;
-                    background:#1877f2;
-                    color:white;
-                    font-size:18px;
-                    font-weight:bold;
-                    cursor:pointer;
-                ">
-                إنشاء الحساب
+            <button class="secondaryBtn"
+                onclick="openRegister('customer')">
+                إنشاء حساب جديد
             </button>
 
         </div>
-    `;
-
-    document.body.appendChild(box);
-}
-
-
-function customerInputStyle() {
-    return `
-        width:100%;
-        padding:15px;
-        margin-top:12px;
-        border:1px solid #ddd;
-        border-radius:10px;
-        font-size:16px;
-        outline:none;
+    </div>
     `;
 }
 
 
-async function submitCustomerRegistration() {
+async function loginUser(){
 
-    const fullName =
-        document.getElementById("customerName").value.trim();
+    const phone=document.getElementById("loginPhone").value.trim();
+    const password=document.getElementById("loginPassword").value;
+    const msg=document.getElementById("loginMessage");
 
-    const phone =
-        document.getElementById("customerPhone").value.trim();
-
-    const password =
-        document.getElementById("customerPassword").value;
-
-    if (!fullName || !phone || !password) {
-        alert("⚠️ المرجو ملء جميع المعلومات");
+    if(!phone || !password){
+        msg.className="message error";
+        msg.textContent="أدخل رقم الهاتف وكلمة المرور";
         return;
     }
 
-    try {
+    msg.className="message";
+    msg.textContent="جاري تسجيل الدخول...";
 
-        const response = await fetch("/api/register", {
+    try{
+
+        const response=await fetch("/api/login",{
             method:"POST",
             headers:{
                 "Content-Type":"application/json"
             },
             body:JSON.stringify({
-                role:"customer",
-                full_name:fullName,
                 phone:phone,
                 password:password
             })
         });
 
-        const data = await response.json();
+        const data=await response.json();
 
-        if (!response.ok) {
-            alert(data.error || "تعذر إنشاء الحساب");
+        if(!response.ok || !data.ok){
+            msg.className="message error";
+            msg.textContent=data.error || "تعذر تسجيل الدخول";
             return;
         }
 
-        alert("✅ تم إنشاء حساب الزبون بنجاح");
+        msg.className="message success";
+        msg.textContent="تم تسجيل الدخول بنجاح ✅";
 
-        document
-            .getElementById("customerRegisterBox")
-            .remove();
+        setTimeout(function(){
 
-    } catch(error) {
+            closeModal();
 
-        console.error(error);
-        alert("❌ وقع خطأ، حاول مرة أخرى");
+            const welcome=document.getElementById("welcomeScreen");
+            if(welcome){
+                welcome.style.display="none";
+            }
+
+            alert(
+                "مرحبا " +
+                (data.full_name || "") +
+                " 👋"
+            );
+
+        },500);
+
+    }catch(error){
+
+        msg.className="message error";
+        msg.textContent="تعذر الاتصال بالخادم";
+
     }
 }
-</script>
-  <!-- ===== شاشة الدخول الأولى Maysnok ===== -->
-<div id="welcomeScreen" style="
-position:fixed;
-inset:0;
-background:#f0f2f5;
-z-index:9999;
-display:flex;
-align-items:center;
-justify-content:center;
-padding:20px;
-direction:rtl;
-">
 
-    <div style="
-    width:100%;
-    max-width:430px;
-    background:white;
-    padding:35px;
-    border-radius:20px;
-    box-shadow:0 4px 20px rgba(0,0,0,.12);
-    text-align:center;
-    ">
 
-        <h1 style="
-        color:#1877f2;
-        font-size:42px;
-        margin:0 0 25px;
-        ">
-            Maysnok
-        </h1>
+/* =========================
+   إنشاء الحساب
+========================= */
 
-        <h2 style="margin-bottom:8px;">
-            تسجيل الدخول
-        </h2>
+function openRegister(role){
 
-        <p style="color:#777;margin-bottom:25px;">
-            سجل الدخول إلى حسابك
-        </p>
+    const professional = role==="professional";
 
-        <input id="welcomePhone"
-        type="tel"
-        placeholder="رقم الهاتف"
-        style="
-        width:100%;
-        box-sizing:border-box;
-        padding:16px;
-        margin-bottom:12px;
-        border:1px solid #ddd;
-        border-radius:10px;
-        font-size:17px;
-        ">
+    document.getElementById("modalArea").innerHTML=`
+    <div class="modal">
+        <div class="modalCard">
 
-        <input id="welcomePassword"
-        type="password"
-        placeholder="كلمة المرور"
-        style="
-        width:100%;
-        box-sizing:border-box;
-        padding:16px;
-        margin-bottom:18px;
-        border:1px solid #ddd;
-        border-radius:10px;
-        font-size:17px;
-        ">
+            <button class="close" onclick="closeModal()">×</button>
 
-        <button onclick="welcomeLogin()" style="
-        width:100%;
-        padding:15px;
-        background:#1877f2;
-        color:white;
-        border:0;
-        border-radius:10px;
-        font-size:18px;
-        font-weight:bold;
-        cursor:pointer;
-        ">
-            🔐 تسجيل الدخول
-        </button>
+            <div class="modalIcon">
+                ${professional ? "🧑‍🔧" : "👤"}
+            </div>
 
-        <div style="
-        border-top:1px solid #ddd;
-        margin:25px 0;
-        "></div>
+            <h2>
+                ${professional ? "إنشاء حساب مهني" : "إنشاء حساب زبون"}
+            </h2>
 
-        <button onclick="openCustomerFromWelcome()" style="
-        width:100%;
-        padding:14px;
-        background:white;
-        color:#1877f2;
-        border:1px solid #1877f2;
-        border-radius:10px;
-        font-size:17px;
-        font-weight:bold;
-        cursor:pointer;
-        margin-bottom:12px;
-        ">
-            👤 إنشاء حساب زبون
-        </button>
+            <div class="subtitle">
+                ${professional
+                    ? "سجل مهنتك وابدأ استقبال الطلبات"
+                    : "أنشئ حسابك واطلب الخدمة بسهولة"}
+            </div>
 
-        <button onclick="openProfessionalFromWelcome()" style="
-        width:100%;
-        padding:14px;
-        background:white;
-        color:#1877f2;
-        border:1px solid #1877f2;
-        border-radius:10px;
-        font-size:17px;
-        font-weight:bold;
-        cursor:pointer;
-        ">
-            👨‍🔧 إنشاء حساب مهني
-        </button>
+            <div class="field">
+                <label>الاسم الكامل</label>
+                <input id="regName"
+                       placeholder="الاسم الكامل">
+            </div>
 
+            <div class="field">
+                <label>رقم الهاتف</label>
+                <input id="regPhone"
+                       type="tel"
+                       placeholder="0612345678">
+            </div>
+
+            <div class="field">
+                <label>كلمة المرور</label>
+                <input id="regPassword"
+                       type="password"
+                       placeholder="اختر كلمة مرور">
+            </div>
+
+            ${professional ? `
+                <div class="field">
+                    <label>المهنة</label>
+                    <select id="regJob">
+                        <option value="">اختر المهنة</option>
+                        <option>كهربائي</option>
+                        <option>سباك</option>
+                        <option>صباغ</option>
+                        <option>نجار</option>
+                        <option>بناء وترميم</option>
+                        <option>الزليج والرخام</option>
+                        <option>ألمنيوم وزجاج</option>
+                        <option>تنظيف</option>
+                        <option>ميكانيكي</option>
+                        <option>نقل الأثاث</option>
+                        <option>إصلاح المنازل</option>
+                        <option>إعلاميات</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label>المدينة</label>
+                    <select id="regCity">
+                        <option value="">اختر المدينة</option>
+                        <option>كلميم</option>
+                        <option>تزنيت</option>
+                        <option>أكادير</option>
+                        <option>طانطان</option>
+                        <option>العيون</option>
+                        <option>الداخلة</option>
+                    </select>
+                </div>
+            ` : ""}
+
+            <div id="registerMessage" class="message"></div>
+
+            <button class="mainBtn"
+                onclick="registerUser('${role}')">
+                إنشاء الحساب
+            </button>
+
+            <button class="secondaryBtn"
+                onclick="openLogin()">
+                عندي حساب بالفعل
+            </button>
+
+        </div>
     </div>
-</div>
-
-<div id="welcomeScreen" style="
-position:fixed;
-inset:0;
-background:#f0f2f5;
-z-index:9999;
-display:flex;
-align-items:center;
-justify-content:center;
-padding:20px;
-direction:rtl;
-">
-
-    <div style="
-    width:100%;
-    max-width:430px;
-    background:white;
-    padding:35px;
-    border-radius:20px;
-    box-shadow:0 4px 20px rgba(0,0,0,.12);
-    text-align:center;
-    ">
-
-        <h1 style="
-        color:#1877f2;
-        font-size:42px;
-        margin:0 0 25px;
-        ">
-            Maysnok
-        </h1>
-
-        <h2 style="margin-bottom:8px;">
-            تسجيل الدخول
-        </h2>
-
-        <p style="color:#777;margin-bottom:25px;">
-            سجل الدخول إلى حسابك
-        </p>
-
-        <input id="welcomePhone"
-        type="tel"
-        placeholder="رقم الهاتف"
-        style="
-        width:100%;
-        box-sizing:border-box;
-        padding:16px;
-        margin-bottom:12px;
-        border:1px solid #ddd;
-        border-radius:10px;
-        font-size:17px;
-        ">
-
-        <input id="welcomePassword"
-        type="password"
-        placeholder="كلمة المرور"
-        style="
-        width:100%;
-        box-sizing:border-box;
-        padding:16px;
-        margin-bottom:18px;
-        border:1px solid #ddd;
-        border-radius:10px;
-        font-size:17px;
-        ">
-
-        <button onclick="openWelcomeLogin()" style="
-        width:100%;
-        padding:15px;
-        background:#1877f2;
-        color:white;
-        border:0;
-        border-radius:10px;
-        font-size:18px;
-        font-weight:bold;
-        cursor:pointer;
-        ">
-            🔐 تسجيل الدخول
-        </button>
-
-        <div style="
-        border-top:1px solid #ddd;
-        margin:25px 0;
-        "></div>
-
-        <button onclick="openCustomerFromWelcome()" style="
-        width:100%;
-        padding:14px;
-        background:white;
-        color:#1877f2;
-        border:1px solid #1877f2;
-        border-radius:10px;
-        font-size:17px;
-        font-weight:bold;
-        cursor:pointer;
-        margin-bottom:12px;
-        ">
-            👤 إنشاء حساب زبون
-        </button>
-
-        <button onclick="openProfessionalFromWelcome()" style="
-        width:100%;
-        padding:14px;
-        background:white;
-        color:#1877f2;
-        border:1px solid #1877f2;
-        border-radius:10px;
-        font-size:17px;
-        font-weight:bold;
-        cursor:pointer;
-        ">
-            👨‍🔧 إنشاء حساب مهني
-        </button>
-
-    </div>
-</div>  
-<script>    
-function openWelcomeLogin() {
-    openCustomerLogin();
+    `;
 }
 
-function openCustomerFromWelcome() {
 
-    registerCustomer();
-}
+async function registerUser(role){
 
-function openProfessionalFromWelcome() {
+    const fullName=document.getElementById("regName").value.trim();
+    const phone=document.getElementById("regPhone").value.trim();
+    const password=document.getElementById("regPassword").value;
+    const msg=document.getElementById("registerMessage");
 
-
-    const btn = document.getElementById("professionalRegisterBtn");
-
-    if (btn) {
-        btn.click();
-    }
-}
-async function welcomeLogin() {
-    const phone = document.getElementById("welcomePhone").value.trim();
-    const password = document.getElementById("welcomePassword").value;
-
-    if (!phone || !password) {
-        alert("دخل رقم الهاتف وكلمة المرور");
+    if(!fullName || !phone || !password){
+        msg.className="message error";
+        msg.textContent="أكمل المعلومات المطلوبة";
         return;
     }
 
-    try {
-        const response = await fetch("/api/login", {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({
-                phone: phone,
-                password: password
-            })
-        });
+    const payload={
+        role:role,
+        full_name:fullName,
+        phone:phone,
+        password:password
+    };
 
-        const data = await response.json();
+    if(role==="professional"){
 
-        if (!response.ok) {
-            alert(data.error || "تعذر تسجيل الدخول");
+        const job=document.getElementById("regJob").value;
+        const city=document.getElementById("regCity").value;
+
+        if(!job || !city){
+            msg.className="message error";
+            msg.textContent="اختر المهنة والمدينة";
             return;
         }
 
-       document.getElementById("welcomeScreen").remove();
-        alert("✅ تم تسجيل الدخول بنجاح، مرحبا " + (data.full_name || ""));
+        payload.job=job;
+        payload.city=city;
+    }
 
-    } catch (error) {
-        alert("وقع خطأ، حاول مرة أخرى");
+    msg.className="message";
+    msg.textContent="جاري إنشاء الحساب...";
+
+    try{
+
+        const response=await fetch("/api/register",{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify(payload)
+        });
+
+        const data=await response.json();
+
+        if(!response.ok || data.ok===false){
+            msg.className="message error";
+            msg.textContent=
+                data.error ||
+                data.message ||
+                "تعذر إنشاء الحساب";
+            return;
+        }
+
+        msg.className="message success";
+        msg.textContent="تم إنشاء الحساب بنجاح ✅";
+
+        setTimeout(function(){
+            openLogin();
+        },900);
+
+    }catch(error){
+
+        msg.className="message error";
+        msg.textContent="تعذر الاتصال بالخادم";
+
     }
 }
-</script>  
+
+</script>
+
 </body>
 </html>
