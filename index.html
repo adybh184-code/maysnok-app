@@ -2251,7 +2251,39 @@ function openProfessionalFromWelcome() {
         btn.click();
     }
 }
+async function welcomeLogin() {
+    const phone = document.getElementById("welcomePhone").value.trim();
+    const password = document.getElementById("welcomePassword").value;
 
+    if (!phone || !password) {
+        alert("دخل رقم الهاتف وكلمة المرور");
+        return;
+    }
+
+    try {
+        const response = await fetch("/api/login", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({
+                phone: phone,
+                password: password
+            })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            alert(data.error || "تعذر تسجيل الدخول");
+            return;
+        }
+
+        document.getElementById("welcomeScreen").style.display = "none";
+        alert("✅ تم تسجيل الدخول بنجاح، مرحبا " + (data.full_name || ""));
+
+    } catch (error) {
+        alert("وقع خطأ، حاول مرة أخرى");
+    }
+}
 </script>  
 </body>
 </html>
