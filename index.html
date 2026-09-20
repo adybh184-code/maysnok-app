@@ -3,863 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Maysnok - خدمات مهنية</title>
+<title>Maysnok</title>
 
 <style>
 *{
     box-sizing:border-box;
     margin:0;
     padding:0;
+    font-family:Arial,Tahoma,sans-serif;
 }
 
 body{
-    font-family:Arial,Tahoma,sans-serif;
     background:#f4f7fb;
     color:#172033;
-    padding-bottom:80px;
 }
 
-button,input,select,textarea{
-    font-family:inherit;
-}
-
-/* ===== الرأس ===== */
-header{
-    background:linear-gradient(135deg,#0866ff,#00a6ff);
-    color:white;
-    padding:18px 16px 28px;
-    border-radius:0 0 28px 28px;
-    box-shadow:0 8px 25px rgba(8,102,255,.22);
-}
-
-.topbar{
-    max-width:1000px;
-    margin:auto;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-}
-
-.logo{
-    font-size:31px;
-    font-weight:900;
-    letter-spacing:.5px;
-}
-
-.logo span{
-    color:#ffd43b;
-}
-
-.accountBtn{
-    border:0;
-    background:white;
-    color:#0866ff;
-    font-weight:bold;
-    padding:10px 15px;
-    border-radius:16px;
-    cursor:pointer;
-}
-
-.hero{
-    max-width:1000px;
-    margin:25px auto 0;
-}
-
-.hero h1{
-    font-size:27px;
-    margin-bottom:9px;
-}
-
-.hero p{
-    color:#eaf4ff;
-    line-height:1.8;
-}
-
-.searchBox{
-    display:flex;
-    margin-top:20px;
-    background:white;
-    padding:6px;
-    border-radius:18px;
-}
-
-.searchBox input{
-    flex:1;
-    border:0;
-    outline:0;
-    padding:13px;
-    font-size:16px;
-    min-width:0;
-}
-
-.searchBox button{
-    border:0;
-    background:#0866ff;
-    color:white;
-    width:50px;
-    border-radius:14px;
-    font-size:20px;
-}
-
-/* ===== المحتوى ===== */
-.container{
-    max-width:1000px;
-    margin:auto;
-    padding:20px 14px;
-}
-
-.sectionTitle{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin:7px 2px 15px;
-}
-
-.sectionTitle h2{
-    font-size:20px;
-}
-
-.sectionTitle span{
-    color:#777;
-    font-size:13px;
-}
-
-/* ===== المهن ===== */
-.jobs{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:10px;
-}
-
-.job{
-    background:white;
-    border-radius:18px;
-    padding:15px 5px;
-    text-align:center;
-    box-shadow:0 3px 14px rgba(0,0,0,.06);
-    cursor:pointer;
-    transition:.2s;
-}
-
-.job:active{
-    transform:scale(.96);
-}
-
-.jobIcon{
-    width:54px;
-    height:54px;
-    border-radius:18px;
-    margin:0 auto 8px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:28px;
-    background:#eef5ff;
-}
-
-.job:nth-child(2n) .jobIcon{
-    background:#fff2e7;
-}
-
-.job:nth-child(3n) .jobIcon{
-    background:#eafbf2;
-}
-
-.job:nth-child(4n) .jobIcon{
-    background:#fff9dc;
-}
-
-.jobName{
-    font-size:13px;
-    font-weight:bold;
-}
-
-/* ===== طلب سريع ===== */
-.quickRequest{
-    margin:24px 0;
-    background:linear-gradient(135deg,#fff,#edf6ff);
-    border:1px solid #dbeaff;
-    border-radius:22px;
-    padding:19px;
-}
-
-.quickRequest h3{
-    color:#0866ff;
-    margin-bottom:8px;
-}
-
-.quickRequest p{
-    color:#677184;
-    font-size:14px;
-    line-height:1.7;
-}
-
-.quickRequest button{
-    width:100%;
-    margin-top:14px;
-    padding:14px;
-    border:0;
-    border-radius:15px;
-    background:#0866ff;
-    color:white;
-    font-size:16px;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-/* ===== المهنيون ===== */
-.professionals{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:12px;
-}
-
-.proCard{
-    background:white;
-    border-radius:20px;
-    padding:15px;
-    box-shadow:0 3px 15px rgba(0,0,0,.06);
-}
-
-.proTop{
-    display:flex;
-    align-items:center;
-    gap:11px;
-}
-
-.avatar{
-    width:55px;
-    height:55px;
-    border-radius:50%;
-    background:linear-gradient(135deg,#0866ff,#00b6ff);
-    color:white;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:26px;
-}
-
-.proName{
-    font-weight:bold;
-    margin-bottom:4px;
-}
-
-.proJob{
-    color:#697386;
-    font-size:13px;
-}
-
-.available{
-    color:#0b9b55;
-    font-size:12px;
-    margin-top:5px;
-}
-
-.rating{
-    margin:11px 0;
-    font-size:13px;
-}
-
-.proCard button{
-    width:100%;
-    border:0;
-    border-radius:13px;
-    padding:11px;
-    background:#edf4ff;
-    color:#0866ff;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-/* ===== نافذة البداية ===== */
-.overlay{
-    position:fixed;
-    inset:0;
-    background:rgba(12,22,40,.58);
-    backdrop-filter:blur(5px);
-    z-index:1000;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:16px;
-}
-
-.welcomeCard{
-    width:100%;
-    max-width:410px;
-    background:white;
-    border-radius:30px;
-    padding:28px 22px;
-    text-align:center;
-    box-shadow:0 25px 70px rgba(0,0,0,.25);
-}
-
-.welcomeLogo{
-    width:90px;
-    height:90px;
-    margin:auto;
-    border-radius:27px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:44px;
-    background:linear-gradient(135deg,#0866ff,#00b7ff);
-    box-shadow:0 10px 25px rgba(8,102,255,.25);
-}
-
-.welcomeCard h1{
-    color:#0866ff;
-    font-size:34px;
-    margin:15px 0 5px;
-}
-
-.welcomeCard h1 span{
-    color:#ffb400;
-}
-
-.welcomeCard p{
-    color:#697386;
-    line-height:1.7;
-    margin-bottom:22px;
-}
-
-.mainBtn{
-    width:100%;
-    border:0;
-    padding:15px;
-    border-radius:16px;
-    background:linear-gradient(135deg,#0866ff,#008cff);
-    color:white;
-    font-size:17px;
-    font-weight:bold;
-    cursor:pointer;
-    margin-bottom:10px;
-}
-
-.secondaryBtn{
-    width:100%;
-    border:1px solid #dbe5f5;
-    padding:14px;
-    border-radius:16px;
-    background:white;
-    color:#0866ff;
-    font-size:16px;
-    font-weight:bold;
-    cursor:pointer;
-    margin-bottom:9px;
-}
-
-.proRegister{
-    background:#fff7dc;
-    color:#805d00;
-    border-color:#ffe28a;
-}
-
-/* ===== Modal ===== */
-.modal{
-    position:fixed;
-    inset:0;
-    background:rgba(15,25,45,.65);
-    z-index:2000;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:16px;
-}
-
-.modalCard{
-    width:100%;
-    max-width:410px;
-    max-height:92vh;
-    overflow:auto;
-    background:white;
-    border-radius:28px;
-    padding:25px 20px;
-    box-shadow:0 25px 70px rgba(0,0,0,.28);
-}
-
-.close{
-    float:left;
-    width:37px;
-    height:37px;
-    border:0;
-    border-radius:50%;
-    background:#f1f3f7;
-    font-size:20px;
-    cursor:pointer;
-}
-
-.modalIcon{
-    width:75px;
-    height:75px;
-    border-radius:50%;
-    background:#eaf3ff;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:38px;
-    margin:10px auto;
-}
-
-.modalCard h2{
-    text-align:center;
-    color:#0866ff;
-    margin-bottom:5px;
-}
-
-.subtitle{
-    text-align:center;
-    color:#7a8392;
-    font-size:14px;
-    margin-bottom:20px;
-}
-
-.field{
-    margin-bottom:12px;
-}
-
-.field label{
-    display:block;
-    font-size:13px;
-    font-weight:bold;
-    margin:0 5px 6px;
-}
-
-.field input,
-.field select{
-    width:100%;
-    border:1px solid #dfe5ed;
-    background:#f8fafc;
-    border-radius:14px;
-    padding:14px;
-    outline:0;
-    font-size:15px;
-}
-
-.field input:focus,
-.field select:focus{
-    border-color:#0866ff;
-    background:white;
-}
-
-.message{
-    margin:10px 0;
-    text-align:center;
-    font-size:14px;
-    min-height:18px;
-}
-
-.success{color:#079455;}
-.error{color:#d92d20;}
-
-/* ===== Bottom nav ===== */
-.mobileNav{
-    position:fixed;
-    bottom:0;
-    right:0;
-    left:0;
-    height:68px;
-    background:white;
-    display:flex;
-    justify-content:space-around;
-    align-items:center;
-    border-top:1px solid #e7ebf1;
-    z-index:500;
-}
-
-.mobileNav div{
-    text-align:center;
-    color:#687386;
-    font-size:20px;
-    cursor:pointer;
-}
-
-.mobileNav span{
-    display:block;
-    font-size:11px;
-    margin-top:3px;
-}
-
-.mobileNav .active{
-    color:#0866ff;
-}
-
-/* ===== Desktop ===== */
-@media(max-width:650px){
-    .jobs{
-        grid-template-columns:repeat(3,1fr);
-    }
-
-    .professionals{
-        grid-template-columns:1fr;
-    }
-
-    .hero h1{
-        font-size:23px;
-    }
-}
-</style>
-</head>
-
-<body>
-
-<header>
-    <div class="topbar">
-        <div class="logo">May<span>snok</span></div>
-        <button class="accountBtn" onclick="openLogin()">👤 حسابي</button>
-    </div>
-
-    <div class="hero">
-        <h1>المهني اللي محتاجو قريب منك 👋</h1>
-        <p>اختار الخدمة وتواصل بسهولة مع المهني المناسب.</p>
-
-        <div class="searchBox">
-            <input id="searchInput" placeholder="شنو الخدمة اللي كتقلب عليها؟">
-            <button onclick="searchJobs()">🔍</button>
-        </div>
-    </div>
-</header>
-
-<main class="container">
-
-    <div class="sectionTitle">
-        <h2>اختار المهنة</h2>
-        <span>الخدمات الأكثر طلباً</span>
-    </div>
-
-    <div class="jobs" id="jobs">
-        <div class="job" onclick="chooseJob('كهربائي')">
-            <div class="jobIcon">⚡</div>
-            <div class="jobName">كهربائي</div>
-        </div>
-
-        <div class="job" onclick="chooseJob('سباك')">
-            <div class="jobIcon">🚰</div>
-            <div class="jobName">سباك</div>
-        </div>
-
-        <div class="job" onclick="chooseJob('صباغ')">
-            <div class="jobIcon">🎨</div>
-            <div class="jobName">صباغ</div>
-        </div>
-
-        <div class="job" onclick="chooseJob('نجار')">
-            <div class="jobIcon">🪚</div>
-            <div class="jobName">نجار</div>
-        </div>
-
-        <div class="job" onclick="chooseJob('بناء وترميم')">
-            <div class="jobIcon">🏗️</div>
-            <div class="jobName">بناء وترميم</div>
-        </div>
-
-        <div class="job" onclick="chooseJob('الزليج والرخام')">
-            <div class="jobIcon">🔲</div>
-            <div class="jobName">الزليج والرخام</div>
-        </div>
-
-        <div class="job" onclick="chooseJob('ألمنيوم وزجاج')">
-            <div class="jobIcon">🪟</div>
-            <div class="jobName">ألمنيوم وزجاج</div>
-        </div>
-
-        <div class="job" onclick="chooseJob('تنظيف')">
-            <div class="jobIcon">🧹</div>
-            <div class="jobName">تنظيف</div>
-        </div>
-
-        <div class="job" onclick="chooseJob('ميكانيكي')">
-            <div class="jobIcon">🚗</div>
-            <div class="jobName">ميكانيكي</div>
-        </div>
-
-        <div class="job" onclick="chooseJob('نقل الأثاث')">
-            <div class="jobIcon">🚚</div>
-            <div class="jobName">نقل الأثاث</div>
-        </div>
-
-        <div class="job" onclick="chooseJob('إصلاح المنازل')">
-            <div class="jobIcon">🏠</div>
-            <div class="jobName">إصلاح المنازل</div>
-        </div>
-
-        <div class="job" onclick="chooseJob('إعلاميات')">
-            <div class="jobIcon">💻</div>
-            <div class="jobName">إعلاميات</div>
-        </div>
-    </div>
-
-    <div class="quickRequest">
-        <h3>🎤 ما عارفش شكون تحتاج؟</h3>
-        <p>دير طلب خدمة وشرح المشكل ديالك، ومن بعد نقدروا نوجهوك للمهني المناسب.</p>
-        <button onclick="openLogin()">اطلب خدمة الآن</button>
-    </div>
-
-    <div class="sectionTitle">
-        <h2>مهنيون مقترحون</h2>
-        <span>قريباً حسب مدينتك</span>
-    </div>
-
-    <div class="professionals" id="professionals">
-        <div class="proCard">
-            <div class="proTop">
-                <div class="avatar">👨‍🔧</div>
-                <div>
-                    <div class="proName">المهنيون سيظهرون هنا</div>
-                    <div class="proJob">Maysnok</div>
-                    <div class="available">● متاح</div>
-                </div>
-            </div>
-            <div class="rating">⭐ سيتم عرض التقييمات هنا</div>
-            <button onclick="openLogin()">طلب خدمة</button>
-        </div>
-    </div>
-
-</main>
-<style>
-.modernLogin{
-    width:100%;
-    max-width:430px;
-    padding:30px 25px;
-    border-radius:30px;
-    background:#ffffff;
-    text-align:center;
-    box-shadow:0 15px 45px rgba(0,0,0,.12);
-}
-
-.brandLogo{
-    text-align:center;
-    margin-bottom:22px;
-}
-
-.peopleLogo{
-    width:90px;
-    height:80px;
-    margin:0 auto 7px;
-    border-radius:25px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:46px;
-    background:linear-gradient(
-        135deg,
-        #ffbf00,
-        #ff8a00 48%,
-        #0866ff 52%,
-        #004bd8
-    );
-}
-
-.brandName{
-    font-size:42px;
-    font-weight:900;
-    letter-spacing:-2px;
-}
-
-.brandName .blue{
-    color:#0759d9;
-}
-
-.brandName .red{
-    color:#ef3340;
-}
-
-.brandLine{
-    margin-top:7px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:8px;
-    color:#555;
-    font-size:13px;
-}
-
-.brandLine span{
-    width:25px;
-    height:3px;
-    border-radius:5px;
-    background:#ffb400;
-}
-
-.brandLine span:last-child{
-    background:#0866ff;
-}
-
-.modernLogin h2{
-    color:#172033;
-    font-size:23px;
-    margin-bottom:6px;
-}
-
-.loginText{
-    color:#8a93a3;
-    font-size:13px;
-    margin-bottom:22px;
-}
-
-.loginInput{
-    height:58px;
-    border:1px solid #dce2ec;
-    border-radius:15px;
-    margin-bottom:13px;
-    display:flex;
-    align-items:center;
-    padding:0 14px;
-    background:white;
-}
-
-.loginInput:focus-within{
-    border-color:#0866ff;
-    box-shadow:0 0 0 3px rgba(8,102,255,.08);
-}
-
-.loginInput span{
-    font-size:20px;
-    margin-left:10px;
-}
-
-.loginInput input{
-    flex:1;
-    height:100%;
-    border:0;
-    outline:0;
-    background:transparent;
-    font-size:16px;
-}
-
-.loginMainButton{
-    width:100%;
-    height:57px;
-    border:0;
-    border-radius:15px;
-    margin-top:7px;
-    background:linear-gradient(90deg,#0754d8,#0877f9);
-    color:white;
-    font-size:18px;
-    font-weight:800;
-    cursor:pointer;
-    box-shadow:0 9px 22px rgba(8,102,255,.20);
-}
-
-.separator{
-    display:flex;
-    align-items:center;
-    gap:13px;
-    margin:22px 0 14px;
-    color:#9299a6;
-}
-
-.separator span{
-    flex:1;
-    height:1px;
-    background:#e1e5eb;
-}
-
-.separator b{
-    font-size:13px;
-    font-weight:normal;
-}
-
-.noAccount{
-    margin-bottom:10px;
-    color:#626b7b;
-    font-size:14px;
-}
-
-.createCustomer,
-.createProfessional{
-    width:100%;
-    height:52px;
-    border-radius:15px;
-    font-size:15px;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-.createCustomer{
-    background:white;
-    color:#0759d9;
-    border:1px solid #cfdcf3;
-    margin-bottom:9px;
-}
-
-.createProfessional{
-    background:#fff7dc;
-    color:#755500;
-    border:1px solid #ffe08a;
-}
-   /* تحسين وضوح واجهة الدخول */
-#welcomeScreen{
-    background:#f4f7fb !important;
-    overflow-y:auto;
-    font-family:Arial, Tahoma, sans-serif !important;
-}
-
-.modernLogin{
-    color:#172033 !important;
-    line-height:1.5 !important;
-}
-
-.brandName{
-    font-size:44px !important;
-    font-weight:900 !important;
-    line-height:1.2 !important;
-}
-
-.brandName .blue{
-    color:#0866ff !important;
-}
-
-.brandName .red{
-    color:#ef3340 !important;
-}
-
-.brandLine{
-    color:#4b5563 !important;
-    font-weight:600 !important;
-}
-
-.modernLogin h2{
-    color:#172033 !important;
-    font-weight:800 !important;
-}
-
-.loginText{
-    color:#687386 !important;
-    font-weight:500 !important;
-}
-
-.loginInput input{
-    color:#172033 !important;
-    font-weight:600 !important;
-}
-
-.loginInput input::placeholder{
-    color:#7b8494 !important;
-    opacity:1 !important;
-}
-
-.loginMainButton{
-    color:#ffffff !important;
-    font-weight:900 !important;
-}
-
-.noAccount{
-    color:#4b5563 !important;
-    font-weight:600 !important;
-}
-
-.createCustomer{
-    color:#0866ff !important;
-    font-weight:800 !important;
-}
-
-.createProfessional{
-    color:#7a5700 !important;
-    font-weight:800 !important;
-}
-   /* ===== تصميم شاشة دخول Maysnok ===== */
-
+/* ===== شاشة الدخول ===== */
 #welcomeScreen{
     position:fixed;
     inset:0;
@@ -867,608 +26,730 @@ header{
     background:#f5f7fb;
     display:flex;
     justify-content:center;
-    align-items:flex-start;
-    overflow-y:auto;
-    padding:20px 10px;
-    direction:rtl;
-    font-family:Arial,Tahoma,sans-serif;
+    align-items:center;
+    padding:15px;
+    overflow:auto;
 }
 
-.maysnok-login{
+.login-card{
     position:relative;
     width:100%;
     max-width:430px;
-    min-height:760px;
-    background:#ffffff;
-    border-radius:32px;
+    min-height:690px;
+    background:#fff;
+    border-radius:30px;
+    padding:35px 30px;
     overflow:hidden;
-    box-shadow:0 15px 45px rgba(0,0,0,.10);
+    box-shadow:0 18px 55px rgba(0,0,0,.10);
+}
+
+/* الأشكال الملونة */
+.shape{
+    position:absolute;
+    border-radius:50%;
+    z-index:0;
+}
+
+.shape-yellow{
+    width:150px;
+    height:190px;
+    background:#ffb800;
+    top:-80px;
+    left:-75px;
+}
+
+.shape-blue{
+    width:150px;
+    height:190px;
+    background:#0866ff;
+    top:-80px;
+    right:-75px;
+}
+
+.shape-red{
+    width:75px;
+    height:75px;
+    background:#ef3340;
+    bottom:-40px;
+    left:-30px;
 }
 
 .login-content{
     position:relative;
-    z-index:5;
-    padding:55px 35px 35px;
+    z-index:2;
     text-align:center;
 }
 
-/* الزخارف الملونة */
-.shape{
-    position:absolute;
-    z-index:1;
-}
-
-.shape-yellow{
-    width:120px;
-    height:230px;
-    background:#ffb900;
-    top:-40px;
-    left:-65px;
-    border-radius:50%;
-    transform:rotate(20deg);
-}
-
-.shape-blue-top{
-    width:125px;
-    height:220px;
-    background:#0866ff;
-    top:-45px;
-    right:-70px;
-    border-radius:50%;
-    transform:rotate(-18deg);
-}
-
-.shape-red{
-    width:145px;
-    height:145px;
-    background:#f32f3c;
-    bottom:-70px;
-    left:-55px;
-    border-radius:50%;
-}
-
-.shape-blue-bottom{
-    width:150px;
-    height:160px;
-    background:#0866ff;
-    bottom:-75px;
-    right:-60px;
-    border-radius:50%;
-}
-
 /* الشعار */
-.m-logo{
-    width:95px;
-    height:85px;
-    margin:0 auto 5px;
+.logo-icon{
+    width:88px;
+    height:88px;
+    margin:0 auto 10px;
+    border-radius:26px;
+    background:linear-gradient(
+        135deg,
+        #ffb800 0%,
+        #ff9f00 49%,
+        #0866ff 50%,
+        #0754d8 100%
+    );
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:52px;
+    font-size:43px;
+    box-shadow:0 10px 25px rgba(8,102,255,.18);
 }
 
-.maysnok-title{
+.brand{
+    direction:ltr;
     font-size:46px;
     font-weight:900;
-    direction:ltr;
     line-height:1;
+    letter-spacing:-2px;
     margin-bottom:8px;
 }
 
-.maysnok-title .may{
-    color:#0759d9;
-}
-
-.maysnok-title .s{
-    color:#ef3340;
-}
-
-.maysnok-title .nok{
-    color:#0759d9;
-}
+.brand .may{color:#0866ff;}
+.brand .s{color:#ef3340;}
+.brand .nok{color:#0866ff;}
 
 .tagline{
+    color:#667085;
     font-size:14px;
-    color:#303747;
-    margin:12px 0 32px;
+    margin-bottom:27px;
 }
 
-.tagline:before{
-    content:"—";
-    color:#ffb400;
-    font-weight:bold;
-    margin-left:8px;
-}
-
-.tagline:after{
-    content:"—";
-    color:#0866ff;
-    font-weight:bold;
-    margin-right:8px;
-}
-
-/* العنوان */
-.login-content h2{
+.welcome-title{
     font-size:25px;
-    color:#172033;
-    margin:0 0 7px;
+    font-weight:900;
+    margin-bottom:7px;
 }
 
-.login-subtitle{
-    color:#8b93a3;
+.welcome-text{
+    color:#8a93a3;
     font-size:14px;
-    margin-bottom:25px;
+    margin-bottom:23px;
 }
 
-/* خانات الدخول */
-.login-field{
+/* الخانات */
+.field{
     width:100%;
     height:58px;
-    border:1px solid #d9dfe9;
-    border-radius:14px;
+    background:#fff;
+    border:1.5px solid #dce2eb;
+    border-radius:15px;
     display:flex;
     align-items:center;
-    padding:0 15px;
-    margin-bottom:14px;
-    background:#fff;
-    box-sizing:border-box;
+    padding:0 14px;
+    margin-bottom:13px;
+    transition:.2s;
 }
 
-.login-field:focus-within{
+.field:focus-within{
     border-color:#0866ff;
     box-shadow:0 0 0 3px rgba(8,102,255,.08);
 }
 
-.login-field input{
-    flex:1;
-    height:100%;
-    border:0;
-    outline:0;
-    background:transparent;
-    font-size:15px;
-    direction:rtl;
-}
-
-.login-field .icon{
+.field-icon{
     font-size:20px;
     margin-left:10px;
 }
 
-.eye-btn{
+.field input,
+.field select{
+    flex:1;
+    width:100%;
+    height:100%;
+    border:0;
+    outline:0;
+    background:transparent;
+    font-size:16px;
+    color:#172033;
+}
+
+.eye{
     border:0;
     background:transparent;
     font-size:19px;
     cursor:pointer;
 }
 
-/* زر الدخول */
-.login-btn{
+.forgot{
+    display:block;
+    text-align:left;
+    color:#0866ff;
+    font-size:14px;
+    margin:-2px 3px 17px;
+    cursor:pointer;
+}
+
+.message{
+    font-size:14px;
+    min-height:20px;
+    margin-bottom:5px;
+}
+
+.message.error{color:#d93025;}
+.message.success{color:#16843d;}
+
+/* الأزرار */
+.login-button{
     width:100%;
     height:57px;
     border:0;
-    border-radius:14px;
-    background:linear-gradient(90deg,#0755d9,#0878f9);
-    color:white;
+    border-radius:15px;
+    background:linear-gradient(90deg,#0754d8,#0878f9);
+    color:#fff;
     font-size:18px;
-    font-weight:800;
+    font-weight:900;
     cursor:pointer;
-    margin-top:10px;
     box-shadow:0 9px 22px rgba(8,102,255,.20);
 }
 
-.login-btn:hover{
-    transform:translateY(-1px);
-}
-
-/* أو */
-.login-separator{
+.divider{
     display:flex;
     align-items:center;
     gap:12px;
-    color:#9aa1ad;
-    margin:22px 0;
+    margin:21px 0 13px;
+    color:#9299a6;
+    font-size:13px;
 }
 
-.login-separator:before,
-.login-separator:after{
-    content:"";
+.divider span{
     height:1px;
     background:#e1e5eb;
     flex:1;
 }
 
-/* إنشاء الحساب */
-.new-account-text{
-    color:#626b7b;
+.no-account{
     font-size:14px;
-    margin-bottom:12px;
+    color:#667085;
+    margin-bottom:10px;
 }
 
-.new-account-btn{
+.account-button{
     width:100%;
-    height:52px;
-    border-radius:14px;
-    background:#fff;
-    border:1px solid #ccd9ef;
-    color:#0759d9;
-    font-size:15px;
+    min-height:54px;
+    border-radius:15px;
+    font-size:16px;
     font-weight:800;
     cursor:pointer;
     margin-bottom:10px;
 }
 
-.professional-account-btn{
-    border-color:#ffd76a;
-    background:#fff9e8;
-    color:#765700;
+.customer-button{
+    background:#fff;
+    border:1.5px solid #cddcf4;
+    color:#0866ff;
 }
 
-/* الهاتف */
-@media(max-width:480px){
+.professional-button{
+    background:#fff8df;
+    border:1.5px solid #ffe08a;
+    color:#755500;
+}
+
+/* ===== التطبيق بعد الدخول ===== */
+#appScreen{
+    display:none;
+    min-height:100vh;
+    padding-bottom:85px;
+}
+
+.topbar{
+    background:#0866ff;
+    color:white;
+    padding:17px;
+    position:sticky;
+    top:0;
+    z-index:10;
+}
+
+.topbar-inner{
+    max-width:900px;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.small-brand{
+    direction:ltr;
+    font-size:27px;
+    font-weight:900;
+}
+
+.small-brand .may{color:white;}
+.small-brand .s{color:#ffcc00;}
+.small-brand .nok{color:white;}
+
+.logout{
+    border:0;
+    background:rgba(255,255,255,.18);
+    color:#fff;
+    padding:9px 13px;
+    border-radius:12px;
+    cursor:pointer;
+}
+
+.main{
+    max-width:900px;
+    margin:auto;
+    padding:18px;
+}
+
+.hello-card{
+    background:linear-gradient(135deg,#0866ff,#0754d8);
+    color:#fff;
+    padding:23px;
+    border-radius:22px;
+    margin-bottom:20px;
+}
+
+.hello-card h2{
+    margin-bottom:7px;
+}
+
+.search{
+    background:#fff;
+    border:1px solid #e0e5ed;
+    border-radius:16px;
+    height:55px;
+    display:flex;
+    align-items:center;
+    padding:0 15px;
+    margin-bottom:22px;
+}
+
+.search input{
+    width:100%;
+    height:100%;
+    border:0;
+    outline:0;
+    font-size:16px;
+    margin-right:10px;
+}
+
+.section-title{
+    font-size:20px;
+    font-weight:900;
+    margin-bottom:14px;
+}
+
+.jobs{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+    margin-bottom:25px;
+}
+
+.job{
+    background:#fff;
+    border-radius:17px;
+    padding:15px 5px;
+    text-align:center;
+    box-shadow:0 4px 15px rgba(0,0,0,.05);
+    cursor:pointer;
+}
+
+.job .emoji{
+    font-size:30px;
+    display:block;
+    margin-bottom:7px;
+}
+
+.job span:last-child{
+    font-size:13px;
+    font-weight:bold;
+}
+
+.professionals{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:13px;
+}
+
+.pro-card{
+    background:#fff;
+    padding:16px;
+    border-radius:18px;
+    box-shadow:0 4px 15px rgba(0,0,0,.05);
+}
+
+.pro-avatar{
+    width:58px;
+    height:58px;
+    border-radius:50%;
+    background:#eaf2ff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:30px;
+    margin-bottom:10px;
+}
+
+.pro-name{
+    font-weight:900;
+    margin-bottom:5px;
+}
+
+.pro-info{
+    color:#737d8c;
+    font-size:13px;
+    margin-bottom:10px;
+}
+
+.request-btn{
+    width:100%;
+    border:0;
+    background:#0866ff;
+    color:#fff;
+    padding:10px;
+    border-radius:11px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* ===== نافذة إنشاء الحساب ===== */
+.modal{
+    position:fixed;
+    inset:0;
+    z-index:10000;
+    background:rgba(20,30,50,.55);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:15px;
+}
+
+.modal-card{
+    width:100%;
+    max-width:430px;
+    max-height:92vh;
+    overflow:auto;
+    background:#fff;
+    border-radius:25px;
+    padding:25px;
+}
+
+.modal-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.close-btn{
+    width:38px;
+    height:38px;
+    border:0;
+    border-radius:50%;
+    background:#f1f3f6;
+    font-size:20px;
+    cursor:pointer;
+}
+
+.register-btn{
+    width:100%;
+    height:55px;
+    border:0;
+    border-radius:14px;
+    background:#0866ff;
+    color:#fff;
+    font-size:17px;
+    font-weight:900;
+    cursor:pointer;
+}
+
+.bottom-nav{
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    height:68px;
+    background:#fff;
+    border-top:1px solid #e4e8ef;
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    z-index:20;
+}
+
+.bottom-nav button{
+    border:0;
+    background:transparent;
+    font-size:13px;
+    color:#667085;
+    cursor:pointer;
+}
+
+.bottom-nav b{
+    display:block;
+    font-size:22px;
+    margin-bottom:3px;
+}
+
+@media(max-width:600px){
     #welcomeScreen{
         padding:0;
-        background:white;
+        align-items:flex-start;
+        background:#fff;
     }
 
-    .maysnok-login{
+    .login-card{
         max-width:none;
         min-height:100vh;
         border-radius:0;
         box-shadow:none;
+        padding:45px 24px 30px;
     }
 
-    .login-content{
-        padding:45px 25px 30px;
-    }
-
-    .maysnok-title{
+    .brand{
         font-size:42px;
     }
-} 
-    /* ===== تحسين شعار Maysnok ===== */
 
-.m-logo{
-    width:90px !important;
-    height:90px !important;
-    margin:0 auto 12px !important;
-    display:flex !important;
-    align-items:center !important;
-    justify-content:center !important;
-    font-size:48px !important;
-    background:linear-gradient(135deg,#ffb800 0%,#ff9d00 48%,#0866ff 52%,#0755d5 100%) !important;
-    border-radius:28px !important;
-    box-shadow:0 10px 25px rgba(8,102,255,.18) !important;
-}
-
-.maysnok-title{
-    text-align:center !important;
-    font-size:46px !important;
-    line-height:1 !important;
-    font-weight:900 !important;
-    letter-spacing:-2px !important;
-    margin:5px 0 8px !important;
-}
-
-.maysnok-title .may{
-    color:#0866ff !important;
-}
-
-.maysnok-title .s{
-    color:#ef3340 !important;
-}
-
-.maysnok-title .nok{
-    color:#0866ff !important;
-}
-
-.brand-subtitle{
-    text-align:center !important;
-    color:#555f70 !important;
-    font-size:14px !important;
-    margin-bottom:25px !important;
-}
-
-.login-content h2{
-    text-align:center !important;
-    color:#172033 !important;
-    font-size:24px !important;
-    font-weight:800 !important;
-    margin:8px 0 !important;
-}
-
-.login-content{
-    position:relative !important;
-    z-index:5 !important;
-}
-   /* ===== إصلاح خانات تسجيل الدخول ===== */
-
-.login-form{
-    width:100% !important;
-    max-width:390px !important;
-    margin:20px auto 0 !important;
-}
-
-.login-input{
-    width:100% !important;
-    height:56px !important;
-    display:flex !important;
-    align-items:center !important;
-    background:#ffffff !important;
-    border:1.5px solid #d9e0ea !important;
-    border-radius:14px !important;
-    margin-bottom:14px !important;
-    padding:0 15px !important;
-    box-sizing:border-box !important;
-}
-
-.login-input input{
-    width:100% !important;
-    height:52px !important;
-    border:none !important;
-    outline:none !important;
-    background:transparent !important;
-    font-size:16px !important;
-    padding:0 10px !important;
-    box-sizing:border-box !important;
-}
-
-.login-input:focus-within{
-    border-color:#0866ff !important;
-    box-shadow:0 0 0 3px rgba(8,102,255,.10) !important;
-}
-
-.login-input span{
-    font-size:21px !important;
-}
-
-.login-btn{
-    width:100% !important;
-    height:56px !important;
-    border:none !important;
-    border-radius:14px !important;
-    background:#0866ff !important;
-    color:white !important;
-    font-size:18px !important;
-    font-weight:800 !important;
-    cursor:pointer !important;
-    margin-top:8px !important;
-}
-
-.login-btn:hover{
-    background:#0755d5 !important;
-}
-
-.forgot-password{
-    display:block !important;
-    text-align:left !important;
-    margin:8px 4px 15px !important;
-    color:#0866ff !important;
-    font-size:14px !important;
-    text-decoration:none !important;
-}
-
-.new-account-btn{
-    width:100% !important;
-    min-height:56px !important;
-    border-radius:15px !important;
-    font-size:17px !important;
-    font-weight:800 !important;
-    margin-top:10px !important;
-    cursor:pointer !important;
-} 
-</style>
-<!-- ===== شاشة الدخول الجديدة Maysnok ===== -->
-<div class="overlay" id="welcomeScreen">
- <div class="maysnok-login">
-
-    <div class="shape shape-yellow"></div>
-    <div class="shape shape-blue-top"></div>
-    <div class="shape shape-red"></div>
-    <div class="shape shape-blue-bottom"></div>
-
-    <div class="login-content">
-
-        <div class="m-logo">🤝</div>
-
-        <div class="maysnok-title">
-            <span class="blue">May</span><span class="red">s</span><span class="blue">nok</span>
-        </div>
-
-        <div class="slogan">
-            كل ما تحتاجه في مكان واحد
-        </div>
-
-        <h2 class="welcome-title">
-            مرحباً بك في Maysnok
-        </h2>
-
-        <p class="welcome-text">
-            تواصل، شارك، واكتشف خدمات مهنية قريبة منك
-        </p>
-
-        <div class="new-login-field">
-            <span class="field-icon">📱</span>
-            <input
-                id="welcomePhone"
-                type="tel"
-                placeholder="رقم الهاتف">
-        </div>
-
-        <div class="new-login-field">
-            <span class="field-icon">🔒</span>
-
-            <input
-                id="welcomePassword"
-                type="password"
-                placeholder="كلمة المرور">
-
-            <button
-                type="button"
-                class="eye-login"
-                onclick="toggleWelcomePassword()">
-                👁️
-            </button>
-        </div>
-
-        <div id="welcomeLoginMessage" class="login-message"></div>
-
-        <a class="forgot" href="javascript:void(0)">
-            نسيت كلمة المرور؟
-        </a>
-
-        <button class="main-login" onclick="welcomeLogin()">
-            تسجيل الدخول
-        </button>
-
-        <div class="divider-new">
-            <span></span>
-            أو
-            <span></span>
-        </div>
-
-        <p class="account-question">
-            ليس لديك حساب؟
-        </p>
-
-        <button
-            class="new-account-btn"
-            onclick="openRegister('customer')">
-            👤 إنشاء حساب زبون
-        </button>
-
-        <button
-            class="new-account-btn professional-account-btn"
-            onclick="openRegister('professional')">
-            🧑‍🔧 إنشاء حساب مهني
-        </button>
-
-    </div>
-</div>  
-</div>
-
-<!-- القائمة السفلية -->
-<div class="mobileNav">
-    <div class="active" onclick="goHome()">🏠<span>الرئيسية</span></div>
-    <div onclick="focusSearch()">🔍<span>بحث</span></div>
-    <div onclick="alert('الرسائل ستتوفر هنا')">💬<span>الرسائل</span></div>
-    <div onclick="openLogin()">👤<span>حسابي</span></div>
-</div>
-
-<div id="modalArea"></div>
-
-<script>
-
-/* =========================
-   وظائف عامة
-========================= */
-
-function closeModal(){
-    document.getElementById("modalArea").innerHTML="";
-}
-
-function enterAsGuest(){
-    const welcome=document.getElementById("welcomeScreen");
-    if(welcome) welcome.style.display="none";
-}
-
-function goHome(){
-    window.scrollTo({top:0,behavior:"smooth"});
-}
-
-function focusSearch(){
-    document.getElementById("searchInput").focus();
-}
-
-function chooseJob(job){
-    document.getElementById("searchInput").value=job;
-    document.getElementById("searchInput").scrollIntoView({
-        behavior:"smooth",
-        block:"center"
-    });
-}
-
-function searchJobs(){
-    const value=document.getElementById("searchInput").value.trim();
-
-    if(!value){
-        alert("اكتب المهنة التي تبحث عنها");
-        return;
+    .jobs{
+        grid-template-columns:repeat(3,1fr);
     }
 
-    alert("🔍 البحث عن: " + value);
+    .professionals{
+        grid-template-columns:1fr;
+    }
 }
+</style>
+</head>
 
+<body>
 
-/* =========================
-   تسجيل الدخول
-========================= */
+<!-- ===== تسجيل الدخول ===== -->
+<div id="welcomeScreen">
+    <div class="login-card">
 
-function openLogin(){
+        <div class="shape shape-yellow"></div>
+        <div class="shape shape-blue"></div>
+        <div class="shape shape-red"></div>
 
-    document.getElementById("modalArea").innerHTML=`
-    <div class="modal">
-        <div class="modalCard">
+        <div class="login-content">
 
-            <button class="close" onclick="closeModal()">×</button>
+            <div class="logo-icon">🤝</div>
 
-            <div class="modalIcon">👤</div>
+            <div class="brand">
+                <span class="may">May</span><span class="s">s</span><span class="nok">nok</span>
+            </div>
 
-            <h2>تسجيل الدخول</h2>
-            <div class="subtitle">
-                مرحباً بك في Maysnok
+            <div class="tagline">كل ما تحتاجه في مكان واحد</div>
+
+            <div class="welcome-title">مرحباً بك في Maysnok</div>
+            <div class="welcome-text">
+                تواصل واكتشف خدمات مهنية قريبة منك
             </div>
 
             <div class="field">
-                <label>رقم الهاتف</label>
+                <span class="field-icon">📱</span>
                 <input
                     id="loginPhone"
                     type="tel"
-                    placeholder="مثال: 0612345678">
+                    placeholder="رقم الهاتف"
+                    autocomplete="tel"
+                >
             </div>
 
             <div class="field">
-                <label>كلمة المرور</label>
+                <span class="field-icon">🔒</span>
                 <input
                     id="loginPassword"
                     type="password"
-                    placeholder="كلمة المرور">
+                    placeholder="كلمة المرور"
+                    autocomplete="current-password"
+                >
+                <button class="eye" type="button" onclick="togglePassword()">👁️</button>
             </div>
+
+            <span class="forgot" onclick="forgotPassword()">
+                نسيت كلمة المرور؟
+            </span>
 
             <div id="loginMessage" class="message"></div>
 
-            <button class="mainBtn" onclick="loginUser()">
-                دخول
+            <button class="login-button" onclick="loginUser()">
+                تسجيل الدخول
             </button>
 
-            <button class="secondaryBtn"
-                onclick="openRegister('customer')">
-                إنشاء حساب جديد
+            <div class="divider">
+                <span></span>
+                أو
+                <span></span>
+            </div>
+
+            <div class="no-account">ليس لديك حساب؟</div>
+
+            <button
+                class="account-button customer-button"
+                onclick="openRegister('customer')"
+            >
+                👤 إنشاء حساب زبون
+            </button>
+
+            <button
+                class="account-button professional-button"
+                onclick="openRegister('professional')"
+            >
+                🧑‍🔧 إنشاء حساب مهني
             </button>
 
         </div>
     </div>
-    `;
+</div>
+
+
+<!-- ===== التطبيق ===== -->
+<div id="appScreen">
+
+    <header class="topbar">
+        <div class="topbar-inner">
+
+            <div class="small-brand">
+                <span class="may">May</span><span class="s">s</span><span class="nok">nok</span>
+            </div>
+
+            <button class="logout" onclick="logoutUser()">
+                خروج
+            </button>
+
+        </div>
+    </header>
+
+    <main class="main">
+
+        <div class="hello-card">
+            <h2 id="helloName">مرحباً بك 👋</h2>
+            <p>شنو الخدمة اللي محتاج اليوم؟</p>
+        </div>
+
+        <div class="search">
+            🔍
+            <input
+                id="searchInput"
+                type="text"
+                placeholder="ابحث عن مهني أو خدمة..."
+                oninput="filterProfessionals()"
+            >
+        </div>
+
+        <div class="section-title">المهن والخدمات</div>
+
+        <div class="jobs">
+            <div class="job" onclick="searchJob('كهربائي')">
+                <span class="emoji">⚡</span>
+                <span>كهربائي</span>
+            </div>
+
+            <div class="job" onclick="searchJob('سباك')">
+                <span class="emoji">🔧</span>
+                <span>سباك</span>
+            </div>
+
+            <div class="job" onclick="searchJob('صباغ')">
+                <span class="emoji">🎨</span>
+                <span>صباغ</span>
+            </div>
+
+            <div class="job" onclick="searchJob('نجار')">
+                <span class="emoji">🪚</span>
+                <span>نجار</span>
+            </div>
+
+            <div class="job" onclick="searchJob('بناء')">
+                <span class="emoji">🧱</span>
+                <span>بناء وترميم</span>
+            </div>
+
+            <div class="job" onclick="searchJob('ألمنيوم')">
+                <span class="emoji">🪟</span>
+                <span>ألمنيوم وزجاج</span>
+            </div>
+
+            <div class="job" onclick="searchJob('رخام')">
+                <span class="emoji">🏠</span>
+                <span>الزليج والرخام</span>
+            </div>
+
+            <div class="job" onclick="searchJob('تنظيف')">
+                <span class="emoji">🧹</span>
+                <span>تنظيف</span>
+            </div>
+        </div>
+
+        <div class="section-title">المهنيون</div>
+
+        <div id="professionalsList" class="professionals">
+            <div style="color:#7b8492">
+                جاري تحميل المهنيين...
+            </div>
+        </div>
+
+    </main>
+
+    <nav class="bottom-nav">
+        <button onclick="loadProfessionals()">
+            <b>🏠</b>
+            الرئيسية
+        </button>
+
+        <button onclick="document.getElementById('searchInput').focus()">
+            <b>🔍</b>
+            بحث
+        </button>
+
+        <button onclick="showMyRequests()">
+            <b>📋</b>
+            طلباتي
+        </button>
+
+        <button onclick="showAccount()">
+            <b>👤</b>
+            حسابي
+        </button>
+    </nav>
+
+</div>
+
+
+<!-- مكان النوافذ -->
+<div id="modalArea"></div>
+
+
+<script>
+let currentUser = null;
+let allProfessionals = [];
+
+
+/* ===== إظهار كلمة المرور ===== */
+function togglePassword(){
+    const input = document.getElementById("loginPassword");
+    input.type = input.type === "password" ? "text" : "password";
 }
 
 
+/* ===== تسجيل الدخول ===== */
 async function loginUser(){
 
-    const phone=document.getElementById("loginPhone").value.trim();
-    const password=document.getElementById("loginPassword").value;
-    const msg=document.getElementById("loginMessage");
+    const phone = document.getElementById("loginPhone").value.trim();
+    const password = document.getElementById("loginPassword").value;
+    const message = document.getElementById("loginMessage");
 
     if(!phone || !password){
-        msg.className="message error";
-        msg.textContent="أدخل رقم الهاتف وكلمة المرور";
+        message.className = "message error";
+        message.textContent = "أدخل رقم الهاتف وكلمة المرور";
         return;
     }
 
-    msg.className="message";
-    msg.textContent="جاري تسجيل الدخول...";
+    message.className = "message";
+    message.textContent = "جاري تسجيل الدخول...";
 
     try{
 
-        const response=await fetch("/api/login",{
+        const response = await fetch("/api/login",{
             method:"POST",
             headers:{
                 "Content-Type":"application/json"
@@ -1479,217 +760,521 @@ async function loginUser(){
             })
         });
 
-        const data=await response.json();
+        const data = await response.json();
 
         if(!response.ok || !data.ok){
-            msg.className="message error";
-            msg.textContent=data.error || "تعذر تسجيل الدخول";
+            message.className = "message error";
+            message.textContent = data.error || "رقم الهاتف أو كلمة المرور غير صحيحة";
             return;
         }
 
-        msg.className="message success";
-        msg.textContent="تم تسجيل الدخول بنجاح ✅";
+        currentUser = data.user || data;
 
-        setTimeout(function(){
+        message.className = "message success";
+        message.textContent = "تم تسجيل الدخول بنجاح ✅";
 
-            closeModal();
-
-            const welcome=document.getElementById("welcomeScreen");
-            if(welcome){
-                welcome.style.display="none";
-            }
-
-            alert(
-                "مرحبا " +
-                (data.full_name || "") +
-                " 👋"
-            );
-
-        },500);
+        setTimeout(()=>{
+            enterApp();
+        },400);
 
     }catch(error){
 
-        msg.className="message error";
-        msg.textContent="تعذر الاتصال بالخادم";
+        message.className = "message error";
+        message.textContent = "تعذر الاتصال بالخادم";
 
     }
 }
 
 
-/* =========================
-   إنشاء الحساب
-========================= */
+/* ===== الدخول للتطبيق ===== */
+function enterApp(){
 
+    document.getElementById("welcomeScreen").style.display = "none";
+    document.getElementById("appScreen").style.display = "block";
+
+    const name =
+        currentUser?.full_name ||
+        currentUser?.user?.full_name ||
+        "بك";
+
+    document.getElementById("helloName").textContent =
+        "مرحباً " + name + " 👋";
+
+    loadProfessionals();
+}
+
+
+/* ===== فحص الجلسة عند فتح الموقع ===== */
+async function checkSession(){
+
+    try{
+
+        const response = await fetch("/api/me");
+        const data = await response.json();
+
+        if(response.ok && data.ok){
+
+            currentUser = data.user || data;
+
+            document.getElementById("welcomeScreen").style.display = "none";
+            document.getElementById("appScreen").style.display = "block";
+
+            const name =
+                currentUser?.full_name ||
+                currentUser?.user?.full_name ||
+                "بك";
+
+            document.getElementById("helloName").textContent =
+                "مرحباً " + name + " 👋";
+
+            loadProfessionals();
+        }
+
+    }catch(error){
+        console.log("لا توجد جلسة حالية");
+    }
+}
+
+
+/* ===== تسجيل الخروج ===== */
+async function logoutUser(){
+
+    try{
+        await fetch("/api/logout",{
+            method:"POST"
+        });
+    }catch(error){}
+
+    currentUser = null;
+
+    document.getElementById("appScreen").style.display = "none";
+    document.getElementById("welcomeScreen").style.display = "flex";
+
+    document.getElementById("loginPassword").value = "";
+}
+
+
+/* ===== إنشاء حساب ===== */
 function openRegister(role){
 
-    const professional = role==="professional";
+    const isProfessional = role === "professional";
 
-    document.getElementById("modalArea").innerHTML=`
-    <div class="modal">
-        <div class="modalCard">
+    document.getElementById("modalArea").innerHTML = `
+        <div class="modal">
 
-            <button class="close" onclick="closeModal()">×</button>
+            <div class="modal-card">
 
-            <div class="modalIcon">
-                ${professional ? "🧑‍🔧" : "👤"}
-            </div>
+                <div class="modal-header">
+                    <h2>
+                        ${isProfessional ? "إنشاء حساب مهني" : "إنشاء حساب زبون"}
+                    </h2>
 
-            <h2>
-                ${professional ? "إنشاء حساب مهني" : "إنشاء حساب زبون"}
-            </h2>
-
-            <div class="subtitle">
-                ${professional
-                    ? "سجل مهنتك وابدأ استقبال الطلبات"
-                    : "أنشئ حسابك واطلب الخدمة بسهولة"}
-            </div>
-
-            <div class="field">
-                <label>الاسم الكامل</label>
-                <input id="regName"
-                       placeholder="الاسم الكامل">
-            </div>
-
-            <div class="field">
-                <label>رقم الهاتف</label>
-                <input id="regPhone"
-                       type="tel"
-                       placeholder="0612345678">
-            </div>
-
-            <div class="field">
-                <label>كلمة المرور</label>
-                <input id="regPassword"
-                       type="password"
-                       placeholder="اختر كلمة مرور">
-            </div>
-
-            ${professional ? `
-                <div class="field">
-                    <label>المهنة</label>
-                    <select id="regJob">
-                        <option value="">اختر المهنة</option>
-                        <option>كهربائي</option>
-                        <option>سباك</option>
-                        <option>صباغ</option>
-                        <option>نجار</option>
-                        <option>بناء وترميم</option>
-                        <option>الزليج والرخام</option>
-                        <option>ألمنيوم وزجاج</option>
-                        <option>تنظيف</option>
-                        <option>ميكانيكي</option>
-                        <option>نقل الأثاث</option>
-                        <option>إصلاح المنازل</option>
-                        <option>إعلاميات</option>
-                    </select>
+                    <button
+                        class="close-btn"
+                        onclick="closeModal()"
+                    >
+                        ✕
+                    </button>
                 </div>
 
                 <div class="field">
-                    <label>المدينة</label>
-                    <select id="regCity">
-                        <option value="">اختر المدينة</option>
-                        <option>كلميم</option>
-                        <option>تزنيت</option>
-                        <option>أكادير</option>
-                        <option>طانطان</option>
-                        <option>العيون</option>
-                        <option>الداخلة</option>
-                    </select>
+                    <span class="field-icon">👤</span>
+                    <input
+                        id="registerName"
+                        type="text"
+                        placeholder="الاسم الكامل"
+                    >
                 </div>
-            ` : ""}
 
-            <div id="registerMessage" class="message"></div>
+                <div class="field">
+                    <span class="field-icon">📱</span>
+                    <input
+                        id="registerPhone"
+                        type="tel"
+                        placeholder="رقم الهاتف"
+                    >
+                </div>
 
-            <button class="mainBtn"
-                onclick="registerUser('${role}')">
-                إنشاء الحساب
-            </button>
+                <div class="field">
+                    <span class="field-icon">🔒</span>
+                    <input
+                        id="registerPassword"
+                        type="password"
+                        placeholder="كلمة المرور"
+                    >
+                </div>
 
-            <button class="secondaryBtn"
-                onclick="openLogin()">
-                عندي حساب بالفعل
-            </button>
+                ${
+                    isProfessional
+                    ?
+                    `
+                    <div class="field">
+                        <span class="field-icon">🧰</span>
+                        <input
+                            id="registerJob"
+                            type="text"
+                            placeholder="المهنة، مثال: كهربائي"
+                        >
+                    </div>
+
+                    <div class="field">
+                        <span class="field-icon">📍</span>
+                        <input
+                            id="registerCity"
+                            type="text"
+                            placeholder="المدينة"
+                        >
+                    </div>
+                    `
+                    :
+                    ""
+                }
+
+                <div
+                    id="registerMessage"
+                    class="message"
+                ></div>
+
+                <button
+                    class="register-btn"
+                    onclick="registerUser('${role}')"
+                >
+                    إنشاء الحساب
+                </button>
+
+            </div>
 
         </div>
-    </div>
     `;
 }
 
 
+/* ===== إرسال التسجيل ===== */
 async function registerUser(role){
 
-    const fullName=document.getElementById("regName").value.trim();
-    const phone=document.getElementById("regPhone").value.trim();
-    const password=document.getElementById("regPassword").value;
-    const msg=document.getElementById("registerMessage");
+    const message = document.getElementById("registerMessage");
 
-    if(!fullName || !phone || !password){
-        msg.className="message error";
-        msg.textContent="أكمل المعلومات المطلوبة";
+    const body = {
+        role:role,
+        full_name:document.getElementById("registerName").value.trim(),
+        phone:document.getElementById("registerPhone").value.trim(),
+        password:document.getElementById("registerPassword").value
+    };
+
+    if(role === "professional"){
+        body.job = document.getElementById("registerJob").value.trim();
+        body.city = document.getElementById("registerCity").value.trim();
+    }
+
+    if(!body.full_name || !body.phone || !body.password){
+
+        message.className = "message error";
+        message.textContent = "أكمل المعلومات المطلوبة";
         return;
     }
 
-    const payload={
-        role:role,
-        full_name:fullName,
-        phone:phone,
-        password:password
-    };
-
-    if(role==="professional"){
-
-        const job=document.getElementById("regJob").value;
-        const city=document.getElementById("regCity").value;
-
-        if(!job || !city){
-            msg.className="message error";
-            msg.textContent="اختر المهنة والمدينة";
-            return;
-        }
-
-        payload.job=job;
-        payload.city=city;
-    }
-
-    msg.className="message";
-    msg.textContent="جاري إنشاء الحساب...";
-
     try{
 
-        const response=await fetch("/api/register",{
+        const response = await fetch("/api/register",{
             method:"POST",
             headers:{
                 "Content-Type":"application/json"
             },
-            body:JSON.stringify(payload)
+            body:JSON.stringify(body)
         });
 
-        const data=await response.json();
+        const data = await response.json();
 
-        if(!response.ok || data.ok===false){
-            msg.className="message error";
-            msg.textContent=
-                data.error ||
-                data.message ||
-                "تعذر إنشاء الحساب";
+        if(!response.ok || !data.ok){
+
+            message.className = "message error";
+            message.textContent = data.error || "تعذر إنشاء الحساب";
             return;
         }
 
-        msg.className="message success";
-        msg.textContent="تم إنشاء الحساب بنجاح ✅";
+        message.className = "message success";
+        message.textContent = "تم إنشاء الحساب بنجاح ✅";
 
-        setTimeout(function(){
-            openLogin();
-        },900);
+        setTimeout(()=>{
+
+            closeModal();
+
+            document.getElementById("loginPhone").value = body.phone;
+            document.getElementById("loginPassword").focus();
+
+        },700);
 
     }catch(error){
 
-        msg.className="message error";
-        msg.textContent="تعذر الاتصال بالخادم";
+        message.className = "message error";
+        message.textContent = "تعذر الاتصال بالخادم";
 
     }
 }
 
+
+function closeModal(){
+    document.getElementById("modalArea").innerHTML = "";
+}
+
+
+/* ===== تحميل المهنيين ===== */
+async function loadProfessionals(){
+
+    const container = document.getElementById("professionalsList");
+
+    container.innerHTML =
+        '<div style="color:#7b8492">جاري تحميل المهنيين...</div>';
+
+    try{
+
+        const response = await fetch("/api/professionals");
+        const data = await response.json();
+
+        allProfessionals = data.professionals || [];
+
+        renderProfessionals(allProfessionals);
+
+    }catch(error){
+
+        container.innerHTML =
+            '<div style="color:#d93025">تعذر تحميل المهنيين</div>';
+
+    }
+}
+
+
+/* ===== عرض المهنيين ===== */
+function renderProfessionals(list){
+
+    const container = document.getElementById("professionalsList");
+
+    if(!list.length){
+
+        container.innerHTML =
+            '<div style="color:#7b8492">لا يوجد مهنيون حالياً.</div>';
+
+        return;
+    }
+
+    container.innerHTML = list.map(pro => `
+
+        <div class="pro-card">
+
+            <div class="pro-avatar">
+                🧑‍🔧
+            </div>
+
+            <div class="pro-name">
+                ${escapeHtml(pro.full_name || "مهني")}
+            </div>
+
+            <div class="pro-info">
+                ${escapeHtml(pro.job || "مهني")}
+                ${pro.city ? " • " + escapeHtml(pro.city) : ""}
+            </div>
+
+            <div class="pro-info">
+                ⭐ ${pro.rating || 0}
+                ${pro.available ? " • 🟢 متاح" : " • 🔴 غير متاح"}
+            </div>
+
+            <button
+                class="request-btn"
+                onclick="openRequest(${Number(pro.id)})"
+            >
+                طلب الخدمة
+            </button>
+
+        </div>
+
+    `).join("");
+}
+
+
+/* ===== البحث ===== */
+function filterProfessionals(){
+
+    const q =
+        document.getElementById("searchInput")
+        .value
+        .trim()
+        .toLowerCase();
+
+    const filtered = allProfessionals.filter(pro => {
+
+        const text =
+            `${pro.full_name || ""} ${pro.job || ""} ${pro.city || ""}`
+            .toLowerCase();
+
+        return text.includes(q);
+
+    });
+
+    renderProfessionals(filtered);
+}
+
+
+function searchJob(job){
+
+    document.getElementById("searchInput").value = job;
+    filterProfessionals();
+
+    document.getElementById("professionalsList")
+        .scrollIntoView({behavior:"smooth"});
+}
+
+
+/* ===== طلب خدمة ===== */
+function openRequest(professionalId){
+
+    document.getElementById("modalArea").innerHTML = `
+        <div class="modal">
+
+            <div class="modal-card">
+
+                <div class="modal-header">
+
+                    <h2>طلب خدمة</h2>
+
+                    <button
+                        class="close-btn"
+                        onclick="closeModal()"
+                    >
+                        ✕
+                    </button>
+
+                </div>
+
+                <div class="field" style="height:110px">
+
+                    <textarea
+                        id="requestDescription"
+                        placeholder="اشرح شنو الخدمة اللي محتاج..."
+                        style="
+                            width:100%;
+                            height:85px;
+                            border:0;
+                            outline:0;
+                            resize:none;
+                            font-size:16px;
+                        "
+                    ></textarea>
+
+                </div>
+
+                <div
+                    id="requestMessage"
+                    class="message"
+                ></div>
+
+                <button
+                    class="register-btn"
+                    onclick="sendRequest(${professionalId})"
+                >
+                    إرسال الطلب
+                </button>
+
+            </div>
+
+        </div>
+    `;
+}
+
+
+async function sendRequest(professionalId){
+
+    const description =
+        document.getElementById("requestDescription").value.trim();
+
+    const message =
+        document.getElementById("requestMessage");
+
+    if(!description){
+
+        message.className = "message error";
+        message.textContent = "اكتب وصف الخدمة";
+        return;
+    }
+
+    try{
+
+        const response = await fetch("/api/requests",{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify({
+                professional_id:professionalId,
+                description:description
+            })
+        });
+
+        const data = await response.json();
+
+        if(!response.ok || !data.ok){
+
+            message.className = "message error";
+            message.textContent =
+                data.error || "تعذر إرسال الطلب";
+
+            return;
+        }
+
+        message.className = "message success";
+        message.textContent = "تم إرسال الطلب للمهني ✅";
+
+        setTimeout(closeModal,700);
+
+    }catch(error){
+
+        message.className = "message error";
+        message.textContent = "تعذر الاتصال بالخادم";
+
+    }
+}
+
+
+/* ===== الطلبات والحساب ===== */
+async function showMyRequests(){
+
+    alert("سنضيف صفحة طلباتي في الخطوة القادمة.");
+}
+
+
+function showAccount(){
+
+    const name =
+        currentUser?.full_name ||
+        currentUser?.user?.full_name ||
+        "";
+
+    alert("حسابي: " + name);
+}
+
+
+function forgotPassword(){
+
+    alert(
+        "استرجاع كلمة المرور سنربطه برقم الهاتف في مرحلة لاحقة."
+    );
+}
+
+
+/* حماية النص المعروض */
+function escapeHtml(value){
+
+    return String(value)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+}
+
+
+/* عند فتح الموقع */
+checkSession();
 </script>
 
 </body>
