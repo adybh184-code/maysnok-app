@@ -2029,66 +2029,92 @@ async function submitCustomerRegistration() {
 position:fixed;
 inset:0;
 background:#f0f2f5;
-z-index:999999;
+z-index:9999;
 display:flex;
 align-items:center;
 justify-content:center;
 padding:20px;
 direction:rtl;
-font-family:Arial,sans-serif;
 ">
 
     <div style="
-    background:white;
     width:100%;
-    max-width:420px;
-    padding:35px 25px;
-    border-radius:22px;
+    max-width:430px;
+    background:white;
+    padding:35px;
+    border-radius:20px;
+    box-shadow:0 4px 20px rgba(0,0,0,.12);
     text-align:center;
-    box-shadow:0 5px 25px rgba(0,0,0,.15);
     ">
 
-        <div style="
-        font-size:38px;
-        font-weight:bold;
+        <h1 style="
         color:#1877f2;
-        margin-bottom:8px;
+        font-size:42px;
+        margin:0 0 25px;
         ">
             Maysnok
-        </div>
+        </h1>
 
-        <div style="font-size:55px;margin:10px;">👤</div>
-
-        <h2 style="margin:5px 0 10px;">
-            مرحباً بك
+        <h2 style="margin-bottom:8px;">
+            تسجيل الدخول
         </h2>
 
         <p style="color:#777;margin-bottom:25px;">
-            سجل الدخول أو أنشئ حساباً جديداً
+            سجل الدخول إلى حسابك
         </p>
 
-        <button onclick="openWelcomeLogin()" style="
+        <input id="welcomePhone"
+        type="tel"
+        placeholder="رقم الهاتف"
+        style="
+        width:100%;
+        box-sizing:border-box;
+        padding:16px;
+        margin-bottom:12px;
+        border:1px solid #ddd;
+        border-radius:10px;
+        font-size:17px;
+        ">
+
+        <input id="welcomePassword"
+        type="password"
+        placeholder="كلمة المرور"
+        style="
+        width:100%;
+        box-sizing:border-box;
+        padding:16px;
+        margin-bottom:18px;
+        border:1px solid #ddd;
+        border-radius:10px;
+        font-size:17px;
+        ">
+
+        <button onclick="welcomeLogin()" style="
         width:100%;
         padding:15px;
-        border:0;
-        border-radius:12px;
         background:#1877f2;
         color:white;
+        border:0;
+        border-radius:10px;
         font-size:18px;
         font-weight:bold;
         cursor:pointer;
-        margin-bottom:12px;
         ">
             🔐 تسجيل الدخول
         </button>
 
+        <div style="
+        border-top:1px solid #ddd;
+        margin:25px 0;
+        "></div>
+
         <button onclick="openCustomerFromWelcome()" style="
         width:100%;
-        padding:15px;
-        border:1px solid #1877f2;
-        border-radius:12px;
+        padding:14px;
         background:white;
         color:#1877f2;
+        border:1px solid #1877f2;
+        border-radius:10px;
         font-size:17px;
         font-weight:bold;
         cursor:pointer;
@@ -2099,23 +2125,136 @@ font-family:Arial,sans-serif;
 
         <button onclick="openProfessionalFromWelcome()" style="
         width:100%;
-        padding:15px;
-        border:1px solid #1877f2;
-        border-radius:12px;
+        padding:14px;
         background:white;
         color:#1877f2;
+        border:1px solid #1877f2;
+        border-radius:10px;
         font-size:17px;
         font-weight:bold;
         cursor:pointer;
         ">
-            🧑‍🔧 إنشاء حساب مهني
+            👨‍🔧 إنشاء حساب مهني
         </button>
 
     </div>
 </div>
 
-<script>
+<div id="welcomeScreen" style="
+position:fixed;
+inset:0;
+background:#f0f2f5;
+z-index:9999;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:20px;
+direction:rtl;
+">
 
+    <div style="
+    width:100%;
+    max-width:430px;
+    background:white;
+    padding:35px;
+    border-radius:20px;
+    box-shadow:0 4px 20px rgba(0,0,0,.12);
+    text-align:center;
+    ">
+
+        <h1 style="
+        color:#1877f2;
+        font-size:42px;
+        margin:0 0 25px;
+        ">
+            Maysnok
+        </h1>
+
+        <h2 style="margin-bottom:8px;">
+            تسجيل الدخول
+        </h2>
+
+        <p style="color:#777;margin-bottom:25px;">
+            سجل الدخول إلى حسابك
+        </p>
+
+        <input id="welcomePhone"
+        type="tel"
+        placeholder="رقم الهاتف"
+        style="
+        width:100%;
+        box-sizing:border-box;
+        padding:16px;
+        margin-bottom:12px;
+        border:1px solid #ddd;
+        border-radius:10px;
+        font-size:17px;
+        ">
+
+        <input id="welcomePassword"
+        type="password"
+        placeholder="كلمة المرور"
+        style="
+        width:100%;
+        box-sizing:border-box;
+        padding:16px;
+        margin-bottom:18px;
+        border:1px solid #ddd;
+        border-radius:10px;
+        font-size:17px;
+        ">
+
+        <button onclick="welcomeLogin()" style="
+        width:100%;
+        padding:15px;
+        background:#1877f2;
+        color:white;
+        border:0;
+        border-radius:10px;
+        font-size:18px;
+        font-weight:bold;
+        cursor:pointer;
+        ">
+            🔐 تسجيل الدخول
+        </button>
+
+        <div style="
+        border-top:1px solid #ddd;
+        margin:25px 0;
+        "></div>
+
+        <button onclick="openCustomerFromWelcome()" style="
+        width:100%;
+        padding:14px;
+        background:white;
+        color:#1877f2;
+        border:1px solid #1877f2;
+        border-radius:10px;
+        font-size:17px;
+        font-weight:bold;
+        cursor:pointer;
+        margin-bottom:12px;
+        ">
+            👤 إنشاء حساب زبون
+        </button>
+
+        <button onclick="openProfessionalFromWelcome()" style="
+        width:100%;
+        padding:14px;
+        background:white;
+        color:#1877f2;
+        border:1px solid #1877f2;
+        border-radius:10px;
+        font-size:17px;
+        font-weight:bold;
+        cursor:pointer;
+        ">
+            👨‍🔧 إنشاء حساب مهني
+        </button>
+
+    </div>
+</div>  
+<script>    
 function openWelcomeLogin() {
     openCustomerLogin();
 }
